@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Paris DeVault — GRC Analyst Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy: #0f1c2e;
+  --navy2: #162336;
+  --navy3: #1e3250;
+  --blue: #2d7dd2;
+  --blue2: #4a9de8;
+  --teal: #0d9488;
+  --teal2: #14b8a6;
+  --green: #10b981;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --purple: #8b5cf6;
+  --white: #f0f4f8;
+  --gray: #94a3b8;
+  --gray2: #64748b;
+  --surface: #1a2d42;
+  --surface2: #213550;
+  --border: rgba(255,255,255,0.08);
+  --glow: rgba(45,125,210,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--navy);
+  color:var(--white);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--navy);}
+::-webkit-scrollbar-thumb{background:var(--navy3);border-radius:3px;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(15,28,46,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:60px;
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;
+  font-weight:800;font-size:1rem;
+  letter-spacing:0.05em;
+  color:var(--white);
+}
+.nav-logo span{color:var(--teal2);}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{
+  font-size:0.82rem;font-weight:500;
+  color:var(--gray);text-decoration:none;
+  letter-spacing:0.04em;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--white);}
+.nav-download{
+  padding:6px 14px;
+  background:rgba(20,184,166,0.12);
+  border:1px solid rgba(20,184,166,0.3);
+  border-radius:6px;
+  color:var(--teal2) !important;
+  font-size:0.8rem !important;
+  transition:background 0.2s, border-color 0.2s !important;
+}
+.nav-download:hover{
+  background:rgba(20,184,166,0.22) !important;
+  border-color:var(--teal2) !important;
+  color:var(--white) !important;
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:100px 80px 80px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(45,125,210,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(13,148,136,0.08) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1fr 500px;
+  gap:80px;align-items:center;
+  max-width:1400px;margin:0 auto;width:100%;
+}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:0.78rem;
+  color:var(--teal2);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.8rem,5vw,4.2rem);
+  font-weight:800;
+  line-height:1.1;
+  margin-bottom:24px;
+}
+.hero h1 .highlight{
+  background:linear-gradient(135deg,var(--blue2),var(--teal2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  font-size:1.08rem;
+  color:var(--gray);
+  max-width:520px;
+  margin-bottom:40px;
+  font-weight:300;
+  line-height:1.8;
+}
+.hero-certs{
+  display:flex;gap:12px;flex-wrap:wrap;
+  margin-bottom:44px;
+}
+.cert-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  background:var(--surface);
+  font-size:0.78rem;font-weight:500;
+  color:var(--white);
+  font-family:'DM Mono',monospace;
+}
+.cert-badge .dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 8px var(--green);
+}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+.btn{
+  padding:13px 28px;border-radius:8px;
+  font-size:0.9rem;font-weight:500;
+  text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all 0.2s;
+  cursor:pointer;border:none;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--blue),var(--teal));
+  color:#fff;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,125,210,0.3);}
+.btn-outline{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--white);
+}
+.btn-outline:hover{background:var(--surface);border-color:var(--blue);}
+
+/* Hero card */
+.hero-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:36px 40px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-card::before{
+  content:'';position:absolute;
+  top:-1px;left:20%;right:20%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--teal2),transparent);
+}
+.hc-label{
+  font-family:'DM Mono',monospace;
+  font-size:0.7rem;color:var(--gray2);
+  letter-spacing:0.1em;text-transform:uppercase;
+  margin-bottom:20px;
+}
+.hc-stat{
+  display:flex;justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
+}
+.hc-stat:last-child{border-bottom:none;}
+.hc-stat-label{font-size:0.85rem;color:var(--gray);font-weight:300;flex-shrink:0;}
+.hc-stat-value{
+  font-family:'DM Mono',monospace;
+  font-size:0.85rem;font-weight:500;
+  text-align:right;
+  white-space:nowrap;
+}
+.hc-stat-value.green{color:var(--green);}
+.hc-stat-value.amber{color:var(--amber);}
+.hc-stat-value.blue{color:var(--blue2);}
+.hc-stat-value.teal{color:var(--teal2);}
+.prog-bar{
+  width:80px;height:5px;
+  background:rgba(255,255,255,0.08);
+  border-radius:3px;overflow:hidden;
+}
+.prog-fill{height:100%;border-radius:3px;}
+.prog-blue{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.prog-teal{background:linear-gradient(90deg,var(--teal),var(--teal2));}
+.prog-green{background:var(--green);}
+
+/* ── SECTION ── */
+section{
+  padding:100px 60px;
+  max-width:1600px;margin:0 auto;
+}
+.section-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:0.72rem;color:var(--teal2);
+  letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:12px;
+}
+.section-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:800;
+  margin-bottom:16px;
+}
+.section-sub{
+  font-size:0.98rem;color:var(--gray);
+  max-width:560px;font-weight:300;
+  margin-bottom:60px;line-height:1.8;
+}
+
+/* ── JOURNEY ── */
+.journey-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+.journey-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px 32px;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.journey-card:hover{border-color:rgba(45,125,210,0.4);transform:translateY(-3px);}
+.journey-card:first-child{grid-column:1/-1;}
+.jc-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;
+  margin-bottom:16px;
+}
+.jc-icon.blue{background:rgba(45,125,210,0.15);}
+.jc-icon.teal{background:rgba(13,148,136,0.15);}
+.jc-icon.green{background:rgba(16,185,129,0.15);}
+.jc-icon.amber{background:rgba(245,158,11,0.15);}
+.jc-icon.purple{background:rgba(139,92,246,0.15);}
+.journey-card h3{
+  font-family:'Syne',sans-serif;
+  font-size:1.05rem;font-weight:700;
+  margin-bottom:10px;
+}
+.journey-card p{
+  font-size:0.88rem;color:var(--gray);
+  font-weight:300;line-height:1.75;
+}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.tag{
+  padding:4px 12px;border-radius:20px;
+  font-size:0.72rem;font-weight:500;
+  font-family:'DM Mono',monospace;
+  border:1px solid var(--border);
+  color:var(--gray);
+}
+.tag.active{
+  background:rgba(45,125,210,0.12);
+  border-color:rgba(45,125,210,0.4);
+  color:var(--blue2);
+}
+.tag.done{
+  background:rgba(16,185,129,0.08);
+  border-color:rgba(16,185,129,0.3);
+  color:var(--green);
+}
+
+/* ── PROJECTS ── */
+.projects-container{display:flex;flex-direction:column;gap:48px;}
+.project-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  transition:border-color 0.2s;
+}
+.project-card:hover{border-color:rgba(45,125,210,0.35);}
+.pc-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:40px;
+  padding:40px 52px 32px;
+  border-bottom:1px solid var(--border);
+}
+.pc-number{
+  font-family:'DM Mono',monospace;
+  font-size:0.72rem;color:var(--teal2);
+  letter-spacing:0.14em;margin-bottom:12px;
+  display:block;
+  font-weight:500;
+}
+.pc-title{
+  font-family:'Syne',sans-serif;
+  font-size:1.5rem;font-weight:800;
+  margin-bottom:10px;
+  line-height:1.2;
+}
+.pc-subtitle{
+  font-size:0.9rem;color:var(--gray);font-weight:300;
+  line-height:1.6;
+}
+.pc-badges{display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0;max-width:300px;justify-content:flex-end;}
+.badge{
+  padding:5px 12px;border-radius:5px;
+  font-size:0.72rem;font-weight:500;
+  font-family:'DM Mono',monospace;
+}
+.badge-blue{background:rgba(45,125,210,0.15);color:var(--blue2);}
+.badge-teal{background:rgba(13,148,136,0.15);color:var(--teal2);}
+.badge-green{background:rgba(16,185,129,0.12);color:var(--green);}
+.badge-amber{background:rgba(245,158,11,0.12);color:var(--amber);}
+.badge-purple{background:rgba(139,92,246,0.12);color:var(--purple);}
+.badge-red{background:rgba(239,68,68,0.12);color:#f87171;}
+
+/* body: single column, full width */
+.pc-body{display:flex;flex-direction:column;}
+.pc-problem{border-right:none;}
+.pc-section{
+  padding:36px 52px;
+  border-bottom:1px solid var(--border);
+}
+.pc-section:last-child{border-bottom:none;}
+.pc-section-label{
+  font-family:'DM Mono',monospace;
+  font-size:0.68rem;color:var(--teal2);
+  letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:20px;
+  display:block;
+}
+.pc-section p{
+  font-size:0.92rem;
+  color:var(--gray);
+  font-weight:300;
+  line-height:1.9;
+  margin-bottom:16px;
+}
+.pc-section p:last-child{margin-bottom:0;}
+.pc-section ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.pc-section ul li{
+  position:relative;
+  padding:10px 0 10px 28px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  font-size:0.92rem;
+  color:var(--gray);
+  font-weight:300;
+  line-height:1.8;
+}
+.pc-section ul li:last-child{border-bottom:none;padding-bottom:0;}
+.pc-section ul li::before{
+  content:'→';
+  color:var(--teal2);
+  font-size:0.78rem;
+  position:absolute;
+  left:0;
+  top:13px;
+}
+.pc-section ul li strong{
+  color:rgba(240,244,248,0.9);
+  font-weight:500;
+}
+
+.pc-footer{
+  padding:20px 52px;
+  background:rgba(0,0,0,0.12);
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:32px;
+  border-top:1px solid var(--border);
+}
+.pc-tools{
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+}
+.tool-chip{
+  padding:4px 10px;border-radius:4px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border);
+  font-size:0.72rem;
+  font-family:'DM Mono',monospace;
+  color:var(--gray2);
+  white-space:nowrap;
+}
+.pc-metric{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:4px;
+  flex-shrink:0;
+}
+.pc-metric .metric-val{
+  font-family:'Syne',sans-serif;
+  font-size:1.6rem;font-weight:800;
+  color:var(--teal2);
+  line-height:1;
+}
+.pc-metric .metric-label{
+  font-size:0.7rem;color:var(--gray2);
+  font-family:'DM Mono',monospace;
+  white-space:nowrap;
+  text-align:right;
+}
+
+/* ── FINDINGS TABLE ── */
+.findings-section{
+  padding:0 52px 40px;
+}
+.findings-label{
+  font-family:'DM Mono',monospace;
+  font-size:0.68rem;color:var(--teal2);
+  letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:14px;padding-top:32px;
+  border-top:1px solid var(--border);
+}
+.findings-table{width:100%;border-collapse:collapse;}
+.findings-table th{
+  text-align:left;
+  font-family:'DM Mono',monospace;
+  font-size:0.68rem;
+  color:var(--gray2);
+  letter-spacing:0.08em;
+  padding:8px 12px;
+  border-bottom:1px solid var(--border);
+  text-transform:uppercase;
+}
+.findings-table td{
+  padding:12px 12px;
+  font-size:0.83rem;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  color:var(--gray);
+  font-weight:300;
+  line-height:1.6;
+}
+.findings-table tr:last-child td{border-bottom:none;}
+.sev{
+  display:inline-block;
+  padding:2px 8px;border-radius:4px;
+  font-size:0.68rem;font-weight:600;
+  font-family:'DM Mono',monospace;
+  text-transform:uppercase;letter-spacing:0.05em;
+}
+.sev-crit{background:rgba(239,68,68,0.15);color:#f87171;}
+.sev-high{background:rgba(245,158,11,0.15);color:var(--amber);}
+.sev-med{background:rgba(234,179,8,0.12);color:#fbbf24;}
+.sev-low{background:rgba(16,185,129,0.12);color:var(--green);}
+.status-open{color:var(--amber);}
+.status-closed{color:var(--green);}
+.status-prog{color:var(--blue2);}
+
+/* ── LESSONS ── */
+.lessons-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  padding:0 52px 44px;
+}
+.lesson-card{
+  background:rgba(0,0,0,0.15);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:22px 24px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.lesson-num{
+  font-family:'DM Mono',monospace;
+  font-size:0.68rem;font-weight:500;
+  color:var(--teal2);
+  letter-spacing:0.12em;
+  opacity:0.8;
+}
+.lesson-text{
+  font-size:0.88rem;color:var(--gray);font-weight:300;line-height:1.8;
+}
+
+/* ── SKILLS SECTION ── */
+.skills-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.skill-group{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:24px 26px;
+}
+.sg-header{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:20px;
+}
+.sg-icon{font-size:1.2rem;}
+.sg-title{
+  font-family:'Syne',sans-serif;
+  font-size:0.92rem;font-weight:700;
+}
+.skill-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 0;
+  border-bottom:1px solid var(--border);
+}
+.skill-item:last-child{border-bottom:none;}
+.skill-name{font-size:0.82rem;color:var(--gray);font-weight:300;flex:1;padding-right:10px;}
+.skill-level{
+  font-family:'DM Mono',monospace;
+  font-size:0.68rem;padding:2px 8px;border-radius:3px;
+}
+.sl-adv{background:rgba(16,185,129,0.12);color:var(--green);}
+.sl-int{background:rgba(45,125,210,0.12);color:var(--blue2);}
+.sl-beg{background:rgba(139,92,246,0.12);color:var(--purple);}
+.sl-date{background:rgba(255,255,255,0.05);color:var(--gray2);white-space:nowrap;}
+
+/* ── TIMELINE ── */
+.timeline{position:relative;padding-left:32px;}
+.timeline::before{
+  content:'';position:absolute;
+  left:6px;top:8px;bottom:0;
+  width:2px;background:var(--border);
+}
+.tl-item{
+  position:relative;margin-bottom:32px;
+}
+.tl-item::before{
+  content:'';position:absolute;
+  left:-32px;top:6px;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--navy);
+  border:2px solid var(--blue);
+  box-shadow:0 0 10px rgba(45,125,210,0.3);
+}
+.tl-item.active::before{
+  background:var(--teal2);
+  border-color:var(--teal2);
+  box-shadow:0 0 12px rgba(20,184,166,0.5);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(20,184,166,0.4);}
+  50%{box-shadow:0 0 0 8px rgba(20,184,166,0);}
+}
+.tl-date{
+  font-family:'DM Mono',monospace;
+  font-size:0.7rem;color:var(--gray2);
+  margin-bottom:4px;
+}
+.tl-title{
+  font-family:'Syne',sans-serif;
+  font-size:0.98rem;font-weight:700;margin-bottom:4px;
+}
+.tl-desc{
+  font-size:0.83rem;color:var(--gray);font-weight:300;line-height:1.65;
+}
+
+/* ── CTA SECTION ── */
+.cta-section{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:60px;
+  text-align:center;
+  position:relative;overflow:hidden;
+  max-width:900px;margin:0 auto;
+}
+.cta-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(45,125,210,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.cta-section h2{
+  font-family:'Syne',sans-serif;
+  font-size:2rem;font-weight:800;margin-bottom:16px;
+}
+.cta-section p{
+  font-size:0.98rem;color:var(--gray);
+  max-width:500px;margin:0 auto 36px;
+  font-weight:300;line-height:1.8;
+}
+.contact-row{
+  display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;
+}
+.contact-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:0.88rem;color:var(--gray);
+  font-weight:300;
+}
+.contact-item a{color:var(--blue2);text-decoration:none;}
+.contact-item a:hover{text-decoration:underline;}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:32px 80px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.footer-left{
+  font-size:0.82rem;color:var(--gray2);font-weight:300;
+}
+.footer-right{
+  font-family:'DM Mono',monospace;
+  font-size:0.72rem;color:var(--gray2);
+}
+
+/* ── RESPONSIVENESS ── */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:40px;}
+  .hero-card{display:none;}
+  .skills-grid{grid-template-columns:1fr 1fr;}
+  .pc-header{flex-direction:column;gap:20px;}
+  .pc-badges{max-width:100%;justify-content:flex-start;}
+  section{padding:60px 24px;}
+  nav{padding:0 24px;}
+  .hero{padding:80px 24px 60px;}
+  .pc-section{padding:28px 24px;}
+  .findings-section{padding:0 24px 32px;}
+  .lessons-grid{padding:0 24px 32px;}
+  .pc-header{padding:28px 24px 24px;}
+  .pc-footer{padding:20px 24px;}
+}
+
+/* ── DIVIDER ── */
+.full-divider{
+  width:100%;height:1px;
+  background:var(--border);
+  margin:0;
+}
+
+/* ── SCROLL ANIMATIONS ── */
+.fade-in{
+  opacity:1;transform:translateY(0);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.fade-in.hidden{opacity:0;transform:translateY(24px);}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">PARIS <span>DEVAULT</span></div>
+  <div class="nav-links">
+    <a href="#journey">Journey</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+    <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9TeW1ib2wgL05hbWUgL0YzIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNSAwIG9iago8PAovQ29udGVudHMgMTMgMCBSIC9NZWRpYUJveCBbIDAgMCA2MTIgNzkyIF0gL1BhcmVudCAxMiAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKNiAwIG9iago8PAovQ29udGVudHMgMTQgMCBSIC9NZWRpYUJveCBbIDAgMCA2MTIgNzkyIF0gL1BhcmVudCAxMiAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKNyAwIG9iago8PAovQ29udGVudHMgMTUgMCBSIC9NZWRpYUJveCBbIDAgMCA2MTIgNzkyIF0gL1BhcmVudCAxMiAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKOCAwIG9iago8PAovQ29udGVudHMgMTYgMCBSIC9NZWRpYUJveCBbIDAgMCA2MTIgNzkyIF0gL1BhcmVudCAxMiAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKOSAwIG9iago8PAovQ29udGVudHMgMTcgMCBSIC9NZWRpYUJveCBbIDAgMCA2MTIgNzkyIF0gL1BhcmVudCAxMiAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKMTAgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyAxMiAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjExIDAgb2JqCjw8Ci9BdXRob3IgKGFub255bW91cykgL0NyZWF0aW9uRGF0ZSAoRDoyMDI2MDMwNjIwMTIxMiswMCcwMCcpIC9DcmVhdG9yIChhbm9ueW1vdXMpIC9LZXl3b3JkcyAoKSAvTW9kRGF0ZSAoRDoyMDI2MDMwNjIwMTIxMiswMCcwMCcpIC9Qcm9kdWNlciAoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpIAogIC9TdWJqZWN0ICh1bnNwZWNpZmllZCkgL1RpdGxlIChQYXJpcyBEZVZhdWx0IC0gR1JDIEFuYWx5c3QgUG9ydGZvbGlvKSAvVHJhcHBlZCAvRmFsc2UKPj4KZW5kb2JqCjEyIDAgb2JqCjw8Ci9Db3VudCA1IC9LaWRzIFsgNSAwIFIgNiAwIFIgNyAwIFIgOCAwIFIgOSAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjEzIDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDQ1OTIKPj4Kc3RyZWFtCkdhdWBXPkJlZ1smcTlTWV5lOGE1ZXRHXCleLyhkWEVpVipZPENvcF1pInFjNixmVU90bm1ZKzlwO2NWMS9nUjhxW18mRiZQQjEyYiI+R0lIIycwbFcmSlAuSGlyPFtaYVNRLSQ0MUMjN2FeUmdtYSlLLFosOGkuMCUrPlhlbDRDaWdfbmE0KkpTQm4oJ1dbRWslLysoYk8iV0lxcldxP1lecCxKI3BzYT50TztPUHNqKWYzKFBsNyouUT4pJG9vWDkubm5fbC1kYDpiT3VwKFFTQ0RWM11fRmA2M2RFZF9DVlhxUjkhXzlxKWg+ITsnV010TiZwWFZLXHMkNVVaLSteJlgmQCo0QSYsVGxlbzxpNlpVcyE/YWhmbl4lbVFMN0F1aEk7UDVoZFZAalk7UnEnTkA8XD86UT89LEYkL29eaio2VC9PWEFgak8tOiEhUzBjalYpI0k7QklTMUdgYWw6PkM6MGNDKyo3SnBJSVREdEBTWlwjXWtrUGktYjZuNTUmVlo1SzFEOyFUXXRndTVZPjUyRyMiQmFYNWBsN0BALlthZkhRXXJ1Kyhbc2VEamBwPGwyQHNDSlhGK3FQals+MDwqJG4oQWFnVFZYVVlJbkdBKTZxOkpONSVhIT0/XVc5OUAzMSRjOlpiLkAhNjk0IXJiU3QyJWBUQidgQGouIV5APSlbZzk5TC9sZSNWKG9bTDJHVGQiIU9sXiM8JjQ9UDBKaHBcamdAazdMQlVeMFEjRFQ5bC5tKDdNJVVVZ1wrM1xVKU8pLWcsPT1ULk4kdToiM1JBRl5nZVkyX0YmWS9RdVopQCtfI2JyR2tTQT4uNEQlYDYqXGRxIXF0K05VNkc4bCc2WXNMUUZmJmY3cSsqcCxeN0FDMFpYaWtHUi4iTyUlZFM1Jkc4YzhWJkU0ZzEtRFFLb3I3ZV4mQ2tXS1crbmprRltJRC05UzgtTiFXbDRuPitmVjVbSzFfV19KMzRxP1JpWVNNLic/azFNbikiWUBcXGBcbThNTj1HJz4wWlw/WnRdM2xOL1ZXLF4icWs4YWdGJGFfWUpDU1dTZz0zUD89TG9mSWU5NzohRWE+NHBMajdZZ1IhNHUrWiQmMFlaUiRvOz0pOkZfclAzQSdOUCJYJGFOaUNoYEY2SXJILmsucElGLUZLQVNLYEsjT1suQDIyVjNVU1llSW1OUStuSlZpSzs6XWZFPXUwIlpob1tVJWZzNiNZTGFvMV5qPm8qMW4sUmZgRl07aDxMcCNEZmdhIlM9OGohZGs+VV8pOSVpOS4+U1Ajci03bU4nXCVaKkQhZTpYWCkvNVcnZkF1cEUwW208LWdfUyNUaVNoVjtyKVIoPEovLzMxOUI6YjRnKDMuQWYkVGlNW15LODJEOzBxbnJgUjJeZGdfbjBwTT9fKldCYWkvIjhyIiVTQWVmRkBtKClea2RYakxWJ0U1J18wOjQ0Rl5xUipjWSc+N2tuMG5JQXE/XS5iMF5TXFVGcmUtJk0jJ3VPUyImWEhaXCdKSmkxQlxNNCtCVWlkbSZJTEwrJFVZMlUrQ2xibixhMDkxT3BPZFM0Tl1WO2BGT2VXZWpXTChJXyQlcmptb09uZUg8SXVOUkFPTz8vXEhObllIUyJnO1RDOnB0PzFrcDM2O2MkPUAjcVghdV4nP25oPUBpLUQnXVRYYmwyMXJAS0YhTzZOPkpUOS9lKz8qNHIqOC5KYlVNUDVqLF9AMExMMWQxVShePC81QTIlKUoldUtqMldmZ1NbXl1ncF8uLTdPPD1nVypTUFJgPU42JllMKE1oakNYNXFOIjtOOTtGJDYnSEVXTExDMUtpOVRgZzlQOV5UajgiKENxLl1WJDFhWDxiOlpZNm4iRzN0bE4nLzQpOSVZXURcM0J1ZCtGWjxWNWZtOzBYYmxjY2ZgPys+YWQ2T0JqSyFtIS0sUmc+RDBfN18hMGleUFE9V1hyIWJQSlViLnE5SyNSJCg/MWRTY004WkM0MGo9bDZlOFkyM0ZBPnErU1BcNCI0NVpIRyVQY3VcYyY3Ky9KVDBhWmk8OCs9MkU3LFxzPDxla1FsVC5WdCVTPWJqZ1FcTDtaTzA5N0ApXjJGOlFvSF5XZ3JTNSxqJ1w7cklmKG0uc1k7ajUnLjFJWVc+Ti9HK0VYZG8tTWAqIjxXMWNeLDFrViQ/QUM0MDZXImNUZUQ+VGE8RTpaWkBKbWNfXycpMlBuNkknTll0V0pLKHJlM3JrL14mPyFjOnQ9Tlk3ZENMRkk6aDNydWctTmsvR2owO2opW0g7Iz1bY0VsWUdGVzxtJCFzcHQ5VWBDYCU0IWJWZ1FkQikqIztPMzZjWmlvImkuLEUsWC5CKT9FQDdwcigibm1YQy1DKzNvaFRKOyZYRXFlTDI8ViosW2FbLUlMIUUqKyVMa0QzW0wzR0dMRDsybVRURUBYIS1fNlBnQHFqOkxoN2UvOFl1VDxxOUk4NFpjLVxfYzwxblFAQC1GXjY9My1uJVlGPk1yZnA7WC1sVCc7P2w2PDNjc2BUPCpRI2QlTE1SIUVsMFM4QXNkK0gsa28rUGxDZkJoZi1ZVi9xJSlIJChOLmdWXi1uL14tWVI/OGFTRmouYzIobS1YaERMUigrVWQ0WiJNRzVIIVBwQUdnMDZHTzExUFJaUj08QSo+JHBsN3Q8MFM7bExCTXM1SGU5TU5PdVZtN1czIVBaQTJbIVkkKmBCUnR0aCFZbm5cWFZhIWFmKkQ7VUxmYnMqImU6K1AwPjU+KkdTSWc4OWUmZVNaal07WG9hWzNZUVRybEYqaytKaSFMKVE2MCohPlZzPCk4VTk6VlQlVUFgNUBBdU9IRT8xYW1zL2dVZCIuOTFEXUklSVlMczppPicqKEhvPnBbW0k5LihsN1EwIjFuam1eTHVbJVxiIlhePiwxM2pNVkZJb0ZZaUw4Nmh1VGlIUXJcPWcsZGQ1W2dKYjVLZitCdWdjOGUsMk1jaDAwIz5hQmA7Pz1lREcqbi4jKSw5NkxXPUY/Wj1LIz1UYFFhcUFNRjtNPnEwX2tiQ3NfJyFWRE8nJGQ3N0EtUkVcRGJHKXBFcTNjMidoNnVxPjtLTSFAMHAqZU4vSjZlPGE5UiRGdSNKY2lXJUs4citeMihZdUFzJTZmalE8QDxKK1Q+NEg9SE4/bVxVR11YOW9YSzkyM0E1M1UvN3E/K2owaXNwPTRvTCNsc01aP0pxYm4nWyM0cEEyVFk1WDEramg6SjZrbEZLUnRcRF87Tz5oQFZUPzBVLDROPUUtYF4xLkI8TWRDcVsiciNBXDpJMiwqLyErUTcwRFRaIkk0NU1MSEViLGFkPlEmS2dEci5gR0IpOClWNEZmW2BlbENeWXRoUixRTzFnZShxLlxfUGFfJU1eZSttPj4kTmA+TVluISdFPUhfO0xUWWgiXDpTbWIvMEpidDIzakUwOUZPQ2lFaCZHaT9WZnFGcG9RWEROLjg9NmErLExEOyhLT1AxaWlfMTtzIjQyPzNEZmMmQlpWS0VqbzM3ZVFEVkxLWVZsIkNiPUxOJCohIiUyVDBdOCRKTTlubWM/MT9qYEZGNjZjUyQsLSksNkJmZFolOzk9UEVZX1o7R3RnKElAWzEhZkpnUFU4Xiw/TUZhaVBDVCFgaEYsSUNuTkJRQkpRWS9wQkJgKUNCRVwmZzVfSGJ0S1JUKSE0YStXKyw2a2MyWEIpN182SFc/RkVYXmJtR2lqW0c2KFc5cTZUOk1uL181LW0pJmBRRldHREAlQCJDTkdsQ3BFXyEvIjM2IStDJ15rZko3bkMxTEVQY0ViVTtFWT1WQCkxMD89bjsoPCE4Q090P0BtZ0JbJktvbFJHMkgqTigqX3BMTTcybmFOPD5DIV4iSnJKRiNkJU9NXXIlVDpSYGBJKGNfUz1nSS9JXSpXYTBkdEFrb2dMQ182a2JlYyo3SmdnU3FnLD9uOk0kLTFbIzFMVlIrbWBmMCpsQHJAQjpaLChbYWZTVztkMy5uI21vOmRMUShBJFNPN3RYKGtaRF8+MWxZRlFaYUotSl07S1E4N3Fmc3NmP2NDSlBBLVhubjstNSxVTCJPS0VZRUBGMGpLT2xjUUdhSEBRM2U3blkiZ0B0Wj0kRSVJOV1JOyprXkg6cSElQ2xyKm0xJkJfPypuVyZkS19KRGpxLVcsOmgrQ009bD5YZztPR05ESTQobm88P1RYZTpdTXJbWjE9OEQlVDBeaSZkXDBdWHQ2NUhLYU5GXEVEQzJvcDxgL2xac0hiY3BxYT9kcG5BY1oncCMwaSo/dUpRO1o9UFdWVCgtYUQpL2JjSSNxSytTOWBldEtqOWRjPTQsVC1rTzVIa2VgOmFVVnFHO1wyNCljKk5TNkspVVxfI3JNIV4tUTQ+U0hFMzRxVkxoQGtoKktRJF5CLG5vNCU6UVwpbV9QbWtZNDZBbi1abTEmS1FmYWw/XXFAWlVlWEhkdTMnVF9bcU4jT0ZcYClVW1s0bDhiamgyIVxuO2xBOCpNXF1fMV4oODdKbWBlTi9jXzFnYykzUmc5PV1Nb1FBIy44RWhZImVLLlJDcWZKPUJCc0RbPDJtXUZGITpybF1HKCpoS1k5Ij9wYi9gJGpPb1I7LEMucCZONSxkOkc1VzsiYkxPZmInNWpMKHMxZmssVlojYlQ2WFJgQzFoOi9oXU9ONkclJENaaEVUbyVZIUk8XiJXSjcydWhWalNDV1sqS0hZaXBvbloqXkZAYTdbajIxW1M3Vk5lSjRvJytmUXFKI2VBbHFCIlpHMTg8OScnIzZnO08paEomV1k0Jm5JRG1vcE9nYzYpPWs7VSlbcllxdD5VR2JaTyRxP2JLQltaVFxuZ05wZzI8dCpIX2piZy9ZRz10Jjg2W0QkczdzK19SIlI7MzhdLG5Na0klbWNIKyhtUHBJbHQ1KlxQPVZnSjUrb11bc1VVRnUmakVxLnRuTy8mMCxrb2gmbFE6JGEpQ2lyMUVeUVc2bCdiNk5NLSdaKWk0PjFoRkw6Pk1QOTM0TStLRm5YbmNZZXBqY2MhT21nRGBCZ0wiaFdfLl5ZMkhnaFIhNV9yZ150SVc1c29GKSwyOzosbiQ9T25ZOiJmbSFzZnFGV1g4QillZE5IcEw2bkYkXj4iU0I1QU5SZFhZT0I0UTEqaEJ1YTQ5LE5TdD9rN0hjOipwV3AyJksoWFlZPm8pZEpoSCFTa0lRIWRfcklKbEM0WFNDUW0pWUMlWSRBJCtuXTlyXDBsRFRiNEhuTi1vIkpQTGpdSV47O3J0MT9hbEA/IU49Ml0iSSxSQCFiQWdHcyEkUDlZOUAsXiNvMHFXXUU9XDFbJ2FEOkpkW3ErT0I9XmFMNVgzPlZzNlouRjx0ZGwnPnNCTWA1SixrTjZhPS9wNEdBUkFwcC4rVTFfcT8+LyQ7KmF1XlgyQTNMS0w/YidDQ188Il09bXNMPnBQMzcmYVkpLjkmXGpnQFU+IV9zP09bZSJmdTtLR2QmI1xoXV10XD1tRicibEghVFkxZkdyPnNPN2QibExgYiNRZSpFQ1VrLVRKdCp1byZbRipWcm1HKl9scl8jOT4vWTU/RXVvZWJqTkQlY0E3cSZUR0NXKShpLVFoNWxCR103ND5cWSs3byI2QiEuNydObWlsZy4qMlNiLE0ybidXOyxSSCU7IUFbNFg8Ui0mT01CQWs5ckldY2ZjSiNLRDMlQUgmKFBJLGc2JEFuRV02Qi5JIVtjMUYybSUnOFFJTCJYKHBSOk9zQm5qLiNrYipjY1Znb1ZdSy9YVT1YQnI9Y1lJKl8hRDBuL1dbTjBOJ2BZby43QkhAb103ZlJuXzEzaV9WQV8vTCFQOztOJ0RUWF8qb3UiZ1ZRLllAN1JUSmoxWU9hUmRMM1ZLUUNNM0JxQSdedWZtWFptL0xmIlldQzZEMC8hdD1DT2pjLTduTWQ3Vmw4NDA0I0txQD1XZDxWX3JkODM8J2oxKCsrXyVEQEBHV2dXTkM4NUhNRz43U2MlcCclVkFgQE8rPS9TRmEwJUQ/SU9RM25EXUlwbmxHW0MsLl80b21gazE8c0pwWWI6QVJlIyFtSW1ASUFdRyNqX1FlZ2RvYk4uYDZVRmxuKn4+ZW5kc3RyZWFtCmVuZG9iagoxNCAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCA0ODE5Cj4+CnN0cmVhbQpHYXVgV2dOKSU8JnEvQTViX29jUFEzQEEzImw8OkIwQ2BxbTxbO09eW2BVNjcjdF1xPUoscjJQPE9FcGBoL2hmXS44LUlJNm4pMj9saUFmIjUyRFNkI0Q6LSMkTkRtWXMob08oTzY+bFNxaSMqVlNSOFpyLUJhciJiaGVtNCxjU3EtL200QDY3QHJNcjQ7QSQ0clJGMkwwQGsqIV8xbWhRclhEVV1cSixvUyUqdC5qPUo/TzgoWD1wbTQuamdEZF1DZjdHJVMqPG48WjRMKWtFYjs4KUo4KFN0MmchMlZfbEAkcW1DWjc+Xz1cMzhNV1RpRVFaPixlOHNOZytzN3Q5TmYzVyhbVFtEZyItPVE+USVhLlJoXUg1QSpoK3QwZnMtbmsmdF87JyRscUgyZ0Uzc1k4MV4qLGRWQXMmJzsxPFBaZi8kV01PSEZsTG8hTlk/Ty1MOiMzT2dmRGFuY3JkZ1g/YG00VW1GWEtkbU0rZl1vcE4nPWg0dXRQTUEtVlAuVWVqLCghcmEpSiZRPjNpQV9ROlI4R0cuKDFidU8nQHBDQmVeVWlkI1xtbyksMnNkQC9JXUknMnBBKFRORHNIVktaITY+VCtPUSJPVlBIVilFc0hXTGhXSXNabGg+Z1U7bUU/biswTjFCcHFyRUNsK2dtT1w/NEw5Ry5ETFpfa3QvTEIiLCtEWjNjJkZZNTMxVCgxZGwoLz8zbTQvcGZrXldhKWlNKG9oI0tENiZcJkZDZFskbSZQL1ViR3RTQ1poNFwocCFqW0FMIUdtJTlfVDxpOCgoZDEzQlw8Y25SU1ZZa0tPcmhFcixTUm11R2BJZnRUYiIzXWQ1Y2ZMOUNGKkBlZU1pL0skLCc5RmtLYDdSWV1SMWVPOEljKGV1T0JEKic+OSNvbm1CPlk7KThKPWQjNkBQMW44RlZbNE86XGFnJEhOUksicjwlYkc+K0VdJSJPVUpqJixOKSo1U1VjJTVMLVRrLy9tVCs4V0AyYE5WJCVOPilaVCxrKU9xc2pEQjQxSUppZCExLEghUilGSS9sXHRtQEtJPj0kNVNEX3FiSWBWU24hNG9RS1lwZTtAcC1SImRgaF5IQC0nLGE0W3JtTmUtO1ttSWptL2NkKDU2Zm1DYCZQVD11OFdwXmwiV0VfJ1xLTzsicTptbDRSVy8kQGFpLEFwX0UsTFNQVUVDJWNcQzpsVlJxXDowXDMlJjlZWillWCFdMl44X2tBPi8hOSlSPCEsOF9dYGImYSEtbk0ydGxqQVc0XUdTaj4zXUMuZEgxIV5fJGZfXUpnPjxnb2AjbXA9RUJqQTxjckclRzUpdGEhKkAhQGlFK0NSVDEsZnVfTENwM1VVWyxcI1VTYmI/blZRLT5mdXNeJ0ZFLCpBUlJoWlEqUDxAQTgxRXViamRfKW4vdFVeR248LkFBTkwjPkpGcDZOXChDTW5QSl0wVCk0OTgrcWFJMS9ZWjojL1U/Qz1aQlJ1bkhWOkwuQ09OOGc/MUlYIm5ATEZyZy0uO1IzOkpmREtZaTVsVVchNUlIMjZjK0lfTGlDRmY6Q1MqOz9vZF91JEsraWEjXyk4UF81QkIhaSxiSjs2PiJZWWFfXi5lOmw9ZDg2ZzhNWSgwKmxnYjE5PUhFdFt1USNkcmo7ISkxcUw+QlxraW1FaCl1XG5mPjhmSi1dRSVucFgyKz1pIixoUmpYRGtJcGAvUSp0Iy1IZT9YcGJVdE5gaVohciUmXFBpMGlJQyFFZCkiJmtlYmk7MmoqaVlMT1wnSDM7YFgwVSFMdHRVZGtsR1pZMWppMjNOdGE1ZWIpPickQ21CUisnJCxcImUtQj84LT5wVTBOUWJrb2pqX1E+VU1rUyIhMFFKRFFOPDwncTpLU1RtRnM5ZWpKN1sqWjZaZ1lITSpeYzZvXG5VJktwUUZeQUc+b0VDSj9UN0dRXzNFLzk4WC9XKlYoTzE7ZmJqdD1WRlsvS0YwKUtaaGMuUG5jZU1aW2guODBAMDYrKlFTIXNTOClgOFJpJCMuRigpZ2lWWF1KL1pSVUtba3M4Rl4pJDNvcj5ZKU9qVEVcZUpiakhXbldvbCpiT0dpZlhUWEdqMyJdSjIua20rZlhOK2BZNCZUN21GZXVaQ2c6bl9FVUREZypqS10iZlhNOSk+XSRmZWprLiddWjEvKEtbSSVDZE46MnAlNDFNZC0+bDhTPkZyKHJyU3I5NGg1JWBhMkckMikyKzUmKiE1PCY7S0FGRkRUbSRoI0FrRmExRTYsbzA3ajIrJlkucU1FdEAlcDM/L0JiLE83UUJQcD1EWTZpUzRsR29VRF5RX0ZiYFlQPlFtYSYyQ1ErVlBbJzFyXEkrUisiXFByKy5DakpgPllSYzJRIk0/XV8hYiI7VjJnJy0rYl1LYjdYQjwpIydBRzNKOl0sbzZvYTknKCxdMlwoYkEvX2FVMV8lXGpEdSldSnFmRVwpP0pbPC9FJjNONDJCP0VdWmRyYD1kMkgqQCRWV1Z1Yy9uOTRUJTAxbjdmS003RzAiXXVYJ0ciUkk5Rk9zZXNgJkU1LEI2bTZxKStAblhKWTFSLDwmTTA3VFo5Zm46LydMRU5paS4ycUgsMUtfOFlMNGk7ak0+TDFvR2BJJWBpXD9TMUguVGQkOkhpMSFYTDMzPWdpLTtYYkkhamA1Omg8Q1NyJCVZU0VoMTVta1EjZ2VbNClkZThbRk5mRnJDLWdkUUJvc0wqKmphSz4rPCJOR20pKzYybHI9QzYvR0lkYU5HWU1yVEY+PkUkZCpvU1ozJ2FMJ2swQ2JGckteSS1wPD5LXjNscDdGZ2lGRUVPVCUuRlU/QzJycFRaK09BNUM5JEdaMm9pXjZ1IjQrLjg+MlgyS2E+aTtXZ2oyb3FjJV9VJTdvIV4kNjk0NCpQYnVdP25SMEg2WVIqUTloMTxePCFiJFZBOjprUGEnViw3UUVoOzNpc2xXb0RPRzRxMixHITQnXTBBKzVxcWBKKSooS0N1SUNeXEpVWDNFIzRwQCMlVmNfMWZTb1UvdUNqamVtImtmWGpYQ04iKmdRXl4pZjpyQj89LW45LXJuMiJfPTBPXU1yNC5gbEdLKjoxaCRbQz1hUDZZOiZXUzJYTjpCW0dHOExyRWZcOWo5OjQwN2g0JFAickJAYkg+JVdhSGZwS0VSR2BKYE5bMlAkUzQzWWxwNDhKTCFmMEZbbEteMDdkKWE1XGBYZi40OVxyOC02bVVKUmpqLUVhJlQ6LVw6PkwhcjV0SCZcJ19ENiU7LlFXP3InIltrdUoxVnNjIWJBLlYlOTtAdDFmI1dmYCdxdF0yQmZybztIQmckaVRUQWo+NTk2VHJpcjxmcTg2ZGNSS1FUW1lCOExLNDJWJjdqZTIxYlI4LlQlMXEiZSZTa2wnU0JiWixLPFkxN10sOkF0W2ksKk85WCkncjZySE9AJUFlK1pZXVAxLldRK1VsYUF0NklKRkszTUAuTVNxV10sUzo5MHIhUHNDWjMhLTBBYT9DYUxXXTtJbyFPQlw9JEFMZSs2KT1kREJzOFNRQS1HQiMubXU0PUU9Lk0+XydwTVAnOVZGMjN0azUyLmxGVE4uTmdMOyFmQ1UiOUJtIXMoZTZaSSFvZDBeJVhiM20+T28taFshKmkoOiFlTG1kS1NFbiVlXChUNV8/aGxlTWZFKSpWMWdAW1RFdSxWQHU4QyRsIy9BNlw4JTg+V1RgTVw4Mmw7SycxRyckRnVGJUM5WTVTUTpoQmErVlc/P0FtdUpBMWwzVkkyMy1RIVNEKU06cHA5bzJfMVNLJ2o6UWA4Nz9DdVxNTkExXTlrKEpNVz1WMWlAcFRuaCg5PD42RkstYVg1byE3QFcvQVpdO2FrZFE6KTpaJ11MXmtCXzJaMG08I3I8KihbRzA6Yy5KaGQkL086JylUPWd1MlRpIUddZURUMHFXPENjTmxjKUJuV1pnW25pTmJyI0ZWSXViOFFvLGZYXj9FPVksXkMobTxaWi9zOkFxSzw9Rj1HQUJUO21NQkhQNVZNZmQ6ImAyQy9YIkpxISphIS0iS29lcjdnTzROWU9EWGJhWTkjN25JJUxzcHJmXzVmcUpQJm8mVSxOKkUoV0g0LTcrMD9QRCNXJz9VMnNlbmVHRzNrUFRES180VCpYLy9KY1JjLl5dRGdXI2Y+dFFRYjIvI0VybChdX2lVaWhTW2syaVVqNF87L2Y1SE06dUk9UW90R15GSlJFMSI4OjQxP1wnNWpiYC9hbSdVUU8nSi0wV05GUSUhNVtcW0srU0JPNGtZLGJyaWc+UyxiMmZNRSJaSjpNNlYiNCxiK3VELVtBM0E4TT9URSY1STc1MyhZS2ZqQEQ3ZStJa2gyOjFARWUjcSk3XTgycT5KQixYIU1LLGdhJEI2IlZbQFM4XTpKLDRXMjhIZHV0LVBdQ24kYEUkZm1qbjsnSmZXT2ohOCdrQVtlTV9VclQ8U3E0MmxAMEBwSVc3YXNVSzNFST0kOyJYJikxLFtVUjxmIl9JOmJgbmMxVCFjTlE5Q3A4STQ/bzljJmxOcEUocyxkPjoxP1JPI3EpOl44MzJTTVNPQVE3QFR0bCItXzgyL2RSZiouXDQ3bmtaKztsOmY0ZFZlXEBZOnEhWnJMU2gkJFNQLy5YU2JuOnMrNFVCWEJIS0I3Pj49YjVPLz0lRT1EKFdZN28oKiUwbTc/UlpTNHElMVcsaXBiPVIrKzdcXC9DYzgiSklwU2g7OVg3QnQxZFApS1RXZk5cXWUtWTNFYi1tW2lCcD06bzpSXmtBPUg7LUZXbUU2SywhQ3BEY2Q5WlB0YSk3VmJOTFlTRyozVVJzVl9ia1VZW0A6cHExTT0vZkMrL0lvVjRqJmM3TVx1dGtmVklUTi02LGovamhldSJoZT5GXHVHJk5NS1skalxxOjlGLVBGWG9fdFxqUGFFcj09RiNRNU1LRSUwXzE/LEhmXC1uXCJgP29TK20nOk5sMycuWixccWNeLVokMTkhXUludFMsIyIrJ3I8OGk8JTE7J2swXD1WJDBUV1VRaigrJmU0TlJwTzBiKjJrZW9XJUYjWydEKl1GWDxMKGJSWXMvTSNUMSQtVyF1IlM0XnVlV1ctSz9hLl5vPUIzJERIZWhLa1YmJ09sZ2dKKj1ZJWdwIUlZS1s0RFswO3I6Zz4zbXBwbFJNW1dUYF1JPT5eRGMyKXQ6SWVhaz0iZ29XZEZKbS9MUEM4cycsXktTRVkvVUt1WCxgR10iMjU0bz5NWWZMWmQ2ZjxhTls2JUcjI0U4RHBpZ3NCZmRFY0cjI0U4JzVcUDBCWTNjQD5tL2s2MkpCXkFac0FXKDN0Sl1oI01SSjRCZmdPR1NXPyMyZGJLQDI5SDZvKVBoa1hvWElYOVpub2BqQ3FpUSVDOEB0PVRadV0kc2hwTDolZ2BRMHMqM1NcUysoNEQhZylXR1ZGcEYrVy5JOkEyNSheJVxjZSkraGppWCRQZ19FRm5lak1EM05lTTxlZTcoTnJGSmRyTzVwaGAxZCUwP1dyaWcmJUkiU1xGYTRVM0RaMUdjYEghb3VkUyRAJVRmX0wyWlNIamE1a2IhVSM8VnQ2Zyc0SCQxMSIqXT8uLHRlcFhBQkM8Z2c6WVJgU0RCRi0jQ1ZALUxKa0NrJUksOmxjc0ZpbjpyJDAyXEMvQD0ybWQ7XDpnTm1jJFtKRzlBW2Q0aj84cyxEKW5hXD46dVw8LWVhblFqbFhaSDxyLipsSjpxLCFbc1JeaT86PUUvKTdiPVEmWDNeJixjKGo/JGxFIV4wcVhFV0BacypUOTFDYSoxOG05LiMuXkhLKU8pMk1kQSJdTmlVXltMVXQqRHJdMWoyQyghWUMsWjNmQF9EJk8sW0FHXDMyTzdBLFJnXmEkVjxOWywhRXBtZlkzbDJDXzkmXFZHai0oWE44YDNRYjluP2QkKlYoRDMpUVxaI1FCUC1VIlUuPiNUbjNWWD5UVylFPlRPNjsjXGVaLSRGdV9UZk9GRztWVFY9YEJnNURXY0wxQkQ3Nj0zYiQ3XFRdcGVmPCQhUWk9NkhGWjBEND9VPUVpMiQ6TT9TXyM5O11oZzI0PURXMy9BcFcrVTkqKyM/K1dGLTpBRGVmOU4jYUIzT1EwV29dUUFyPG9uJ1pdT2lcQClZN1lDNzUiSDdMYSFRQ2Q0K2VkXSdOTS5dJGpyakoiRCUwaVJzUlpQSidIMiZ0cE1CRyo8JDJZdWwjIlFIUzZ1PjYzbypPZihyVVcpKkFkbCs3OmZoVFwhcF8+cipPSEhHPUs9bzhxVixAUms+PUtDO15YXTlVNkw/ZU5AJ3VaM2AjcVBdJStnbVUjQHVIZ2FpdVkjaFAzIkBMMEFTOVtRKVlOaSlJNk8vMXIrQGI/PCttZiR0VFxEI09NSkwqcn4+ZW5kc3RyZWFtCmVuZG9iagoxNSAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCA0MDk1Cj4+CnN0cmVhbQpHYXVgVz8kIl5oKFZdQEEzJmJQQiRXdTpPWSRSUy9mPCspQ0wyIVBBXjArKTpDYjZwNCVtK24wajU5JWQ4cTxJX1NWXmYmKS5USm0qcHA7c2ojUTsoRDZpWldlaiUlVWRFLiclaFYyUiYxbXNOb0ZabDFgZHFKOz5mQ0pmZWEub2VTJUpnaWlwKzpMSDpjQTFvZDE2SixVck84czluMSVMP0pmZ0BsTGw0UCVnTE1tSG90SmttTEBEOG9rPCpjIzZAPEtddGlzbWRrU11cOVs7T2YwZk9qV2tjUzlSYGBxL0dPMUxxTyU0bzZQZVxlR3Eick45O3A6QzM7WGdpN01ZXXBvbUJYNDteVjh1VjJuKVBSYk4hbEJbTGViLi5GSVwvM1EoLjU4KllITFUqcTZxdDZFJUM1VkAuZ3FaTl9GJyNXZU9uR2tzYi5QJDhnJ0tMWyNdakBETjRHUDFHRVJmI21EVCx0XCZuKFYtb1pNakluYlRzYCc2aGImR0FIWixBbWxLTTUyKSo9K1QpYTcoWiZkNF5nIkdgdF1PcV0qMycpRCtvTmdhbVNwQnEuTzIkXjAnPS1zTGJNUVhBUDYsUSUvI0QsNF45Q0llVEdyLlQ9cGMjVlZGY29IRVA9JGI4Uy4rak0jTFRGXCFMTFc+b1UtRSoqNWU7SFNjRFpTNV5idDY7PGAoW0tSKyYpXU8+c242MChFcClKbSE2JG1NImxhNjpGU00ubkUzKlE3IWZtI2okblUjO2YoKEpNZGwlPChqPEFMPGtrdTkyYW04UkV0NWV1LXAmRDE+VFJIN1koUTlScUFtOT1vKylGcnEqaG0sOVtHc29RVkVXJ1c0aD1ZYyFvSTYiWjUqLGBuR0ddLDAwLCdiMFJvamk2TUQkJmkkYUtaSTQscG9UQ1xOUXQqT11eUjQjbkMyVF5oKWYxQVddOVF1I0ZiTkA0I3JOKHBPQlsiMVVJMUFJVHA1dCdVZChyZzgtU1JhNCU/LVlsLFxJP1lUJ2U6YU4uKFVpODhsRCppQE5rM2htJDtOVzAmWyJGUWQyRmBBPHRRbCZoNywqJl1QUDJQNUpXdUY/YywyKjFzVmsnLnVuP2UjPGBgRlhKV19CVVBebDcyNkElVTVXJzZBcE8tbzUobTkla1NscTw9RzlCMCxYODlAT0hGdVg0YUVJWj1hM0kjZzJWSDIzWUkuPjcwdTImIjUtODVYZDQ0azI5a1VwM1NxK1liOmMlbG91ITc1JyNWW15XJEYlLSYpPEVDOk4wNmIhKmAqJWY2M2tmKW1BOWBnLmNHXnBVO1QlQjw1WiwpLXFEXHJwJnUjNW9ZUVJuYkRvYCMuSXVmZ1lnN0E+Y2UmdG4oZTYvPjFcY1ZCSGBGTEdjcCZuUTQhNWBVcGVxPFolIXNYLjlLZzZacVIsOEJgXFoqS21JOSRTJ0h0Yj4uKlRNOSswclopclhKP21LYmNgaT48Ly4xMS1uTWU+PWA2bm5jUG9CKzU/JVM8O01kYz8iakImVCVbWiZpbEw3UUVhWnAvX2lCMjcvZkxaRyQ1XWRiTydaTldnTjduYzYhbEhucjxmPy4sIU9wK0pwaCsuRGdAPyYwZjc9ITVfP0NsWUlVPlcvY1hsJD10WmokOlVCKzJFWFZCNUY6TzlOY1dzMF5PVUIxYXEuQCZKM0QpNy8pKE1EY1xOMztUZGBVT2RicyImS0wsJjwmL3FPTThIck5EJFdcWVlyYWtKYFZdIVM5U1g+XCpAWmVsLGsnSlMvQjNlJmpRXk4kQ1loaloiNjRyWWpjU24yXSFqSVM2YjM/TFYhSnU5RjRAT3VGcF9mN1U1Oic5TkZvQTB0OEEzcG1PO2IrI1A+WnQtMUJrQEFYW1lvcmJsUTJNL11VZ2tjdDAoUCpNLChCOVAvUj5kZWEvRVw0cVt1QW9cW29MQ0RlVTVaIV1VZEg5MCQ0NmEqY2BbUSgkJm5AcHNtNCVWZzpkcSQ+ITMvTSdDUkBccVY9Rzp1TkZqOHBhUUdLMmVFU1VvKTMuUSNHJydxT0IhaSs2TGArNzIiU0Y6ZkkhOzdSRCdTJzdvUU1jPyN1ITVKI2NuTUwnSSZVMDUqTCZVakkhODY0PiQiNUdUKlFgNTwwLU5UOWxNTDFEKEtULEIySmk7IlpJYUdISVhVM1o7K2s4M2daRDNrWjInRGRbKmRXSkQ9byInL0AvSFktbzBcRU8nUCk8aVRhNjlGcF0vX0I5a2FqdEMqXlpiWExgT2lJN2RrT2FfJiM3N3NmcnVYMlY8LD9QaGY5YGE5dDE4aidlcCkqYFssKE85QSU9Rl9SZipMaU1GQmJBWHFXKyEoL1YobV9GIj9lYFhbLj5FUS1zUzNMXjVON2NeM2RjaWdcQkEsQkRVMVNKbDhxc0ZZTGVPJ1lBQSomZDoxMkllJUs5QlpYOzw2TilASWR1b3FyTTVhRWNYal0yP1BKJlNjYVtlYidsVilXTlg3VC9WUWtFQjdsVi5YMjErIkFnOU5SMlthK0tNcztXZS9UXDNpNUtzTiw+c0E4TkJzTSxSRSI8Jj1KbFcvVjw+JEozPmwtOWRVW1RNQTBYLXVGSEZhZDZBb0IsO2IxU2RnPlYvI1c0aWpUM3QsTE9EXmErTW45UWI1QC5dPjhmW2NsSV9FIVYlTzZKIk9IaV5hSiphYShBYkomR3NRPFtwNF9gcFZcXmtcKGdNOyNidF0ncDddZkgvTkQsPTxnITdSRz9zKVQ5bU1FSzZkRkFBa3ByRXRRN1lTa1tkZDM9TTtCcyVIb0dgV1l0VyQvQG9fIWVzaCJNSjg8c0Qjc2Q7O2o5R1xHdCYmVmhHZjA2Ni4iQyctUiprIjxPKCZtcVI9bjE5Yio+UGFWbDlbN3N1PG9uaWFYNCtbUFBhRmhxZkI8LENSTEYiOUUhXmFIPlNFZ2F1NllJYWYzOTEqJUNEUikrOzc8MmA0cS5NbmlHVlEpZWRJR2Mra2hUPD9WIlttb110aitAYlBuTVZpdVtYQD9kRiI2MkpLImVAVGpObTJUWylsYVdARk9yb1VNV1RVW2ZNT1JrKTFMXW5GM1xeWWAqOXAocWkzUywnQDZKL0gobzlJJXVZJFUmSzRHP11MR24uaWhuI2MzJERNKz0lYGg/VTNLOiNZWzpAUVAvQT9ONlAuKzRZI0U9VHVEJzhjUWU7XEM0XzVlPFxyNlczdXVrRTdIQlxeNDRPMjtSQmRnJk1AWTRqUlkmOlpFaV5cUjpGPDBfc2ovKzxcQVs5dDZnOkA8SV1BLmotN2xwPGs0IlBvM2VESzpsNGNEWXRzNytfW2EyTSlybUtSImRQJVhQSk5TWHM7dDxpQ29EXmxfPD8hOD0rSEpHbVw6a1Y5WGhvRlFwTDhVaWY5VSheXz07IkImZmwvJyVOKz5dL0lgQzJpUyknMz0vLGtEWGpySGNyUFZJSSRUbW87S0BxZUdSWVdEVWgpL0llMkJ0Nis/PVRhZlBucz1SMTMmczVBZksvN29FZ0koLlttPkh0YS9hISJtMEMrOEU2JSljIjJWTEo6Yk5HPFpaWSwzc1pLc0NRVWpaaDtNRWlZOXVvc1deZ1hLQT9HW0M5ZkEpbjxlQm9RWSRuLVEwTyQkcFBcOypidUgxJFRWLDhxZUU0P2pdNyZ0NDE7VFFNWEc7aVtZaCdqQUcvUV1wLnBqOSotVDFtLzpcJS5JLGlzVlIpVWpeMkYnc2Y7Ky1obkBGQEQ5UCFNQDBAMU0rOSdAUlpURjsjKnQnJjRxJi5eSDJoXFsvUiZcdSUmYFglaENXMVMoSmpxSW8ra1JZNFpnLHMlUV1FQ0Y9QnBKYjwuKzBMblRIJytBY1knbmhOaUApY3UiM0o5SWt0azdRX2dHTi1tTzxKQjY6aSlrMm0xXi5yZ2JePkVBKFphWC8qMkRAOVJsaEUnXXVMPUN1YWErW3QhKVlgJEJKZE9NdUJCZ2peLWlXYidtZUJsKCdQcixDV0tKaEpqRUkqQmc0Qj5BR05vPSJNMGRzL2hIYjRPWVZWNytMVzEqO0UwJywtRiZZY0RbIlNvIlc7RElPQjNXKzohJkdSLUI8STVuRUcjcUBKTz1WUEA7REM2OCZCRzlFN1lGbk9EPG8oR00kNSpHLiUuSzI5NzooNS4+QnBVJlRdUjshWSMkb1gjQjEoayQ1Sz8palQzaTRoVmNCJlEqKWsqMl1sWyNZXjYtRmBZQkIza0NLXDs4dDNcWCgtXzNhWVpBQE0+Ni9LTVBHIS8zJnBVVEUlazBvbigtbU4lMEhQUF0hPjU5UnM4bClAbVMnbDV1KWw0bEFnPXJDTXBhYWI7TjhkNWU2P1tcN0hkIV5mcVY7UT0mO1RHUj90LCY+cF4lV0BeS2VhcF42SilDTlpPPyYvYHFFXERsL2xJcSFVYVRQJ1I1SDlRJ1BbUlhrTUREXzkxXFFuZnMzaltyZmolWiEuLClAJVM8MFxGRFJdQGUsZztBcTZdbElrXm1yR01ORDFebmsmLmNkVWpGLFMzVztPIyFbRlhRSyhnYlJDX0w2amFoQ19LS3RfYjxsMllYVlgqP0tCbykib2o8NDVQajlPR3FmZnROXiI1PWRyRCcmMSJBZT0/a0hGUFhPQElSQDVBNSlgT1hTbUU5c1AtYjNeZS1HQmBBWWQia1IiQCE+Nz0jMVQhYG0jbEpUYzVoXDBiLzU+VTZXWzk+T0JtaW1eRk5hLCJVKipuXjVMQ2IlWlU6bFhIS15STVBDJHRSZzE3ImFJNTMlKipdKHBQW2o8JjNkbEZnJyg5XXA3QDhSJmAzXHI5YkdmZD9zLEE/TzpMPyUjLDQjaU9xMyhkOSU2ai9PVlAibCF0XVNTR09wPFNvXTRdTyIpI2s7SiIvKGNvPmxfckowWTY9KDVBZCszOnJqWigvcTdCKUIsPnIhXDZGaFdtb19sVScuSzItOSVLLDFTVyhFMHVCMC0rPEw3cjZoKjE/N29gMiQ6U15YK0hRUmVmPnJJNkAqQmEoOHU4KTZUcnA/MDhKOVxgKGZfakchQFVhT01KVSZSRlY0WWFYV2Y9IWFdYVItU0xgSUQuWEdrL11uSkIhb2MqPzZlVDNvKlZXb0E+WSkmcSdXV20mcipnK1Q0W0glR1NBY2p1T1RCYjJqbiQ/OTdvOCxsNEFgYE0qKDw+XW5LRjUsS2g8Kihgcm8wV25Ta3FRdHBPcCFUTzliUSIvSiZ0QFFBR2RucGRFPzlONTpGI2NrITFfO0o8YXVsX1tYJDwzYj5rPXM9UUJrKC03TGF1cHFJI005XnVpWy8qNjosT3VgImZnYEpoVm5bMy10ZFVTSF1gbU8kVD4yRyMnPVFtREZMQmNtZlY4VDgsVGgrRCs0UmpKQnNlLi9ZN0w5Om1rSGlRXENkZjlzIW5HMXMoRidEL0FFa3JyX0s5WyVtfj5lbmRzdHJlYW0KZW5kb2JqCjE2IDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDQzMTAKPj4Kc3RyZWFtCkdhdWBXPyNwcHAmcS9ZRWQ0YS9zPkNibFVuQyZcTmpLYFJBWEopci08SVUnQyJEQnFTQGN0V2VcK1tsIkRGbFg3Zis9aTgwcFNiSDFRbScrZTJmWUgvX2FbbDU/biguLTMsLk1FOyVaYGdPXS8lQ3AzMEByIkAkQFQ9VT9HbWxNUzRELzdNLWtkLDM8IXNjLW46VDxWIUAkX3BfXy11akEyWGc8JWY3bjFoWjJKJjFoOCUnWzxVOEwsXCQnI2pROT5NWFtHOzUnKmUkMChmXFlRWXFeXVwrQiU0RVg9MDshRUQ4LTxdY2hAVlo0bixLNkIhKTBDYFFAaGJJNT10JmhEVlRfKCg9VEI1XG5MdE9pJUEmX1RLQGdwXW9hK2JtOSVRTWA4M0dJOCk6O3JdZ3FsWlY2YUJdOmhwSixMNzlNXUhIRV8/SnFlOUBaZk89OD5PYnA5VmM9JG1wRHNgSF5PZzpvM1wqJk09OTIpY2EqTkdJP2trY1NZZW4zYCtdPzZCQVtqSSRTI05tJjclNDs1YlU5VElURV0pXzBdMSdLcWldJzgpSyNsbGZnQENcYy1fNlJZMF5uPW9SZ2xeMXRILFB1SVA4aS5aaydvV1ZoQiI/a1tvVmlmM28+bWsiXktjVixxZjFzKEJJX1hjXypHal1FZyZUIlwoQ3BscGlIYnRdWWZLcWArKF1XMUNOJi5hXC9JPT81Tmk+KUllRmJnOV9PSy9XWztNXGFaOyhia3JAcltqc3VRXypWQFRjIiNoRj1MRlxbYkBqRi9naStJQTwwKyVoIWp1TGIvcVlIXT4jXFlYbiZHbFhMa3IhRiplOCVTbWtOP2ZIWiU+dCZZQExWUCo3IUw9TzVYbV5RXjpjLVFZVyZAKTlhRyJpOmlEdEtvZyNrNnE1RWI+dGYwRVFrYG5HcVk5QWkxYGJTckE5SkRXWUBsUCNtc1QwVClzRTxgLC5ZKl1cYCY9ZW5KMDoxX3RqKEJyLT8kPk1PTj4zIUM3RkxRRj1qXz5RdWlCLCtAXzInO0pacWQ+KENgXDVhVlIlUGtfXS9BbD4+VW5vTEcxakJfUiQ7dFROJ2YmdDJGWEJJXFh0SXJuIjQoJ1hlJmVEK0IzO0VwZzBbTy8zU1pZaiYoaidmJW1uOXBKQXBzLiw9U2tRUjInQ2xCRGM9VVRpVmEjbEJQOk5AIyMhJysqaU1BTG82ZSZgVnB1WD9zdDMiMzBaRyw/VHNdZ09cbSdjX1ctTGkvIlQlL2soUUx1TFBWSVBWTFFYI2sxRD49Im83M14mZkwzVk1OIUIrKypJPjE5W09dX2ZtcV1UOFxvUmlMTVkpU0c4LU5gQyZcIiJfVUpCcjJCUF5WKzkoV1ItX1E2UmBqPUBhNFYtNDM7ckhTRixIYydGWl1GTlxdQE8rRSNLay1aJlJPZF5MVFRQVzItKnAnOHFANTZmLXBqKk09SiMuQXBIIUUsI2YlXlFLLEQyVl5EKnRxLWVBN147aVMyOCtabVtPMWImZDdoZi1KL0U5NkhoMCUmdXBXXDgmJThIcXVbYkAxR0xnMilaSk5nXzBAZTtpXD44Si5nNGg3W0JeQ1A2ZW1GKmo4W1krKUYiKVRDcmpkTlltUDY0SCZaXVhqMidrUTU9T3NnaTlKPkJJKF0mN3RsTTI0XSlJNV4yRShUdUBQKkRZPEJAa2w9Ik1cKEZWclw7a0U0JyN1Rzc9JUtMaVY1USFyXCFwXzdZPlshX3UhUXM3PDk6TV1pLz07WFdpSzE0QFZodCtRdEE8UThQV2s1SE50Zkd0a0tiLWVqR0cvZz9tQVJsOVsmQTo0U1E/XmhXViNwJi1ELmktMDotclQqUDM/Q1pcJlNTVElkbEtyW2xxWUtuZkpFaTsoUnRQN0Q3MCU2QWRRYi1aZGpCPjBdPC8/JyltUmo7PXUnXi47KkZjQHArNFxUSD1CaWVLdHUtaSdPTmBTS0xhdTZPbG84Jy1PM1RbTzEzSSJdP0YvazNnV20vLjhSY042ITBfVWEmPyNSOV50VyhjYmZpVy5iX2FjSlBKPkJJJl1jKGZtbm4vIVxPLlJbLy4pMXB0akwkTDxFOl4nVDFNLWpgaDxMKWQnRyg/I0o6KE9lYDhocT0iM1gzLXJBYCFmWGpoRUhhbTJwYG84UipkbWYqPT9aOilIWiwnYEAlcTMsKm47Ny11ZGYnZjRzV1xuWG87am8oY2JjcTlvYmlRKWpIUUFobipsRF5kYmQwPVdEdVg7JzlINWdYLWAsLTBMSClgdEx1QjY8J3NOJEgsSjpQQiIxNjYoVkJPJ1otUUFdSkk5RllLTm1OdGQuJSxTMVo9RG0tUnVdU3RMazZKcmlkRShjT1M1MV5LdG9uY2A+LTdBRkAtJ3I0K20iM2kzTmg6MyJWVUFaQG5ISy5jVWJvL1VNO09sZFlXUktqO05pcVhDRmM6LWk9XF5rJFlDNXNRNVlIO2hsSmgzTz9baj5ELT07LmJrUCxYZj8xUTRuOytBXEtHUTNBSilYbT5tLnApRF9ZPGFqOTIzUFcvXyRFPUVWbWhQUylNbTNyW1g5YlYxYVhhOy1eNDgtRD1FTixjbydAS1dZQ0EsTidIPTc0XUcjWVR1Kl0uIiNxZFVYWlowTmQ8dUtoMkVjaDM1M2FJKm49KTBISnQ3YykqKC5CUllLS2JcTFNmaixeIkJiNWVhcTM7VVtHLS5iR2c1LTdjRXBPQztRRTBpNEtPaSpNLmxNNHJXVzo3ITBkPXNZVDBzMlFwQCJBR1NwUUY1OlcmQVlhaztKSmZuOFwmIzcma1VYTU9pI0RMUTlZNyVaOmA7W3JQXlFhR3E7UEslIi5SQC9uTSFKSVUyK3JUJTNFLkcqPyZcLktlJW4wPzpFUHAjZDJ0TmVdUWNgdSFXdEYkSCxXb0UpLVtwPSRBKlVOdWIwUXBZcEFoKF9Ob01CIiQlYVlYJDo7WzFzSDc9aFBeRmQlRXQwbDFBLEBLRkhKPzlxIiwuUkFwOzEodCRbWHNDQ2UpPEJuTSN0VTpjYkJPdTE7akdQXSplOyRBJFdJSz1qPj1UYVlNVUNcRjtyME9lXTM9KDFsL0lVRixoKmJHMV1HJDshTnI1IkNXWWQnOkJaSC40Q1AiJkcpRGUtXTEwRkhyQXN1LlxCNyJOSEFdMzc1JHA/anJsJWVXXE5oKWlfUC9cOiNSZj8zYnUxOU5xdDNKJW4jYE8xVUIrYVJLVkVzRkNEXWghY0gkVTtHZyU0M3RaIyM2OCI0VjZeZEdQRVYwSktFSlpmTl50YnJBU1hxbjJXK1pLb1NkJ0xHMSRYWTVLNmtoQDJjbGYtUVBpRj1RTFs0cD1QV05INy9RTVtVJEs4OGIoXiJOQkwhaHQjWzhAVGZObmdPPFIibFAyS1g6dXJOYC1rWERJWjMiMzhRPV4/c3A9I0lQO2VMIWFrbj5nXnBhSDRHc1FXW2VqOiZzY1ppUmpXdUBUXTo6Y0U1LThgbS89L19Ua2hVNThFKFMlYnFSWHIxbFpKbzpROyJFJG9cZ3REa286bC9vWl9lIjY9Ni82ZUFnST5yRmZ0P1VbRisxUy1hY09GS2BiRXM9aStaLmU3VSFaITooYV1ML1NGW146UzloW00/MEg4PGEzL2ohIWoyUGhmWTNaLE8+K29fcmgvOT82YV0iNGU6bjo6WTgvKWRHIy4iUylOYjkwPWM8WFFhQD5GVTAjISJTLSgwc25NYXA1YWooPztgPEdxUENDZDZUKDZdME4wYVpcMF9PMDYnLDdRNF0tdVlYSV4vXSgxaHNSbz1SMEVxYSxqJEVFSEhiJC1XQSo7LSdVKFQoMEkiO1hHWjpBUj5UcG0xXltLNipJQT5vNlZLYDBoYG5oL2c8VU9qWHA+aylRPTRwaS9BUCZfXk83JzE3dD1ocS06XzxmTSIuSTdvalFsMiszPzByTzQ3cGFXJFBcMG8/cylRVHRKTmM9I0ZwSCVVVF9tTWZkYD9QVTZkakMlTFxaNSYoa3IrLHFpWzwrYCJ0KUg3ZCJYMikoKztCQWlGSmVGXUBDTjhaLDtpIzczVCMiVFtTMi5bdGAxPTZabXJcLCFsWEVOJVwkLmlVNDZuZnRFZ1tEVnFMSCtSTmo9IlI3bXJnP2paWEYxJS1mIV1rT2EjLCcxWzxNKyozOEYmOC8uPWZvS0dLT0FSLExqK2A9aVY2IVEpYERDJVs6TWU1Z2ZGI1c4KGAvbmVGQmIzUk5NXjlkI2NiTTFlPnVgMTFhYidiWlw+NnI7LkVCViIvIko/YXRlIUowOnInSWtpNTE7Rkt0O0wpcnI2RkNzalJmLltBRlVBbD5aY15YTEY+UCIvMTgjQjo+ZjB1bydNU1MxZm8xXjxDUio4Nj8hTkMuIjQ/UC1pa2c1TkMsUnJxNlk6KDUzW0siXFBaaW85LFkzZkBuN2MyZGljTkZTNmpadHFxLi9EKkwrcHQ0bWA7YSFJYD9GVHEwZmRLVm1tZFVYT2NSVURwbyJCNyUmMypKU00ibzEqaG4sb2E3ITpHbFwkNWg8ayh0WV9UJkFKRkhNOEdrYDhgNGArYzJgaCpdMyw7dD1RSFx0R3RgYks6UkU/dW5FJSRGWz9dVGQyIy83NUJnQk5jWS9IKSM7RVp0bVxqQVhPPCgrPmhKaVszUHBtKHElb1E8MWtxQzFzSXVTaW4jWjdRI2NgSyd1TF1ALWQjMWJsM1g2MzY1RCtRMGRvcCdoO3NUcVVvbihqaj0xTDVDUjVpPyksZGdgRDF1I0NKRz0lOE0laClkbSdENVEuTVdmbjZYR1pwUERVdShbU1IzaDhrPGVJUyFXYF05MC0wU0tFP0tFbltVNkheWSJIZ0FBOGRBcFdcRFJSWl1TYFVAYzxTLj46bWs7Z2k2TDNFOHN0Oks8bWxTZD9DamBTZ0Q1cHEoJlNwLS9WTjstaCpaMD06XmIhOj51N247WixQb2gsUDk1JCNEaE5qJmxnR0wnJFtrITYtVS1gUCEmWmhrKWoiUTkpbjFlb3VWcyE/W2lVPkJpSVZgPVhacXEtPHFsclEzPC5MRTZCSiJ0LT1rUTclVUglU3JlOi9aZypBbTdrYzN1My03YCMiQzNPc0VIVFZRM1VuISxwYmU9NERzZUwqITslVy5Jb2FpazI1P0BjYFxBRSZCKDdPaypCPUsuLVJEV1EjbWAvSm4vTT5RQl0sNilqUSRgbSkwQ1xTdVxSX11aRSQ5KzokQWMzJyFKaDdLT1NPUm9nb0lFSS8/RG1GZGFqajBnZ3EvZF9ZRmQ1MkdwNnMyXmZyIVBNViI0OTFbLyYrVmpoUGBHbjJLIl5HIkNcdT40LmQzaGEwSGksW201RWUxODJMN0VmO0M2Lz9ZKUA/JyMyRmNeZVg2Qy1vTDteSkQoP0VcNkBsLmRNMFBeSzpvPSY7T2lKYSwuS1JKRW5GLUIhK1xhS2BrUGQmcz0tLmEiNEI0JTI3L1YxKUQpNEM0RGZMQzFEcz04cmg4Ki8mRTVvS1xdQUYyRFQ2UUROODxyLnRWb19jZ0QyVWRTTlovZiY8PmtWWkA8LzhjKFY7bUwpQiVWTE05RGUhZmcoK1lmUCRUZlhxYlQvXFxuJCRCQ2wlVThUU2opXjZTXGl0TjNiSkJmTzM1TlBpdVBeYVFBQFkpclpuclI0YE5PWlN0T008WFQjIy5hYFhPTWx1K0thbT1HTyxyPyZlKkgwNX4+ZW5kc3RyZWFtCmVuZG9iagoxNyAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCAyNTg0Cj4+CnN0cmVhbQpHYXVgVUQvVVVZJylrKTBVOyNdUWZkISY6IzlvXlxLVEs+U28vPDpiVVF0RGhGSVU6NlZUbWlOYVtFXV5Jb1dwI0AyLkBxKCpzbDU4RTh0YnFmMkcyYSRmdGxyWDZzTXEjXUoyS0IpUCdKZTU0KiJML2IxRm9lQilQTk89LD81UzsycSMtZFtUMDVGKExTMmRjWzxYZE89MVwjLUxZND1vaFgvOVohKyVTbVAtYmErUmMmTkNsWWJWNllIN21ra2JpKTdGT1JhWFQ6bF8maUxITHNpI0JxXmcuUEp0MzZOSC9KZW9lU2hrdSRNQWFcLTxVK0oiK2xoMCU6bmJeLDwnKVUlMkNdVDtNOUYyL0ByNGY+OClNJWhnSSg6OTdUT3VgPFthLlVQLi8zbF5yND8yZjswZl1XUiVgMSQrMnFyPydaWHAoXjhPR0pjTzNVNmBOY0EmYytEbGhiRl1zVCViV0wiYnA1al4wRDokLzRlSW0pbyJvSnJMOkUwVmY6NTVQYDlBMlsyIWkzZ18yLS9UL25Ua3RtLFBRVylcZzJcLW1mT0pVWSpsaHBBLiJLQDBWMSRsdSxTdGNobiQxYWlNQ24/ZU04Pi0+R0pHIzc1Ziwsam1xIj9Vamg+Ny1JTyVoRSdhVyFecD9SS2wuX0Zyc0FWTjE9Xj8/RUFKZ2ZHVjZAYlMnaChQSjMqZDw1PXAzOUtWKkVyKGlAPT9DOT4zUUNcVHJSQDskdUJxU0RkMyZKKlotaVlnNTpXRlcjWkomIUxdKm8xajs0TWUvSHBNZTxCO0RpcTFNajNwdGNqM3NvUnFDV1dBZXBmIVBzMGNITy45OWokb2RhPi8sN2g9b242LHUsZ1BRaVkvWlk2TDZIWmE0V2JhbmYwX1tyS0NTR0MhODFuPWhqYy5IMEgvcDg2MC5yOTUxNWxYWj1EWE9HRFBZPTNfRXQ1USRdREZVSiR0Yks1PldpXSNuPks4MV5CWS43JzAjLDxbOFxuRUBXVUlNZWVsNlkoNkpfc3VlKz1DJEk1TyNcX2BRQjVVKmFAWy9KaTw8b00zW0w0Qj1BJURWR2V0TClKK1JbbiZWXlklWmlFc3UmXmdgTDZVTV4uVU0vZk44M2JZTFM4MloxUjhpTS00J0prOGJYVzJYYyQ5YWwsSj0obSRhR0NbQlpiJjg5TmJlcUxtaSlnWDklSDFeIzZPOEZrSGQoS2tvKUNYLD9yKSQ6VENlb1QnY15ESzBRNzJGQjdbMzhYdEQpYzxtRi1mW0tON3FYZU0jInA3OGA+MUYxL11zTSdWXE5RYClwRGtBJF5uJmZpXV91MiJWST5eQi1wNTtfZChOUHJxRV1BW2NfOmROR2FiT0ltOVonXnNqM10tQmtwOiozdDhFXWAuNF8sKk5QWGtMIyU/aUVfaEgtSE9MU2hPOS9RVVoudGg7JU0iSiUvN1tlITNeR1JGMjhTaXE+QktxbUkvbGkuZUNsXVFQRGxvXT9fTGVdUV0sPWhDK05QL1lyXnRLZjdARFQ/My9OQiFyYXFvSDlKO1pFWE4vS0BURj8iS1hOSGlGc2dIcDtjW1dibnE/ckVURmZTOVBzYldlTkY8ajleYC5nKWBbJUBNUyEvZC9IImRaYW02J0otQEhoQTM0UkIqWCFtL082X2pzTFpgNCowM2xVU1daJURFUjgkJmc3Sj44JEszM0YzLC5SU2ptMSM+VHQ6MUA0V2NuOlNLO0Y/V0JjPnVaKDspXSs1ZEwvPydRMT8hYV9RWENkV04ibjNkSG9SSD4uLG4uTUxuPSpjJFkkKVY7NzF0Y1VOJVtRbEoqbUBeQXBPWD5eVFhpa2JMMSs/XnJ0LCcqRCdvXjklOypbV0RIVVIkIk9XWCFEXG4ta01lbGIlZFZJaS0yaTdwcCMqM1hpOU49ZF9oIlxQXVlhM0cwJy5LY2VRay9NMV9ISy5pbDpmIU4idUVTY15gQUEmZF0sbjRcY0ptOlhhUTV1bkA/NSI1Lk9aKUl1R2EqM0s1Nis0bnAkZUg2LWojTSdcQUcjQTNATj1GTU8tWS5EVVMpUWJTaEhpNG0uXnRPXEBlZGFMP2Q+ZkVjal8sOzozIVYuOWc6Q0poST9FYUlnOmMuMmZ0b10pIkpkUkpAXT9KdD9AK1pDMzEobWxTcz1AXG5OZFBlNCY/SltbTlw2RGhLUyEhNThsNF5qbShza1ssVTFYKyxQPjg2YkwodElyXWNZV0JxN1gyXXFKR2pkUzwnbCFgYEhMb0dXRTtTQVtnXllTczVPdG9EVlc8JEE1YjtIPCgjXlhUMjkhXl9XcW4kLCRIOS5fZy5nNkJuUUUsUUxvWjxyRHBtZXNRZT1AdTFAJW5IMV9BRVE9L0ZuNjM0aXI4KGRaUkZPO3BBWW1ncmQ3SldvNCctaGExVTZgNUdXcG1IaV07S1M3OSN1cDZScSdCIWRTPExyX28yTFo4LVZJUid0J19IZj5GTW1LN1FxPWQwUnQmUTIhJEMzPyZeJTtRTk45LC0/XWMnR3VaMyc4bXBJYTBZQTJNW0hLTDM9XiY8N0htPyVrTjJTQkNzMWJfMF5ZTEFfLHNiPC8uZjtNVENXUWxTXy0qTy43ajQxUSElXyomRkRyQWVjZ1JabyhsKz1qY25pYjQ1Jkk4SkI1MVh1IV4nPEtFayxqUHE7ZEhba2olUUsuVmQ/am4+WlAsZGQjOC03clc7TTlmVyU5IiJNQSdtUz1aMG9oaFVAT0pWXHJkQk0iPTNlZSE5USwmRFBtbDlEMiEkZEcpdGsjXkxmNjpGLyFCU2xNYFVJJWtebGJccUtnaE5xXC5oITZdRjkoWCVbcF1FOE5FY0xHOSInKjZoOmdYNGUyWigtM3FIZkRgUjZvKXIqKUpMcko+c2QhWWQmJkEvWUBJdD5LJztFXG82Wl5xLS5XWDFCTWJIRDdAS11IMTtCYU0xVzBuWjBYSjJHXG49KkQvJmguVGxGc1otKCVyO3NIUCYtOEhMIm9yRzUmSCk/RWhjNCgsYykqbmVcKENqU0VUbShTZWg2ZWBjQSdvXCJHczNUSlVdJnFBcGNwaWtlO0RzYGBsVmhMZj9DZydrPGhWYjhvZ25FVDQzQCQiUT1uKlYqNT5jP10+KkVsJGJQIm9vOzYraC5oLE4iW1pGdHMpKShrMT4kKiVXXjNOSV5XV28hYGpNZXQnOF9gYFY3SHRLNVY1YjIjOmE8QCpmLFwnIShlO0MkX15cR2JMZWMtVi1CMlRvUVsmVHVFRDs/aEtNSE49YWZKKlZiXyNeU1pcQFZlYFRPTnREXDAjUGJCVEo2N1Q3Xi84O3RIL0kwc2FtOWswOUVxSyFiOmM2KlVddG1la1I2LU9cQk5tRCcvKydEInBzRi9AbEI0XFU5JWU1Xy1qa0tFOi5XOFZRZl5DP2g3JWclLF1AZn4+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgMTgKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMTIgMDAwMDAgbiAKMDAwMDAwMDIxOSAwMDAwMCBuIAowMDAwMDAwMzMxIDAwMDAwIG4gCjAwMDAwMDA0MDggMDAwMDAgbiAKMDAwMDAwMDYwMyAwMDAwMCBuIAowMDAwMDAwNzk4IDAwMDAwIG4gCjAwMDAwMDA5OTMgMDAwMDAgbiAKMDAwMDAwMTE4OCAwMDAwMCBuIAowMDAwMDAxMzgzIDAwMDAwIG4gCjAwMDAwMDE0NTMgMDAwMDAgbiAKMDAwMDAwMTc0NCAwMDAwMCBuIAowMDAwMDAxODI4IDAwMDAwIG4gCjAwMDAwMDY1MTIgMDAwMDAgbiAKMDAwMDAxMTQyMyAwMDAwMCBuIAowMDAwMDE1NjEwIDAwMDAwIG4gCjAwMDAwMjAwMTIgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8ODBlN2E5ZGYzYjc5ZjgxYjU2MjBiMWI0MjQyOWMxZjQ+PDgwZTdhOWRmM2I3OWY4MWI1NjIwYjFiNDI0MjljMWY0Pl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyAxMSAwIFIKL1Jvb3QgMTAgMCBSCi9TaXplIDE4Cj4+CnN0YXJ0eHJlZgoyMjY4OAolJUVPRgo=" download="Paris_DeVault_GRC_Portfolio.pdf" class="nav-download">&#8595; Download PDF</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">GRC Analyst · Houston, TX</div>
+      <h1>Security<br/>through <span class="highlight">structure,<br/>clarity,</span> and proof.</h1>
+      <p class="hero-sub">I build compliance programs that actually work — frameworks that map to controls, controls that tie to evidence, and dashboards that help leadership make decisions. Every project documented. Every finding tracked to closure.</p>
+      <div class="hero-certs">
+        <div class="cert-badge"><span class="dot"></span>CompTIA Security+</div>
+        <div class="cert-badge"><span class="dot"></span>Active Secret Clearance</div>
+      </div>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Portfolio Projects →</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-label">// Portfolio at a glance</div>
+      <div class="hc-stat">
+        <span class="hc-stat-label">Framework Coverage</span>
+        <span class="hc-stat-value blue">NIST CSF 2.0 · SOC 2</span>
+      </div>
+      <div class="hc-stat">
+        <span class="hc-stat-label">Controls Mapped</span>
+        <span class="hc-stat-value teal">40+</span>
+      </div>
+      <div class="hc-stat">
+        <span class="hc-stat-label">Vendors Assessed</span>
+        <span class="hc-stat-value green">12</span>
+      </div>
+      <div class="hc-stat">
+        <span class="hc-stat-label">CAPs Tracked</span>
+        <span class="hc-stat-value amber">23 (6 closed)</span>
+      </div>
+      <div class="hc-stat">
+        <span class="hc-stat-label">Projects Completed</span>
+        <span class="hc-stat-value blue">5</span>
+      </div>
+      <div class="hc-stat">
+        <span class="hc-stat-label">Clearance</span>
+        <span class="hc-stat-value green">Active Secret Clearance</span>
+      </div>
+      <div class="hc-stat">
+        <span class="hc-stat-label">Experience</span>
+        <span class="hc-stat-value teal">6+ years (GRC/Security)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- CYBERSECURITY JOURNEY -->
+<section id="journey">
+  <div class="section-eyebrow">// Cybersecurity Journey</div>
+  <h2 class="section-title">How I got here — and where I'm going</h2>
+  <p class="section-sub">Security isn't just what I do. It's how I think. Here's the honest story of my path into GRC.</p>
+
+  <div class="journey-grid">
+    <!-- Why I chose security - spans full width -->
+    <div class="journey-card">
+      <div class="jc-icon blue">🔐</div>
+      <h3>Why I Chose Cybersecurity</h3>
+      <p>Honestly? I backed into it. I wasn't someone who grew up taking apart computers or running Kali Linux in my bedroom. I came from compliance — years of working with EPA and TCEQ regulations at Veolia, making sure environmental controls were documented, tested, and defensible when auditors showed up. The job taught me something specific: the gap between what a policy says and what actually happens on the ground is where organizations get exposed. Every audit finding I ever saw came from that gap.</p>
+      <br/>
+      <p>When I moved into IT and SOC work, I saw the exact same problem — just wearing different clothes. Companies had firewalls, EDR tools, vulnerability scanners. They had policies that said all the right things. But nobody had connected the dots. Nobody could tell you which control addressed which risk, or show you the evidence that the control was actually working, or explain what would happen if it failed. I kept thinking: someone needs to build the connective tissue here. That someone turned out to be me.</p>
+      <br/>
+      <p>The way I approach security problems is the same way I approach any compliance problem: start with what the requirement actually says, figure out what observable evidence would prove it's being met, trace backwards to find the gap, and document everything clearly enough that someone who wasn't in the room can understand it six months later. That's how I think. That's how I work. And it turns out that's exactly what GRC is.</p>
+      <br/>
+      <p>I document everything like I'm writing it for an auditor who is skeptical and in a hurry — because that's exactly who reads it. I communicate technical findings by leading with the business impact, not the technical detail. A CISO doesn't need to know what a SQL injection is. They need to know that a customer-facing login page could be compromised and the root cause is that security was never built into the development process. That's the finding. The technical details live in the appendix.</p>
+    </div>
+
+    <div class="journey-card">
+      <div class="jc-icon teal">📚</div>
+      <h3>What I'm Learning Right Now</h3>
+      <p>Actively building private-sector GRC expertise with a focus on tech and SaaS companies. Current study areas:</p>
+      <div class="tag-row">
+        <span class="tag active">SOC 2 Type II</span>
+        <span class="tag active">ISO 27001</span>
+        <span class="tag active">Cloud Security (AWS)</span>
+        <span class="tag active">GDPR / CCPA</span>
+        <span class="tag active">GRC Tools (Drata, Vanta, ServiceNow)</span>
+        <span class="tag active">NIST CSF 2.0</span>
+        <span class="tag active">Third-Party Risk</span>
+        <span class="tag active">Agile / Scrum</span>
+        <span class="tag active">Waterfall / SDLC</span>
+        <span class="tag active">ScrumBan</span>
+        <span class="tag active">Kanban</span>
+        <span class="tag active">Risk-Driven PM</span>
+      </div>
+    </div>
+
+    <div class="journey-card">
+      <div class="jc-icon green">🎯</div>
+      <h3>Long-Term Goals</h3>
+      <p>Target role: GRC Manager or Sr. GRC Analyst. My five-year vision is to lead a GRC function that operates proactively — one where compliance is embedded in engineering workflows, risk is quantified and communicated to leadership in real time, and audits are events the team walks into confidently rather than scrambles to survive.</p>
+      <div class="tag-row">
+        <span class="tag">CISM</span>
+        <span class="tag">GRC Manager</span>
+        <span class="tag">Program Leadership</span>
+        <span class="tag">Executive Reporting</span>
+      </div>
+    </div>
+
+    <div class="journey-card">
+      <div class="jc-icon amber">🏆</div>
+      <h3>Certifications</h3>
+      <div style="margin-top:8px;">
+        <div class="hc-stat" style="padding:10px 0;">
+          <span class="hc-stat-label" style="font-size:0.83rem;">CompTIA Security+</span>
+          <span class="tag done">Active</span>
+        </div>
+        <div class="hc-stat" style="padding:10px 0;">
+          <span class="hc-stat-label" style="font-size:0.83rem;">Active Secret Clearance</span>
+          <span class="tag done">Active</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">// Portfolio Projects</div>
+  <h2 class="section-title">Five projects. One integrated GRC program.</h2>
+  <p class="section-sub">Every project was built from scratch for a fictional SaaS company — CloudBridge Technologies.</p>
+
+  <div class="projects-container">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card fade-in">
+      <div class="pc-header">
+        <div>
+          <div class="pc-number">PROJECT 01 / 05</div>
+          <div class="pc-title">NIST CSF 2.0 Control Mapping &amp; Gap Analysis</div>
+          <div class="pc-subtitle">40 controls assessed across all 6 CSF 2.0 functions &middot; 17 gaps identified with root causes &middot; 10 policies translated to auditable technical standards &middot; Executive-ready remediation roadmap</div>
+        </div>
+        <div class="pc-badges">
+          <span class="badge badge-blue">Framework Alignment</span>
+          <span class="badge badge-teal">Gap Analysis</span>
+          <span class="badge badge-purple">Policy Translation</span>
+          <span class="badge badge-green">Remediation Roadmap</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-section pc-problem">
+          <div class="pc-section-label">Problem Statement</div>
+          <p>CloudBridge Technologies had invested in security tools &mdash; a SIEM, endpoint protection, vulnerability scanner, and identity platform &mdash; but had never mapped those tools to a recognized framework. Leadership had no way to answer the question enterprise customers ask before signing contracts: <em>&ldquo;Are you secure &mdash; and how do you prove it?&rdquo;</em></p>
+          <p>The deeper problem was that policies existed on paper but weren&rsquo;t consistently implemented in practice. When I reviewed the policy library, I found language like <em>&ldquo;all data must be encrypted&rdquo;</em> and <em>&ldquo;access must be reviewed regularly.&rdquo;</em> Those statements are unauditable. An auditor can&rsquo;t test them. A control owner can&rsquo;t act on them. Without translating policy language into specific, measurable technical standards, the controls exist in name only.</p>
+          <p>Without a baseline, there was no roadmap for improvement, no way to prioritize security investments, and no defensible answer for auditors, insurers, or the board.</p>
+        </div>
+        <div class="pc-section">
+          <div class="pc-section-label">Step-by-Step Process</div>
+          <ul>
+            <li><strong>Reviewed the full NIST CSF 2.0 framework</strong> &mdash; all 6 functions (Govern, Identify, Protect, Detect, Respond, Recover), their categories, and subcategories. I cross-referenced with NIST 800-53 to understand what specific control implementations look like in practice.</li>
+            <li><strong>Selected 40 controls</strong> most relevant to a mid-size SaaS company and organized them in the workbook, each linked to a specific CSF 2.0 subcategory ID so nothing was ambiguous.</li>
+            <li><strong>Assessed each control</strong> as Implemented, Partial, or Not Implemented based on the company&rsquo;s documented policies, tooling, and observable evidence &mdash; not just what the policy said, but whether it could actually be verified.</li>
+            <li><strong>Identified 17 gaps</strong> and for each one documented: what was missing, why it was missing (root cause), what the business risk was, and what specific corrective action would resolve it.</li>
+            <li><strong>Translated 10 policies</strong> from vague language into measurable technical standards. For example: &ldquo;data must be encrypted&rdquo; became &ldquo;AES-256 at rest via AWS KMS, TLS 1.2+ in transit, enforced by AWS Config rule, validated monthly via automated Config report.&rdquo;</li>
+            <li><strong>Built a Gap Remediation Tracker</strong> with priority ratings (Critical / High / Medium / Low), assigned owners, target dates, and evidence of closure requirements for each of the 17 gaps.</li>
+            <li><strong>Created an executive dashboard tab</strong> showing compliance percentage by function, color-coded risk ratings, and quarter-over-quarter trend &mdash; designed so a CISO or board member can understand posture in under 60 seconds without reading the full workbook.</li>
+            <li><strong>Wrote an 8-section professional narrative</strong> covering methodology, findings by function, the policy translation analysis, and a prioritized 30/60/90-day remediation roadmap with resource and tooling recommendations.</li>
+          </ul>
+        </div>
+        <div class="pc-section">
+          <div class="pc-section-label">Key Findings</div>
+          <ul>
+            <li><strong>Overall alignment: 60%</strong> across all 6 functions &mdash; a meaningful baseline but well below the 90% target needed before a third-party audit or enterprise customer due diligence review.</li>
+            <li><strong>Weakest function: DE &mdash; Detect (50%)</strong> &mdash; no formal vendor access monitoring, SIEM alert tuning backlog unaddressed for 6+ months, no defined thresholds for anomaly detection.</li>
+            <li><strong>Strongest function: RC &mdash; Recover (75%)</strong> &mdash; BCP was current, board-approved, and tested within the last 12 months. One of the few areas where documentation matched reality.</li>
+            <li><strong>9 of 17 gaps rated High or Critical</strong> &mdash; requiring remediation within 30&ndash;60 days based on audit risk exposure and likelihood of customer contract impact.</li>
+            <li><strong>Patch management SLA breach (GAP-001)</strong> was the single most operationally urgent finding &mdash; 3 High CVEs had exceeded the 30-day remediation SLA with no automated enforcement in place.</li>
+            <li><strong>Shadow IT gap (GAP-002)</strong> created unknown risk surface &mdash; SaaS inventory was incomplete, meaning security controls couldn&rsquo;t be applied to tools that hadn&rsquo;t been catalogued.</li>
+            <li><strong>Policy translation analysis revealed 3 unmeasurable policies</strong> that were not testable as written &mdash; a finding that would have resulted in audit exceptions if left unchanged.</li>
+            <li><strong>Govern (GV) function was newly introduced in CSF 2.0</strong> and most organizations have no existing controls mapped to it &mdash; CloudBridge had 4 GV gaps related to risk governance and cybersecurity strategy documentation.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="findings-section">
+        <div class="findings-label">Gap Findings Register &mdash; High &amp; Critical Priority</div>
+        <table class="findings-table">
+          <tr><th>GAP ID</th><th>CSF Function</th><th>Control Area</th><th>Finding</th><th>Root Cause</th><th>Priority</th><th>Remediation</th></tr>
+          <tr><td>GAP-001</td><td>PR &mdash; Protect</td><td>Vulnerability Mgmt</td><td>3 High CVEs exceeded 30-day patch SLA in Tenable.io</td><td>No automated enforcement; manual tracking only</td><td><span class="sev sev-crit">Critical</span></td><td>Deploy Intune automated patch enforcement; define escalation SLA</td></tr>
+          <tr><td>GAP-002</td><td>ID &mdash; Identify</td><td>Asset Management</td><td>SaaS inventory incomplete &mdash; 15+ shadow IT apps uncatalogued</td><td>No discovery tooling; procurement bypass process</td><td><span class="sev sev-high">High</span></td><td>Deploy Zylo or Torii SaaS discovery; enforce procurement policy</td></tr>
+          <tr><td>GAP-003</td><td>GV &mdash; Govern</td><td>Risk Governance</td><td>No formal risk register or enterprise risk management process</td><td>GRC function was reactive, not program-driven</td><td><span class="sev sev-high">High</span></td><td>Implement quarterly risk register review; assign risk owners</td></tr>
+          <tr><td>GAP-005</td><td>RS &mdash; Respond</td><td>Lessons Learned</td><td>No post-incident or post-assessment lessons-learned process</td><td>Incidents closed without retrospective documentation</td><td><span class="sev sev-med">Medium</span></td><td>Create post-incident review template; require CISO sign-off</td></tr>
+          <tr><td>GAP-008</td><td>DE &mdash; Detect</td><td>Continuous Monitoring</td><td>No vendor access monitoring process (DE.CM-06)</td><td>TPRM policy limited to annual reviews; no operational monitoring defined</td><td><span class="sev sev-high">High</span></td><td>Define vendor monitoring requirements; implement session recording for Tier-1</td></tr>
+          <tr><td>GAP-011</td><td>PR &mdash; Protect</td><td>Data Security</td><td>S3 bucket public access block not enforced org-wide via AWS Config</td><td>Config rule deployed in dev; not applied to prod accounts</td><td><span class="sev sev-crit">Critical</span></td><td>Apply s3-bucket-public-read-prohibited Config rule across all accounts</td></tr>
+          <tr><td>GAP-014</td><td>ID &mdash; Identify</td><td>Supply Chain Risk</td><td>Third-party software components not inventoried in SBOM</td><td>No SBOM process in SDLC; dependency scanning not implemented</td><td><span class="sev sev-high">High</span></td><td>Implement Snyk or Dependabot; require SBOM in release process</td></tr>
+        </table>
+      </div>
+      <div class="findings-section">
+        <div class="findings-label">Policy-to-Technical Standard Translation &mdash; Before &amp; After</div>
+        <table class="findings-table">
+          <tr><th>Policy Statement (Before)</th><th>Technical Standard (After)</th><th>Tool / Evidence</th></tr>
+          <tr><td>&ldquo;All data must be encrypted&rdquo;</td><td>AES-256 at rest via AWS KMS. TLS 1.2+ in transit. Enforced by AWS Config rule <em>rds-storage-encrypted</em>. Validated monthly via automated Config report.</td><td>AWS KMS / AWS Config</td></tr>
+          <tr><td>&ldquo;Access must be reviewed regularly&rdquo;</td><td>Quarterly access reviews in Okta for all users with privileged roles. Review completion tracked in Drata. Non-responses escalated to manager within 5 business days.</td><td>Okta / Drata</td></tr>
+          <tr><td>&ldquo;Use strong authentication&rdquo;</td><td>MFA enforced for 100% of users in Okta via conditional access policy. Enrollment rate verified monthly via Okta admin report. Exceptions require CISO approval.</td><td>Okta</td></tr>
+        </table>
+      </div>
+      <div class="lessons-grid">
+        <div class="lesson-card"><div class="lesson-num">01</div><div class="lesson-text"><strong>A policy without a technical standard is just a sentence.</strong> The single most impactful thing a GRC analyst can do is force the translation: name the tool, define the metric, specify the evidence method, and assign the verification frequency. That&rsquo;s what turns a policy into a control that can actually be tested during an audit.</div></div>
+        <div class="lesson-card"><div class="lesson-num">02</div><div class="lesson-text"><strong>The Detect function reveals organizational maturity.</strong> Any company can deploy tools. Fewer companies tune them. The gap between &ldquo;we have a SIEM&rdquo; and &ldquo;our SIEM has defined alert thresholds, a tuning cadence, and documented escalation paths&rdquo; is where most organizations fail the Detect function &mdash; and where the most meaningful GRC work lives.</div></div>
+        <div class="lesson-card"><div class="lesson-num">03</div><div class="lesson-text"><strong>Shadow IT is a governance problem, not just a security problem.</strong> Untracked SaaS tools mean untracked data flows, untracked vendors, and untracked access. A patch management program, a DLP solution, and a vendor risk program are all undermined by a SaaS inventory that&rsquo;s 30% incomplete. Fix the inventory first.</div></div>
+        <div class="lesson-card"><div class="lesson-num">04</div><div class="lesson-text"><strong>NIST CSF 2.0&rsquo;s new Govern function matters more than most teams realize.</strong> GV controls require cybersecurity to be embedded in organizational strategy &mdash; not just IT operations. If leadership has never formally documented risk appetite or assigned accountability for cybersecurity outcomes, that&rsquo;s a gap. And it&rsquo;s a gap that no amount of tooling can close.</div></div>
+      </div>
+      <div class="pc-footer">
+        <div class="pc-tools">
+          <span class="tool-chip">NIST CSF 2.0</span>
+          <span class="tool-chip">NIST 800-53</span>
+          <span class="tool-chip">CIS Controls v8</span>
+          <span class="tool-chip">Excel / openpyxl</span>
+          <span class="tool-chip">Word / docx</span>
+          <span class="tool-chip">AWS Config</span>
+          <span class="tool-chip">Tenable.io</span>
+          <span class="tool-chip">Okta</span>
+        </div>
+        <div class="pc-metric">
+          <div class="metric-val">40</div>
+          <div class="metric-label">controls mapped &middot; 17 gaps &middot; 10 standards translated</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card fade-in">
+      <div class="pc-header">
+        <div>
+          <div class="pc-number">PROJECT 02 / 05</div>
+          <div class="pc-title">SOC 2 Type II Readiness &amp; Evidence Lifecycle Program</div>
+          <div class="pc-subtitle">38 controls across all 5 Trust Services Criteria &middot; 12-month evidence collection calendar &middot; 7 active audit flags identified &middot; Full control owner accountability matrix</div>
+        </div>
+        <div class="pc-badges">
+          <span class="badge badge-teal">SOC 2 Type II</span>
+          <span class="badge badge-green">Evidence Lifecycle</span>
+          <span class="badge badge-blue">Drata</span>
+          <span class="badge badge-purple">Continuous Compliance</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-section pc-problem">
+          <div class="pc-section-label">Problem Statement</div>
+          <p>CloudBridge Technologies was targeting SOC 2 Type II but running compliance like it was SOC 2 Type I &mdash; a point-in-time effort rather than a year-long operational program. Every year, the team scrambled in the 60 days before the audit window, bulk-collecting evidence and hoping auditors wouldn&rsquo;t ask follow-up questions about gaps in collection dates.</p>
+          <p>Three specific problems made this unworkable. First, control owners didn&rsquo;t know what evidence was expected from them or how often. Second, there was no calendar to drive collection &mdash; so evidence piled up or disappeared based on whoever happened to remember. Third, audit flags &mdash; expired vendor reports, missing access reviews, unupdated privacy notices &mdash; were discovered reactively during audit prep rather than surfaced proactively throughout the year.</p>
+          <p>SOC 2 Type II auditors assess whether controls operated effectively over the full audit period. Reconstructed or late-collected evidence is a red flag. This program was designed to make compliance a continuous operational discipline, not a seasonal fire drill.</p>
+        </div>
+        <div class="pc-section">
+          <div class="pc-section-label">Step-by-Step Process</div>
+          <ul>
+            <li><strong>Scoped all 5 Trust Services Criteria</strong> (Security, Availability, Confidentiality, Processing Integrity, Privacy) with written justification for each, documented why each was in scope given CloudBridge&rsquo;s product and customer commitments.</li>
+            <li><strong>Mapped 38 controls</strong> to specific TSC criteria &mdash; each row in the tracker includes the control description, the TSC it satisfies, the evidence required, collection frequency, the responsible owner, and the due date.</li>
+            <li><strong>Built a control owner accountability matrix</strong> assigning ownership across 8 internal teams: Engineering, IT Operations, Legal, HR, Finance, Product, GRC, and Executive. No control was left without a named owner.</li>
+            <li><strong>Created a 12-month evidence collection calendar</strong> showing exactly which controls need evidence collected in which months &mdash; color-coded by TSC so owners can see their obligations at a glance without reading the full tracker.</li>
+            <li><strong>Documented evidence quality standards</strong> for each control type: what format auditors expect, what makes evidence strong vs. weak, and common mistakes that lead to exceptions (e.g., bulk uploads, missing timestamps, insufficient scope).</li>
+            <li><strong>Configured the Drata workflow</strong> for automated evidence collection where possible &mdash; mapping AWS Config rules, Okta user reports, and KnowBe4 training completion to automated Drata checks so the GRC team doesn&rsquo;t manually collect evidence that a tool can provide continuously.</li>
+            <li><strong>Identified 7 active audit flags</strong> requiring resolution before the audit window closes &mdash; each documented with the responsible owner, the specific remediation action, and a target date.</li>
+            <li><strong>Built a readiness dashboard</strong> showing overall readiness percentage by TSC and a month-by-month projection toward 90% readiness by the October 1 audit start date.</li>
+          </ul>
+        </div>
+        <div class="pc-section">
+          <div class="pc-section-label">Key Findings</div>
+          <ul>
+            <li><strong>Overall readiness: 58%</strong> &mdash; a strong foundation for a first formal readiness assessment, but 32 percentage points below the target needed to enter the audit window confidently.</li>
+            <li><strong>Privacy (P) lowest at ~40%</strong> &mdash; privacy notice had not been updated after a November 2025 product change that introduced new data processing. This is a material gap: SOC 2 Privacy criteria require that notices accurately reflect current processing activities.</li>
+            <li><strong>Security (CC) highest volume at 18 controls</strong> &mdash; the largest TSC by control count and the one with the most automation potential via Drata. CC controls around access management, encryption, and change management had the highest baseline readiness.</li>
+            <li><strong>Processing Integrity (PI) had the most engineering-dependent gaps</strong> &mdash; input validation evidence from the November release was missing and required active Engineering involvement to reconstruct.</li>
+            <li><strong>2 Tier-1 vendor SOC 2 reports expired in Q4 2025</strong> &mdash; the single most urgent flag because auditors will specifically review whether vendor oversight was maintained throughout the audit period, not just at point-in-time.</li>
+            <li><strong>Control owner gaps in 3 teams</strong> &mdash; IT Ops, Finance, and Product had controls assigned but no documented acknowledgment of ownership or understanding of evidence requirements.</li>
+            <li><strong>4 change management approvals missing</strong> from the CC change management control &mdash; changes were made without the required approval documentation, leaving a gap in the change log for the audit period.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="findings-section">
+        <div class="findings-label">Active Audit Flags &mdash; Pre-Audit Resolution Required</div>
+        <table class="findings-table">
+          <tr><th>Flag ID</th><th>TSC</th><th>Issue</th><th>Impact if Unresolved</th><th>Owner</th><th>Target Date</th><th>Status</th></tr>
+          <tr><td>FLAG-01</td><td>CC</td><td>2 Tier-1 vendor SOC 2 reports expired Q4 2025 &mdash; OpenAI and Salesforce</td><td>Auditor will cite vendor oversight failure &mdash; likely exception</td><td>GRC Analyst</td><td>Mar 15</td><td><span class="status-prog">In Progress</span></td></tr>
+          <tr><td>FLAG-02</td><td>CC</td><td>4 change management approvals missing from Nov&ndash;Dec change log</td><td>Control CC8.1 will fail evidence review</td><td>IT Ops</td><td>Mar 20</td><td><span class="status-prog">In Progress</span></td></tr>
+          <tr><td>FLAG-03</td><td>P</td><td>Privacy notice not updated after Nov 2025 product feature</td><td>Material misstatement between notice and actual processing &mdash; Privacy exception</td><td>Legal / GRC</td><td>Mar 10</td><td><span class="status-prog">In Progress</span></td></tr>
+          <tr><td>FLAG-04</td><td>PI</td><td>Input validation evidence missing for Nov release</td><td>Processing Integrity control PI1.1 lacks contemporaneous evidence</td><td>Engineering</td><td>Mar 31</td><td><span class="status-open">Not Started</span></td></tr>
+          <tr><td>FLAG-05</td><td>CC</td><td>Q4 2025 access review incomplete &mdash; 3 privileged accounts unreviewed</td><td>Logical access control CC6.1 will show gap in quarterly cadence</td><td>IT Ops</td><td>Mar 15</td><td><span class="status-prog">In Progress</span></td></tr>
+          <tr><td>FLAG-06</td><td>A</td><td>Availability SLA reporting for Q4 not documented in standard format</td><td>Auditor cannot verify SLA compliance without standardized records</td><td>Engineering</td><td>Apr 1</td><td><span class="status-open">Not Started</span></td></tr>
+          <tr><td>FLAG-07</td><td>C</td><td>DLP policy not applied to contractor email accounts</td><td>Confidentiality boundary incomplete &mdash; data exfiltration risk ungoverned</td><td>IT Ops / GRC</td><td>Apr 15</td><td><span class="status-open">Not Started</span></td></tr>
+        </table>
+      </div>
+      <div class="findings-section">
+        <div class="findings-label">SOC 2 Readiness by Trust Services Criteria</div>
+        <table class="findings-table">
+          <tr><th>TSC</th><th>Controls</th><th>Evidence Collected</th><th>In Progress</th><th>Not Started</th><th>Readiness %</th><th>Biggest Gap</th></tr>
+          <tr><td><strong>CC &mdash; Security</strong></td><td>18</td><td>11</td><td>5</td><td>2</td><td><span style="color:var(--amber);">61%</span></td><td>Change management approvals; vendor report renewals</td></tr>
+          <tr><td><strong>A &mdash; Availability</strong></td><td>6</td><td>4</td><td>1</td><td>1</td><td><span style="color:var(--amber);">67%</span></td><td>SLA reporting format not standardized</td></tr>
+          <tr><td><strong>C &mdash; Confidentiality</strong></td><td>5</td><td>3</td><td>1</td><td>1</td><td><span style="color:var(--amber);">60%</span></td><td>DLP not applied to contractor accounts</td></tr>
+          <tr><td><strong>PI &mdash; Processing Integrity</strong></td><td>4</td><td>2</td><td>1</td><td>1</td><td><span style="color:var(--amber);">50%</span></td><td>Input validation evidence missing from Nov release</td></tr>
+          <tr><td><strong>P &mdash; Privacy</strong></td><td>5</td><td>2</td><td>1</td><td>2</td><td><span style="color:var(--red);">40%</span></td><td>Privacy notice outdated; consent log incomplete</td></tr>
+        </table>
+      </div>
+      <div class="lessons-grid">
+        <div class="lesson-card"><div class="lesson-num">01</div><div class="lesson-text"><strong>SOC 2 Type II is a test of operational discipline, not documentation.</strong> Auditors are not just checking whether controls exist &mdash; they&rsquo;re checking whether those controls operated consistently throughout the entire audit period. Evidence collected after the fact, or in bulk near the audit date, undermines the integrity of the entire submission. Contemporaneous collection is non-negotiable.</div></div>
+        <div class="lesson-card"><div class="lesson-num">02</div><div class="lesson-text"><strong>The GRC Analyst is the program manager, not the evidence collector.</strong> The single biggest mistake GRC teams make is letting the GRC Analyst become the person who collects all the evidence. That doesn&rsquo;t scale and it creates a single point of failure. The job is to build ownership, communicate requirements clearly, and hold teams accountable through a calendar &mdash; not to do it for them.</div></div>
+        <div class="lesson-card"><div class="lesson-num">03</div><div class="lesson-text"><strong>Audit flags caught early are findings. Audit flags caught late are exceptions.</strong> The difference between a finding and an exception is when you find it. A flag discovered in March for an October audit window is a remediation task. The same flag discovered during fieldwork in October is an audit exception that goes in the report. Proactive flag identification is one of the highest-value things a GRC program can do.</div></div>
+        <div class="lesson-card"><div class="lesson-num">04</div><div class="lesson-text"><strong>Privacy is consistently the least-maintained TSC.</strong> Privacy notice updates, consent logs, and data subject request processes require coordination between Legal, Product, and Engineering &mdash; and they tend to fall behind when product moves fast. SOC 2 Privacy criteria require that your notice accurately reflects your current processing. Every product release should trigger a privacy notice review.</div></div>
+      </div>
+      <div class="pc-footer">
+        <div class="pc-tools">
+          <span class="tool-chip">Drata</span>
+          <span class="tool-chip">Okta</span>
+          <span class="tool-chip">AWS Config</span>
+          <span class="tool-chip">Tenable.io</span>
+          <span class="tool-chip">KnowBe4</span>
+          <span class="tool-chip">OneTrust</span>
+          <span class="tool-chip">AICPA TSC 2017</span>
+          <span class="tool-chip">Excel / openpyxl</span>
+        </div>
+        <div class="pc-metric">
+          <div class="metric-val">38</div>
+          <div class="metric-label">controls &middot; 5 TSC &middot; 7 audit flags</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card fade-in">
+      <div class="pc-header">
+        <div>
+          <div class="pc-number">PROJECT 03 / 05</div>
+          <div class="pc-title">Third-Party Risk Management &amp; AI Vendor Assessment Program</div>
+          <div class="pc-subtitle">12 vendors assessed across 4 risk tiers &middot; AI-specific 6-factor risk framework &middot; 1 vendor formally rejected &middot; 20-point SOC 2 report review checklist &middot; Shadow AI governance policy</div>
+        </div>
+        <div class="pc-badges">
+          <span class="badge badge-purple">TPRM</span>
+          <span class="badge badge-red">AI Risk</span>
+          <span class="badge badge-teal">Vendor Assessment</span>
+          <span class="badge badge-blue">SOC 2 Report Review</span>
+          <span class="badge badge-amber">DPA Analysis</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-section pc-problem">
+          <div class="pc-section-label">Problem Statement</div>
+          <p>CloudBridge Technologies was onboarding SaaS vendors and AI tools with no formal risk assessment process. When I reviewed the vendor inventory, I found that several vendors processing customer PII had no Data Processing Agreements in place &mdash; a direct GDPR Article 28 violation. Vendor SOC 2 reports were not being reviewed at all; the organization was simply trusting that a SOC 2 badge on a vendor&rsquo;s website meant the vendor was secure.</p>
+          <p>The AI adoption problem was more urgent. Multiple teams had independently adopted AI tools &mdash; coding assistants, writing tools, data analysis platforms &mdash; without any security or privacy review. None of these tools had been evaluated for whether customer data or proprietary code might be used for AI model training. No DPA had been reviewed for training data language. This is the kind of risk that doesn&rsquo;t show up until a customer asks you directly: &ldquo;Is our data being used to train your AI vendor&rsquo;s models?&rdquo;</p>
+          <p>Standard vendor risk frameworks don&rsquo;t cover AI-specific risks. I had to build one from scratch.</p>
+        </div>
+        <div class="pc-section">
+          <div class="pc-section-label">Step-by-Step Process</div>
+          <ul>
+            <li><strong>Built a 4-tier vendor classification model</strong> based on data access, criticality, and regulatory exposure. Tier 1 (highest risk): vendors with access to customer PII or the production environment. Tier 4 (lowest): tools with no data access. Classification drives assessment depth and monitoring frequency.</li>
+            <li><strong>Inventoried 12 vendors</strong> with inherent risk ratings, data classification, regulatory scope (GDPR/CCPA applicability), DPA status, SOC 2 status, and current approval decision.</li>
+            <li><strong>Conducted deep-dive assessments for 3 Tier-1 vendors</strong> (OpenAI, Salesforce, AWS) covering: security posture, SOC 2 Type II report review against a 20-point checklist, DPA review, subprocessor inventory, and contractual control obligations.</li>
+            <li><strong>Developed a 6-factor AI-specific risk framework</strong> covering risks that standard SOC 2 reviews don&rsquo;t address: training data risk, data residency, prompt injection vulnerability, hallucination risk in high-stakes outputs, model explainability, and shadow AI proliferation.</li>
+            <li><strong>Applied the 20-point SOC 2 report review checklist</strong> to all Tier-1 vendors &mdash; reviewing scope, bridge letters, subservice organizations, complementary user entity controls (CUECs), and any exceptions noted by auditors.</li>
+            <li><strong>Formally rejected Acme AI Analytics</strong> after assessment found no SOC 2 report, no DPA, no training data prohibition, and no evidence of security controls. Documented the rejection with rationale for the vendor file and notified the requesting team.</li>
+            <li><strong>Placed DataFlow Analytics on hold</strong> pending receipt of current SOC 2 Type II report and execution of a GDPR-compliant DPA with an explicit training data prohibition clause.</li>
+            <li><strong>Drafted an AI Governance Policy recommendation</strong> to formalize the AI vendor assessment process, require GRC review before any AI tool adoption, and establish employee guidelines for AI tool usage with company data.</li>
+          </ul>
+        </div>
+        <div class="pc-section">
+          <div class="pc-section-label">Key Findings</div>
+          <ul>
+            <li><strong>OpenAI: Medium residual risk (Approved with conditions)</strong> &mdash; Enterprise agreement explicitly prohibits training on customer inputs per DPA Section 4.2. Data residency confirmed to Azure US-East. Open item: formal prompt injection security testing not yet completed.</li>
+            <li><strong>Salesforce: Low residual risk (Approved)</strong> &mdash; Clean SOC 2 Type II with no exceptions. ISO 27001 and ISO 27018 certified. DPA executed. Subprocessor list current. No CUECs unmet.</li>
+            <li><strong>AWS: Low residual risk (Approved)</strong> &mdash; FedRAMP High authorized. Shared responsibility matrix reviewed and documented. AWS-specific controls (CloudTrail, Config, GuardDuty) verified as enabled in production environment.</li>
+            <li><strong>Acme AI Analytics: Critical risk (REJECTED)</strong> &mdash; No SOC 2 report. No DPA executed. No training data prohibition. No evidence of encryption standards. Formal rejection issued with documented rationale.</li>
+            <li><strong>Shadow AI is the fastest-growing unmanaged risk</strong> in the organization. 6 AI tools had been adopted across teams with zero security review. Each one represents a potential data exfiltration vector and a potential training data risk.</li>
+            <li><strong>3 of 12 vendors had no executed DPA</strong> despite processing customer PII &mdash; a direct GDPR Article 28 violation requiring immediate remediation.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="findings-section">
+        <div class="findings-label">AI-Specific Risk Framework &mdash; Applied to OpenAI</div>
+        <table class="findings-table">
+          <tr><th>AI Risk Factor</th><th>Risk Description</th><th>Finding</th><th>Status</th><th>Evidence / Control</th></tr>
+          <tr><td><strong>Training Data Risk</strong></td><td>Customer data used to train vendor&rsquo;s AI models</td><td>Enterprise DPA Section 4.2 explicitly prohibits training on customer inputs. Verified against signed agreement.</td><td><span class="status-closed">&#10003; Resolved</span></td><td>DPA Section 4.2 &mdash; signed Nov 2024</td></tr>
+          <tr><td><strong>Data Residency</strong></td><td>Data processed outside approved jurisdictions</td><td>US-only processing confirmed. Azure US-East and US-West regions only. Cross-border transfer risk: None.</td><td><span class="status-closed">&#10003; Resolved</span></td><td>DPA Annex I + Azure region config</td></tr>
+          <tr><td><strong>Prompt Injection</strong></td><td>Malicious inputs manipulate AI model behavior</td><td>System prompt hardening implemented. Formal red team / prompt injection testing not yet completed. Risk accepted pending Q2 test.</td><td><span class="status-open">&#9888; Open</span></td><td>Engineering runbook &mdash; test due Q2 2026</td></tr>
+          <tr><td><strong>Hallucination Risk</strong></td><td>AI generates inaccurate outputs used in high-stakes decisions</td><td>Internal policy requires human review of all AI-generated code before merge. Policy exists; enforcement monitoring not yet implemented.</td><td><span class="status-prog">Managed</span></td><td>Engineering acceptable-use policy</td></tr>
+          <tr><td><strong>Shadow AI</strong></td><td>Employees using unapproved AI tools with company data</td><td>6 unapproved AI tools identified across Product, Sales, and Engineering. AI Governance Policy does not yet exist to govern usage.</td><td><span class="status-open">&#9888; Open</span></td><td>AI Governance Policy draft pending CISO approval</td></tr>
+          <tr><td><strong>Model Explainability</strong></td><td>AI decisions cannot be audited or explained to regulators</td><td>CloudBridge uses OpenAI for internal productivity only, not for customer-facing decisions. Explainability risk: Low given use case.</td><td><span class="status-closed">&#10003; Accepted</span></td><td>Use case scoping documentation</td></tr>
+        </table>
+      </div>
+      <div class="findings-section">
+        <div class="findings-label">Vendor Assessment Summary &mdash; All 12 Vendors</div>
+        <table class="findings-table">
+          <tr><th>Vendor</th><th>Tier</th><th>Data Access</th><th>SOC 2 Status</th><th>DPA Status</th><th>Residual Risk</th><th>Decision</th></tr>
+          <tr><td>AWS</td><td>1</td><td>Production infrastructure</td><td><span class="status-closed">&#10003; Current</span></td><td><span class="status-closed">&#10003; Executed</span></td><td><span class="sev sev-low">Low</span></td><td>Approved</td></tr>
+          <tr><td>Salesforce</td><td>1</td><td>Customer PII (CRM)</td><td><span class="status-closed">&#10003; Current</span></td><td><span class="status-closed">&#10003; Executed</span></td><td><span class="sev sev-low">Low</span></td><td>Approved</td></tr>
+          <tr><td>OpenAI</td><td>1</td><td>Proprietary code / prompts</td><td><span class="status-closed">&#10003; Current</span></td><td><span class="status-closed">&#10003; Executed</span></td><td><span class="sev sev-med">Medium</span></td><td>Approved w/ conditions</td></tr>
+          <tr><td>Okta</td><td>1</td><td>Identity &amp; access data</td><td><span class="status-closed">&#10003; Current</span></td><td><span class="status-closed">&#10003; Executed</span></td><td><span class="sev sev-low">Low</span></td><td>Approved</td></tr>
+          <tr><td>DataFlow Analytics</td><td>1</td><td>Customer PII (analytics)</td><td><span class="status-open">&#9888; Expired</span></td><td><span class="status-open">&#9888; Pending</span></td><td><span class="sev sev-high">High</span></td><td>On Hold</td></tr>
+          <tr><td>Acme AI Analytics</td><td>1</td><td>Customer PII + financial</td><td><span class="status-open">None</span></td><td><span class="status-open">None</span></td><td><span class="sev sev-crit">Critical</span></td><td><strong>REJECTED</strong></td></tr>
+        </table>
+      </div>
+      <div class="lessons-grid">
+        <div class="lesson-card"><div class="lesson-num">01</div><div class="lesson-text"><strong>A SOC 2 badge is not a risk assessment.</strong> A SOC 2 report tells you whether a vendor&rsquo;s described controls were operating effectively during the audit period. It does not tell you whether the vendor is training AI models on your data, whether their subprocessors are secure, whether their CUECs apply to your environment, or whether exceptions in their report affect you. Reading the report is the work.</div></div>
+        <div class="lesson-card"><div class="lesson-num">02</div><div class="lesson-text"><strong>The DPA training data clause is the most important sentence you will read in an AI vendor contract.</strong> Ask for the specific clause, not a verbal assurance. &ldquo;We don&rsquo;t train on your data&rdquo; is not a control. &ldquo;Section 4.2: Vendor shall not use Customer Data to train, fine-tune, or improve Vendor&rsquo;s machine learning models&rdquo; is a control. If it&rsquo;s not in writing, it doesn&rsquo;t exist.</div></div>
+        <div class="lesson-card"><div class="lesson-num">03</div><div class="lesson-text"><strong>Shadow AI is the fastest-moving third-party risk most organizations aren&rsquo;t measuring.</strong> Every employee who pastes customer data into an unapproved AI tool is creating a vendor relationship with no DPA, no SOC 2 review, and no training data protection. An AI governance policy isn&rsquo;t optional in 2026 &mdash; it&rsquo;s foundational.</div></div>
+        <div class="lesson-card"><div class="lesson-num">04</div><div class="lesson-text"><strong>Vendor rejection is a GRC outcome, not a failure.</strong> Formally rejecting Acme AI Analytics &mdash; with documented rationale, a rejection memo, and notification to the requesting team &mdash; is exactly what a mature TPRM program looks like. The goal is not to approve vendors; it&rsquo;s to protect the organization. Sometimes that means saying no.</div></div>
+      </div>
+      <div class="pc-footer">
+        <div class="pc-tools">
+          <span class="tool-chip">Drata Vendor Module</span>
+          <span class="tool-chip">OWASP LLM Top 10</span>
+          <span class="tool-chip">SIG Questionnaire</span>
+          <span class="tool-chip">GDPR Art. 28</span>
+          <span class="tool-chip">CCPA</span>
+          <span class="tool-chip">ISO 27701</span>
+          <span class="tool-chip">FedRAMP</span>
+        </div>
+        <div class="pc-metric">
+          <div class="metric-val">12</div>
+          <div class="metric-label">vendors assessed &middot; 1 rejected &middot; AI framework built</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-card fade-in">
+      <div class="pc-header">
+        <div>
+          <div class="pc-number">PROJECT 04 / 05</div>
+          <div class="pc-title">Corrective Action Plan (CAP) Program &amp; Root Cause Analysis</div>
+          <div class="pc-subtitle">23 CAPs managed across 5 finding sources &middot; 7-phase lifecycle &middot; Full 5 Whys RCA on SQL injection &middot; Escalation matrix &middot; Zero recurrences</div>
+        </div>
+        <div class="pc-badges">
+          <span class="badge badge-amber">CAP Management</span>
+          <span class="badge badge-red">Root Cause Analysis</span>
+          <span class="badge badge-green">Finding Remediation</span>
+          <span class="badge badge-purple">Escalation Framework</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-section pc-problem">
+          <div class="pc-section-label">Problem Statement</div>
+          <p>CloudBridge Technologies was generating security findings from five different sources &mdash; external audits, penetration tests, internal risk assessments, vulnerability scans, and regulatory reviews &mdash; but had no centralized system to track them to verified closure. Findings were documented in one-off spreadsheets, assigned informally via Slack, and &ldquo;closed&rdquo; without evidence that the corrective action had actually been implemented.</p>
+          <p>The symptom of this problem was visible in audit history: the same findings were appearing in consecutive annual audits. Patch management weaknesses cited in 2024 were still open in 2025. Access review gaps documented in Q1 resurfaced in Q3. The organization was treating findings as administrative tasks rather than systemic risks &mdash; closing tickets without ever asking why the problem existed in the first place.</p>
+          <p>A finding that keeps coming back is not a finding problem. It is a root cause problem. This program was built to address both: track findings to verified closure AND eliminate the conditions that created them.</p>
+        </div>
+        <div class="pc-section">
+          <div class="pc-section-label">Step-by-Step Process</div>
+          <ul>
+            <li><strong>Defined the 7-phase CAP lifecycle</strong>: Open &rarr; Assign &rarr; Plan &rarr; Execute &rarr; Validate &rarr; Close &rarr; Monitor. Each phase has defined entry and exit criteria so there is no ambiguity about what it means for a CAP to be &ldquo;in progress&rdquo; vs. actually closed.</li>
+            <li><strong>Built the open CAP register</strong> with 17 active findings spanning all 5 finding sources. Each CAP includes: source, finding description, root cause, corrective action plan, responsible owner, priority (Critical/High/Medium/Low), target date, current status, and evidence of closure requirements.</li>
+            <li><strong>Built the closed CAP register</strong> with 6 verified closures including evidence of closure documented for each &mdash; screenshots, configuration exports, policy sign-offs, or test results depending on the finding type.</li>
+            <li><strong>Developed the Root Cause Analysis (RCA) template</strong> using the 5 Whys methodology. The template guides the analyst through each &ldquo;why&rdquo; level and requires a documented root cause statement distinguishing between the proximate cause (what happened) and the systemic cause (why the conditions existed).</li>
+            <li><strong>Completed a full 5 Whys RCA</strong> on CAP-008 (SQL injection finding from penetration test). Traced from the vulnerable login endpoint all the way back to the absence of DevSecOps practices in the SDLC &mdash; no SAST, no OWASP training, no security gate in CI/CD.</li>
+            <li><strong>Built the escalation matrix</strong> defining who gets notified when: overdue Critical CAPs escalate to CISO after 5 business days. Overdue High CAPs escalate to the CAP owner&rsquo;s manager. All escalations are documented in the CAP register with timestamps.</li>
+            <li><strong>Defined KPIs</strong>: on-time closure rate (target: 90%), average days to close by priority, recurrence rate (target: 0%), and finding volume by source to identify which assessment types are generating the most risk.</li>
+            <li><strong>Created a monthly CISO reporting dashboard</strong> summarizing CAP status by priority, overdue count with escalation status, closure trend, and top open risks by business impact.</li>
+          </ul>
+        </div>
+        <div class="pc-section">
+          <div class="pc-section-label">Key Findings</div>
+          <ul>
+            <li><strong>3 of 17 CAPs overdue at time of assessment</strong> &mdash; all three escalated to CISO per the escalation matrix. Two were High priority, one was Critical. Escalation notifications sent with documented rationale.</li>
+            <li><strong>On-time closure rate: 65%</strong> (target: 90%) &mdash; below target due to a volume spike from the NIST CSF 2.0 assessment generating 9 new CAPs in a single quarter. Rate improving as new findings are processed through the structured lifecycle.</li>
+            <li><strong>Average days to close improved 24%</strong>: from 62 days in Q4 2025 to 47 days in Q1 2026. Structural improvement attributable to assigned ownership and defined exit criteria rather than informal tracking.</li>
+            <li><strong>Zero recurrences</strong> across all 6 closed CAPs. No finding that was formally closed and verified has resurfaced in a subsequent audit or assessment.</li>
+            <li><strong>SQL injection root cause (CAP-008)</strong> was the most analytically complex RCA: 5 Why levels traced to the complete absence of DevSecOps integration in the SDLC. The proximate cause was one vulnerable endpoint. The systemic cause was that GRC and Engineering had never been connected.</li>
+            <li><strong>CAP-020 (default credentials on network device)</strong> closed in 10 days &mdash; fastest Critical closure in the register. Remediation was operationally simple once ownership was clearly assigned.</li>
+            <li><strong>Penetration test findings generated 35% of all CAPs</strong> &mdash; the single largest source, confirming that offensive security testing is producing the most actionable risk intelligence.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="findings-section">
+        <div class="findings-label">5 Whys Root Cause Analysis &mdash; CAP-008: SQL Injection (Penetration Test Finding)</div>
+        <table class="findings-table">
+          <tr><th>Level</th><th>Question Asked</th><th>Answer</th></tr>
+          <tr><td><strong>Why 1</strong></td><td>Why did a SQL injection vulnerability exist in the login endpoint?</td><td>The login form used string concatenation to build SQL queries instead of parameterized queries with prepared statements.</td></tr>
+          <tr><td><strong>Why 2</strong></td><td>Why was string concatenation used instead of parameterized queries?</td><td>The login code was inherited from the 2021 MVP, written before the organization had any secure coding standards or developer security training.</td></tr>
+          <tr><td><strong>Why 3</strong></td><td>Why wasn&rsquo;t the vulnerability identified during code review?</td><td>Code reviewers were not trained to identify SQL injection patterns. Review focused on functionality and performance, not security. No security-specific review checklist existed.</td></tr>
+          <tr><td><strong>Why 4</strong></td><td>Why were reviewers not trained in secure code review?</td><td>No secure coding training program existed. OWASP Top 10 was not part of developer onboarding. Security education was treated as optional rather than required.</td></tr>
+          <tr><td><strong>Why 5</strong></td><td>Why was there no secure coding standard or training program?</td><td>Security had never been embedded in the SDLC. GRC and Engineering operated in separate silos with no shared accountability for security outcomes in code.</td></tr>
+          <tr style="background:rgba(16,185,129,0.06);"><td><strong>Root Cause</strong></td><td><strong>Systemic Finding</strong></td><td><strong>Complete absence of DevSecOps practices: no SAST tooling, no OWASP training in onboarding, no security review gate in the CI/CD pipeline, and no shared accountability between GRC and Engineering for code security.</strong></td></tr>
+          <tr><td><strong>Corrective Action</strong></td><td><strong>Remediation Plan</strong></td><td>Deploy Snyk SAST in CI/CD pipeline (blocks merge on High/Critical). Add OWASP Top 10 to developer onboarding. Create secure code review checklist. Establish quarterly GRC&ndash;Engineering security sync.</td></tr>
+        </table>
+      </div>
+      <div class="findings-section">
+        <div class="findings-label">CAP Register Summary &mdash; Open Items by Priority</div>
+        <table class="findings-table">
+          <tr><th>CAP ID</th><th>Source</th><th>Finding</th><th>Priority</th><th>Days Open</th><th>Target Date</th><th>Status</th></tr>
+          <tr><td>CAP-008</td><td>Pen Test</td><td>SQL injection in login endpoint &mdash; OWASP A03:2021</td><td><span class="sev sev-crit">Critical</span></td><td>45</td><td>Apr 1</td><td><span class="status-prog">In Progress</span></td></tr>
+          <tr><td>CAP-001</td><td>NIST CSF 2.0</td><td>3 High CVEs exceeding 30-day patch SLA</td><td><span class="sev sev-crit">Critical</span></td><td>62</td><td>Mar 15</td><td><span class="status-open">Overdue</span></td></tr>
+          <tr><td>CAP-003</td><td>Internal Audit</td><td>MFA not enforced for 4 privileged service accounts</td><td><span class="sev sev-high">High</span></td><td>38</td><td>Mar 20</td><td><span class="status-prog">In Progress</span></td></tr>
+          <tr><td>CAP-006</td><td>Risk Assessment</td><td>No formal incident response tabletop in 18 months</td><td><span class="sev sev-high">High</span></td><td>29</td><td>Apr 15</td><td><span class="status-prog">In Progress</span></td></tr>
+          <tr><td>CAP-020</td><td>Pen Test</td><td>Default credentials on network management device</td><td><span class="sev sev-crit">Critical</span></td><td>10</td><td>Feb 28</td><td><span class="status-closed">Closed</span></td></tr>
+          <tr><td>CAP-011</td><td>NIST CSF 2.0</td><td>S3 bucket public access block not org-wide</td><td><span class="sev sev-high">High</span></td><td>55</td><td>Mar 10</td><td><span class="status-open">Overdue</span></td></tr>
+        </table>
+      </div>
+      <div class="lessons-grid">
+        <div class="lesson-card"><div class="lesson-num">01</div><div class="lesson-text"><strong>Closing a finding is not the same as fixing the problem.</strong> Organizations that close CAPs by fixing symptoms &mdash; patching the one vulnerable endpoint, resetting the one compromised credential &mdash; will see the same finding in the next audit. Root cause analysis forces the question: what condition in our environment allowed this to happen? Fix the condition. That&rsquo;s how recurrence rate stays at zero.</div></div>
+        <div class="lesson-card"><div class="lesson-num">02</div><div class="lesson-text"><strong>Evidence of closure is as important as the closure itself.</strong> A CAP marked &ldquo;Closed&rdquo; without attached evidence is just a status update. Auditors will ask to see proof that the corrective action was actually implemented. For every CAP closure, I define in advance what evidence will prove the fix &mdash; a configuration export, a policy sign-off, a Tenable scan showing zero instances &mdash; and I require that evidence before the status changes.</div></div>
+        <div class="lesson-card"><div class="lesson-num">03</div><div class="lesson-text"><strong>Escalation authority must be pre-agreed, not improvised.</strong> A GRC Analyst who has to ask permission to escalate an overdue Critical finding loses time, credibility, and leverage. The escalation matrix defines the thresholds and the recipients before any finding goes overdue. When escalation happens, it&rsquo;s not a surprise &mdash; it&rsquo;s a documented, accepted process everyone agreed to when the program launched.</div></div>
+        <div class="lesson-card"><div class="lesson-num">04</div><div class="lesson-text"><strong>Finding source analysis tells you where to invest in security testing.</strong> When 35% of your CAPs come from penetration tests, you know offensive security is providing the most actionable risk intelligence. That&rsquo;s a data point that should influence the security testing budget. GRC programs that track finding volume by source can advise leadership on where assessment dollars generate the most value.</div></div>
+      </div>
+      <div class="pc-footer">
+        <div class="pc-tools">
+          <span class="tool-chip">Drata</span>
+          <span class="tool-chip">Jira / ServiceNow</span>
+          <span class="tool-chip">5 Whys Methodology</span>
+          <span class="tool-chip">OWASP Top 10</span>
+          <span class="tool-chip">Snyk SAST</span>
+          <span class="tool-chip">Excel / openpyxl</span>
+        </div>
+        <div class="pc-metric">
+          <div class="metric-val">23</div>
+          <div class="metric-label">CAPs managed &middot; 0 recurrences &middot; 24% faster closure</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 -->
+    <div class="project-card fade-in">
+      <div class="pc-header">
+        <div>
+          <div class="pc-number">PROJECT 05 / 05</div>
+          <div class="pc-title">Executive GRC Dashboard &amp; Board-Ready Risk Report</div>
+          <div class="pc-subtitle">Synthesizes all 4 prior projects into a single leadership view &middot; 20-domain control health heatmap &middot; 5-quarter KPI trends &middot; 3 leadership decisions identified &middot; Risk register top 10</div>
+        </div>
+        <div class="pc-badges">
+          <span class="badge badge-blue">Executive Reporting</span>
+          <span class="badge badge-teal">Risk Telemetry</span>
+          <span class="badge badge-green">Control Heatmap</span>
+          <span class="badge badge-amber">Board Distribution</span>
+          <span class="badge badge-purple">Decision Support</span>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-section pc-problem">
+          <div class="pc-section-label">Problem Statement</div>
+          <p>CloudBridge Technologies&rsquo; CISO and board received no consolidated view of security posture. Data existed across separate tools and workbooks &mdash; framework alignment scores, SOC 2 readiness percentages, open CAP counts, vendor risk decisions &mdash; but it all lived in analyst-level detail that required technical interpretation. No single document synthesized the risk picture for decision-makers.</p>
+          <p>The consequence was that leadership was making security investment decisions based on instinct and anecdote rather than data. When the CISO was asked at a board meeting what the company&rsquo;s current audit readiness was, the answer required a 20-minute offline investigation. That is not a reporting problem. That is a program design problem.</p>
+          <p>The capstone project solved this by building a dashboard that integrates all four prior projects into one view, tracks KPI trends over five quarters, provides a color-coded control health heatmap across 20 domains, and closes with a &ldquo;Leadership Actions Required&rdquo; section that turns reporting into decision support. The CISO should be able to walk into a board meeting with this document and answer any security posture question in real time.</p>
+        </div>
+        <div class="pc-section">
+          <div class="pc-section-label">Step-by-Step Process</div>
+          <ul>
+            <li><strong>Defined the audience hierarchy</strong> and what each level needs: Board members need posture and trend at a glance (no acronyms, no technical detail). The CISO needs program metrics, open risks, and decision points. GRC Analysts need operational detail. Each section of the dashboard was written for a specific audience.</li>
+            <li><strong>Built 4 KPI tiles</strong> on the executive summary tab: Framework Alignment %, SOC 2 Readiness %, Open CAPs (High/Critical), and Audit Readiness Grade (A&ndash;F). Designed for 60-second comprehension with prior-period comparison and directional arrows.</li>
+            <li><strong>Integrated data from all 4 prior projects</strong> into a single workbook. Framework data from Project 1, SOC 2 readiness from Project 2, vendor risk from Project 3, CAP status from Project 4. No data was duplicated &mdash; each section references the source project.</li>
+            <li><strong>Built a 5-quarter trend data tab</strong> with Q1 2025 through Q1 2026 history for framework alignment and CAP volume, and a January&ndash;October 2026 SOC 2 readiness projection showing the path to 90% by the audit start date.</li>
+            <li><strong>Built the 20-domain control health heatmap</strong> across: Identity &amp; Access, Vulnerability Management, Change Management, Logging &amp; Monitoring, Data Protection, Incident Response, Cloud Security, Third-Party Risk, Security Awareness, Business Continuity, and Privacy. Each domain shows control count, health percentage, RAG status (Red/Amber/Green), trend direction, and last tested date.</li>
+            <li><strong>Wrote the enterprise risk register top 10</strong> with inherent risk, current control effectiveness, residual risk, risk owner, and treatment status for each risk &mdash; designed so the board can see the organization&rsquo;s highest risks without needing to understand the underlying technical detail.</li>
+            <li><strong>Wrote the Q1&ndash;Q3 2026 program look-ahead</strong> with 10 planned initiatives, each with timeframe, owner, success metric, priority, and current status &mdash; so the board sees not just where things are but where they&rsquo;re going.</li>
+            <li><strong>Wrote the &ldquo;Leadership Actions Required&rdquo; section</strong> identifying 3 decisions that require executive authority: endorsing the AI governance policy, escalating the DataFlow vendor hold, and allocating engineering resources for SIEM tuning and SAST deployment. This is the section that turns the dashboard from a report into a decision support tool.</li>
+          </ul>
+        </div>
+        <div class="pc-section">
+          <div class="pc-section-label">Key Findings</div>
+          <ul>
+            <li><strong>Overall framework alignment: 60%</strong> &mdash; up 8 percentage points quarter over quarter, the strongest single-quarter improvement in the program&rsquo;s history. Driven by gap remediation progress from the NIST CSF 2.0 project.</li>
+            <li><strong>SOC 2 readiness: 58% and on track</strong> &mdash; current trajectory projects 90% readiness by August 1, providing a 2-month buffer before the October 1 audit window opens.</li>
+            <li><strong>3 control domains rated Red on the heatmap</strong>: Patch Management (42%), Change Management (55%), and Privacy (45%). All three have active CAPs and remediation owners assigned.</li>
+            <li><strong>Top organizational risk: SOC 2 audit exception</strong> &mdash; if the 7 active audit flags are not resolved before October, CloudBridge will enter the audit window with known exceptions, which is recoverable but damaging to the SOC 2 Type II opinion.</li>
+            <li><strong>AI governance gap is the fastest-moving unmanaged risk</strong>: 6 unapproved AI tools in active use, no governance policy in place, and at least 2 instances of customer data being submitted to unapproved AI tools identified in Q1.</li>
+            <li><strong>Security training completion at 87%</strong> &mdash; 13% of the workforce has not completed mandatory security awareness training for the current period. Completion must reach 100% before the SOC 2 audit window.</li>
+            <li><strong>SIEM tuning backlog represents the highest-effort open item</strong>: alert tuning requires a dedicated engineering sprint estimated at 3 weeks. Without it, the Detect function stays below 60% and continuous monitoring controls will fail SOC 2 review.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="findings-section">
+        <div class="findings-label">Program KPIs &mdash; Q1 2026 vs. Prior Period</div>
+        <table class="findings-table">
+          <tr><th>KPI</th><th>Q1 2026</th><th>Q4 2025</th><th>Q3 2025</th><th>Target</th><th>Trend</th><th>Status</th></tr>
+          <tr><td>Framework Alignment %</td><td>60%</td><td>52%</td><td>45%</td><td>90%</td><td style="color:var(--green);">&#8593; +8%</td><td><span class="sev sev-med">On Track</span></td></tr>
+          <tr><td>SOC 2 Readiness %</td><td>58%</td><td>&mdash;</td><td>&mdash;</td><td>90% by Oct 1</td><td style="color:var(--green);">&#8593; Building</td><td><span class="sev sev-med">On Track</span></td></tr>
+          <tr><td>Open CAPs &mdash; Critical</td><td>2</td><td>4</td><td>6</td><td>0</td><td style="color:var(--green);">&#8595; Improving</td><td><span class="sev sev-high">At Risk</span></td></tr>
+          <tr><td>Open CAPs &mdash; High</td><td>7</td><td>7</td><td>9</td><td>&lt;3</td><td style="color:var(--amber);">&#8594; Flat</td><td><span class="sev sev-high">At Risk</span></td></tr>
+          <tr><td>Avg Days to Close (All)</td><td>47d</td><td>62d</td><td>71d</td><td>&#8804;30d</td><td style="color:var(--green);">&#8595; Improving</td><td><span class="sev sev-med">On Track</span></td></tr>
+          <tr><td>On-Time CAP Closure Rate</td><td>65%</td><td>58%</td><td>52%</td><td>90%</td><td style="color:var(--green);">&#8593; Improving</td><td><span class="sev sev-high">At Risk</span></td></tr>
+          <tr><td>Security Training Completion</td><td>87%</td><td>78%</td><td>71%</td><td>100%</td><td style="color:var(--green);">&#8593; Improving</td><td><span class="sev sev-med">On Track</span></td></tr>
+          <tr><td>Vendor Risk Reviews Current</td><td>83%</td><td>67%</td><td>58%</td><td>100%</td><td style="color:var(--green);">&#8593; Improving</td><td><span class="sev sev-med">On Track</span></td></tr>
+        </table>
+      </div>
+      <div class="findings-section">
+        <div class="findings-label">Control Health Heatmap &mdash; 20 Domains</div>
+        <table class="findings-table">
+          <tr><th>Domain</th><th>Controls</th><th>Health %</th><th>Status</th><th>Trend</th><th>Top Gap</th></tr>
+          <tr><td>Identity &amp; Access Management</td><td>8</td><td>75%</td><td><span class="sev sev-med">Amber</span></td><td style="color:var(--green);">&#8593;</td><td>Service account MFA not enforced (4 accounts)</td></tr>
+          <tr><td>Vulnerability Management</td><td>6</td><td>42%</td><td><span class="sev sev-crit">Red</span></td><td style="color:var(--amber);">&#8594;</td><td>Patch SLA breach for 3 High CVEs; no enforcement automation</td></tr>
+          <tr><td>Change Management</td><td>5</td><td>55%</td><td><span class="sev sev-crit">Red</span></td><td style="color:var(--green);">&#8593;</td><td>4 change approvals missing from Q4 change log</td></tr>
+          <tr><td>Logging &amp; Monitoring (SIEM)</td><td>7</td><td>58%</td><td><span class="sev sev-med">Amber</span></td><td style="color:var(--amber);">&#8594;</td><td>Alert tuning backlog; no defined thresholds for anomaly detection</td></tr>
+          <tr><td>Data Protection</td><td>6</td><td>70%</td><td><span class="sev sev-med">Amber</span></td><td style="color:var(--green);">&#8593;</td><td>DLP not applied to contractor email accounts</td></tr>
+          <tr><td>Incident Response</td><td>5</td><td>72%</td><td><span class="sev sev-med">Amber</span></td><td style="color:var(--green);">&#8593;</td><td>No tabletop exercise in 18 months</td></tr>
+          <tr><td>Cloud Security (AWS)</td><td>9</td><td>68%</td><td><span class="sev sev-med">Amber</span></td><td style="color:var(--green);">&#8593;</td><td>S3 public access block not org-wide; GuardDuty not in all accounts</td></tr>
+          <tr><td>Third-Party Risk</td><td>5</td><td>65%</td><td><span class="sev sev-med">Amber</span></td><td style="color:var(--green);">&#8593;</td><td>2 vendor reports expired; DataFlow on hold; AI governance policy not yet approved</td></tr>
+          <tr><td>Privacy</td><td>5</td><td>45%</td><td><span class="sev sev-crit">Red</span></td><td style="color:var(--amber);">&#8594;</td><td>Privacy notice outdated; consent log incomplete; DLP gap for contractors</td></tr>
+          <tr><td>Security Awareness</td><td>3</td><td>87%</td><td><span class="sev sev-low">Green</span></td><td style="color:var(--green);">&#8593;</td><td>13% of workforce incomplete for current period</td></tr>
+        </table>
+      </div>
+      <div class="findings-section">
+        <div class="findings-label">Leadership Actions Required &mdash; Q1 2026</div>
+        <table class="findings-table">
+          <tr><th>#</th><th>Decision Required</th><th>Context</th><th>If Not Acted On</th><th>Owner</th></tr>
+          <tr><td>1</td><td><strong>Endorse AI Governance Policy</strong></td><td>6 unapproved AI tools in active use. 2 confirmed instances of customer data submitted to unapproved tools. Draft policy ready for CISO signature.</td><td>Shadow AI risk continues to grow. Next customer due diligence review will surface this gap.</td><td>CISO</td></tr>
+          <tr><td>2</td><td><strong>Escalate DataFlow Vendor Hold</strong></td><td>DataFlow Analytics has been on hold for 60 days pending SOC 2 report and DPA. Business unit is escalating pressure to approve. Current approval would violate TPRM policy.</td><td>If approved without controls, CloudBridge incurs GDPR Art. 28 liability for PII transferred without a compliant DPA.</td><td>CISO / Legal</td></tr>
+          <tr><td>3</td><td><strong>Allocate Engineering Sprint for SIEM &amp; SAST</strong></td><td>SIEM tuning backlog (~3 weeks of engineering effort) is blocking Detect function from reaching 60%. SAST deployment in CI/CD is the corrective action for CAP-008 (SQL injection root cause).</td><td>Detect function fails SOC 2 continuous monitoring controls. SQL injection root cause is unresolved &mdash; next pen test will find the same class of vulnerability.</td><td>CISO / VP Engineering</td></tr>
+        </table>
+      </div>
+      <div class="lessons-grid">
+        <div class="lesson-card"><div class="lesson-num">01</div><div class="lesson-text"><strong>The difference between reporting and advising is the &ldquo;Leadership Actions Required&rdquo; section.</strong> Any analyst can compile metrics and put them in a slide. The value a GRC professional adds is translating those metrics into specific decisions that only leadership can make, explaining the consequence of inaction, and naming the owner. That&rsquo;s what this section does &mdash; and it&rsquo;s what gets the CISO to read the report instead of skimming it.</div></div>
+        <div class="lesson-card"><div class="lesson-num">02</div><div class="lesson-text"><strong>Trend lines are more persuasive than snapshots.</strong> A 60% framework alignment score in isolation is just a number. A 60% score after showing 38% six months ago is a story about a program that&rsquo;s working. Leaders respond to trajectory. Five quarters of history transforms a dashboard from a status update into evidence that the GRC function is delivering measurable improvement over time.</div></div>
+        <div class="lesson-card"><div class="lesson-num">03</div><div class="lesson-text"><strong>Audience segmentation is the hardest part of executive reporting.</strong> The instinct is to include everything because everything feels important when you&rsquo;re close to the work. The discipline is knowing what a board member can absorb in a 10-minute agenda slot versus what a CISO needs for a 90-minute working session. The heatmap serves the board. The findings tables serve the CISO. The CAP register serves the GRC team. Same data &mdash; three different formats.</div></div>
+        <div class="lesson-card"><div class="lesson-num">04</div><div class="lesson-text"><strong>The capstone project reveals whether the first four projects were integrated or isolated.</strong> If the data in the executive dashboard can&rsquo;t be directly traced back to a specific finding in a specific project, the portfolio is a collection of separate exercises, not a GRC program. Building this dashboard forced every prior project to be documented in a way that its outputs could be synthesized &mdash; which is exactly how a real GRC function should work.</div></div>
+      </div>
+      <div class="pc-footer">
+        <div class="pc-tools">
+          <span class="tool-chip">Excel / openpyxl</span>
+          <span class="tool-chip">Word / docx</span>
+          <span class="tool-chip">NIST CSF 2.0</span>
+          <span class="tool-chip">SOC 2 AICPA TSC</span>
+          <span class="tool-chip">Power Query</span>
+          <span class="tool-chip">Drata</span>
+          <span class="tool-chip">ServiceNow GRC</span>
+        </div>
+        <div class="pc-metric">
+          <div class="metric-val">20</div>
+          <div class="metric-label">domains heatmapped &middot; 5 quarters of trends &middot; 3 decisions</div>
+        </div>
+      </div>
+    </div>
+
+  </div></section>
+
+<div class="full-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow">// Technical Skills</div>
+  <h2 class="section-title">Tools, frameworks, and competencies</h2>
+  <p class="section-sub">Built through hands-on project work, certifications, and real-world compliance experience.</p>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="sg-header">
+        <span class="sg-icon">📋</span>
+        <span class="sg-title">Frameworks & Standards</span>
+      </div>
+      <div class="skill-item"><span class="skill-name">NIST CSF 2.0</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">NIST 800-53 / 800-37 (RMF)</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">SOC 2 Type II (AICPA)</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">ISO 27001</span><span class="skill-level sl-int">Intermediate</span></div>
+      <div class="skill-item"><span class="skill-name">GDPR / CCPA</span><span class="skill-level sl-int">Intermediate</span></div>
+      <div class="skill-item"><span class="skill-name">CMMC Level 2</span><span class="skill-level sl-int">Intermediate</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-header">
+        <span class="sg-icon">🛠</span>
+        <span class="sg-title">GRC & Security Tools</span>
+      </div>
+      <div class="skill-item"><span class="skill-name">Drata</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">ServiceNow GRC</span><span class="skill-level sl-int">Intermediate</span></div>
+      <div class="skill-item"><span class="skill-name">Vanta</span><span class="skill-level sl-int">Intermediate</span></div>
+      <div class="skill-item"><span class="skill-name">Tenable.io</span><span class="skill-level sl-int">Intermediate</span></div>
+      <div class="skill-item"><span class="skill-name">Splunk (SIEM)</span><span class="skill-level sl-int">Intermediate</span></div>
+      <div class="skill-item"><span class="skill-name">Okta (IAM)</span><span class="skill-level sl-adv">Advanced</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-header">
+        <span class="sg-icon">☁️</span>
+        <span class="sg-title">Cloud & Technical</span>
+      </div>
+      <div class="skill-item"><span class="skill-name">AWS (GRC controls)</span><span class="skill-level sl-int">Intermediate</span></div>
+      <div class="skill-item"><span class="skill-name">AWS Config / CloudTrail</span><span class="skill-level sl-int">Intermediate</span></div>
+      <div class="skill-item"><span class="skill-name">Excel / Power Query</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Jira / ClickUp</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Python (basic automation)</span><span class="skill-level sl-beg">Learning</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-header">
+        <span class="sg-icon">🔍</span>
+        <span class="sg-title">GRC Competencies</span>
+      </div>
+      <div class="skill-item"><span class="skill-name">Gap Assessments</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Risk Register Management</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Policy Development</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Third-Party Risk (TPRM)</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Evidence Lifecycle Mgmt</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Executive Reporting</span><span class="skill-level sl-adv">Advanced</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-header">
+        <span class="sg-icon">📈</span>
+        <span class="sg-title">Program Management</span>
+      </div>
+      <div class="skill-item"><span class="skill-name">POA&M / CAP Management</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Audit Coordination</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Stakeholder Management</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Root Cause Analysis</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Agile / Scrum / ScrumBan</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Waterfall / SDLC</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Kanban / Risk-Driven PM</span><span class="skill-level sl-adv">Advanced</span></div>
+      <div class="skill-item"><span class="skill-name">Agile / ScrumBan</span><span class="skill-level sl-int">Intermediate</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-header">
+        <span class="sg-icon">📑</span>
+        <span class="sg-title">Background & Experience</span>
+      </div>
+      <div class="skill-item"><span class="skill-name">GRC Analyst — SAIC</span><span class="skill-level sl-date">Oct 2025–Present</span></div>
+      <div class="skill-item"><span class="skill-name">Security Controls &amp; Risk Analyst — SAIC</span><span class="skill-level sl-date">Oct 2024–Oct 2025</span></div>
+      <div class="skill-item"><span class="skill-name">IT Compliance &amp; Risk Analyst (USACE) — SAIC</span><span class="skill-level sl-date">Apr–Oct 2024</span></div>
+      <div class="skill-item"><span class="skill-name">Risk &amp; Program Manager — Juniper Networks</span><span class="skill-level sl-date">Jan 2023–Apr 2024</span></div>
+      <div class="skill-item"><span class="skill-name">Operations &amp; Compliance Lead — Harmony Science Academy</span><span class="skill-level sl-date">Apr 2021–Dec 2022</span></div>
+      <div class="skill-item"><span class="skill-name">Compliance Analyst — Veolia</span><span class="skill-level sl-date">Dec 2017–Apr 2021</span></div>
+      <div class="skill-item"><span class="skill-name">Active Secret Clearance</span><span class="skill-level sl-adv">Active</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:100px 80px;">
+  <div class="cta-section">
+    <div class="section-eyebrow" style="justify-content:center;display:block;">// Let's Connect</div>
+    <h2>Open to the right GRC opportunity</h2>
+    <p>Targeting Sr. GRC Analyst and GRC Manager roles at tech/SaaS companies. Fully remote preferred. Available to discuss how this portfolio translates to your team's needs.</p>
+    <div style="text-align:center;margin-bottom:32px;">
+      <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9TeW1ib2wgL05hbWUgL0YzIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNSAwIG9iago8PAovQ29udGVudHMgMTMgMCBSIC9NZWRpYUJveCBbIDAgMCA2MTIgNzkyIF0gL1BhcmVudCAxMiAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKNiAwIG9iago8PAovQ29udGVudHMgMTQgMCBSIC9NZWRpYUJveCBbIDAgMCA2MTIgNzkyIF0gL1BhcmVudCAxMiAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKNyAwIG9iago8PAovQ29udGVudHMgMTUgMCBSIC9NZWRpYUJveCBbIDAgMCA2MTIgNzkyIF0gL1BhcmVudCAxMiAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKOCAwIG9iago8PAovQ29udGVudHMgMTYgMCBSIC9NZWRpYUJveCBbIDAgMCA2MTIgNzkyIF0gL1BhcmVudCAxMiAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKOSAwIG9iago8PAovQ29udGVudHMgMTcgMCBSIC9NZWRpYUJveCBbIDAgMCA2MTIgNzkyIF0gL1BhcmVudCAxMiAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKMTAgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyAxMiAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjExIDAgb2JqCjw8Ci9BdXRob3IgKGFub255bW91cykgL0NyZWF0aW9uRGF0ZSAoRDoyMDI2MDMwNjIwMTIxMiswMCcwMCcpIC9DcmVhdG9yIChhbm9ueW1vdXMpIC9LZXl3b3JkcyAoKSAvTW9kRGF0ZSAoRDoyMDI2MDMwNjIwMTIxMiswMCcwMCcpIC9Qcm9kdWNlciAoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpIAogIC9TdWJqZWN0ICh1bnNwZWNpZmllZCkgL1RpdGxlIChQYXJpcyBEZVZhdWx0IC0gR1JDIEFuYWx5c3QgUG9ydGZvbGlvKSAvVHJhcHBlZCAvRmFsc2UKPj4KZW5kb2JqCjEyIDAgb2JqCjw8Ci9Db3VudCA1IC9LaWRzIFsgNSAwIFIgNiAwIFIgNyAwIFIgOCAwIFIgOSAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjEzIDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDQ1OTIKPj4Kc3RyZWFtCkdhdWBXPkJlZ1smcTlTWV5lOGE1ZXRHXCleLyhkWEVpVipZPENvcF1pInFjNixmVU90bm1ZKzlwO2NWMS9nUjhxW18mRiZQQjEyYiI+R0lIIycwbFcmSlAuSGlyPFtaYVNRLSQ0MUMjN2FeUmdtYSlLLFosOGkuMCUrPlhlbDRDaWdfbmE0KkpTQm4oJ1dbRWslLysoYk8iV0lxcldxP1lecCxKI3BzYT50TztPUHNqKWYzKFBsNyouUT4pJG9vWDkubm5fbC1kYDpiT3VwKFFTQ0RWM11fRmA2M2RFZF9DVlhxUjkhXzlxKWg+ITsnV010TiZwWFZLXHMkNVVaLSteJlgmQCo0QSYsVGxlbzxpNlpVcyE/YWhmbl4lbVFMN0F1aEk7UDVoZFZAalk7UnEnTkA8XD86UT89LEYkL29eaio2VC9PWEFgak8tOiEhUzBjalYpI0k7QklTMUdgYWw6PkM6MGNDKyo3SnBJSVREdEBTWlwjXWtrUGktYjZuNTUmVlo1SzFEOyFUXXRndTVZPjUyRyMiQmFYNWBsN0BALlthZkhRXXJ1Kyhbc2VEamBwPGwyQHNDSlhGK3FQals+MDwqJG4oQWFnVFZYVVlJbkdBKTZxOkpONSVhIT0/XVc5OUAzMSRjOlpiLkAhNjk0IXJiU3QyJWBUQidgQGouIV5APSlbZzk5TC9sZSNWKG9bTDJHVGQiIU9sXiM8JjQ9UDBKaHBcamdAazdMQlVeMFEjRFQ5bC5tKDdNJVVVZ1wrM1xVKU8pLWcsPT1ULk4kdToiM1JBRl5nZVkyX0YmWS9RdVopQCtfI2JyR2tTQT4uNEQlYDYqXGRxIXF0K05VNkc4bCc2WXNMUUZmJmY3cSsqcCxeN0FDMFpYaWtHUi4iTyUlZFM1Jkc4YzhWJkU0ZzEtRFFLb3I3ZV4mQ2tXS1crbmprRltJRC05UzgtTiFXbDRuPitmVjVbSzFfV19KMzRxP1JpWVNNLic/azFNbikiWUBcXGBcbThNTj1HJz4wWlw/WnRdM2xOL1ZXLF4icWs4YWdGJGFfWUpDU1dTZz0zUD89TG9mSWU5NzohRWE+NHBMajdZZ1IhNHUrWiQmMFlaUiRvOz0pOkZfclAzQSdOUCJYJGFOaUNoYEY2SXJILmsucElGLUZLQVNLYEsjT1suQDIyVjNVU1llSW1OUStuSlZpSzs6XWZFPXUwIlpob1tVJWZzNiNZTGFvMV5qPm8qMW4sUmZgRl07aDxMcCNEZmdhIlM9OGohZGs+VV8pOSVpOS4+U1Ajci03bU4nXCVaKkQhZTpYWCkvNVcnZkF1cEUwW208LWdfUyNUaVNoVjtyKVIoPEovLzMxOUI6YjRnKDMuQWYkVGlNW15LODJEOzBxbnJgUjJeZGdfbjBwTT9fKldCYWkvIjhyIiVTQWVmRkBtKClea2RYakxWJ0U1J18wOjQ0Rl5xUipjWSc+N2tuMG5JQXE/XS5iMF5TXFVGcmUtJk0jJ3VPUyImWEhaXCdKSmkxQlxNNCtCVWlkbSZJTEwrJFVZMlUrQ2xibixhMDkxT3BPZFM0Tl1WO2BGT2VXZWpXTChJXyQlcmptb09uZUg8SXVOUkFPTz8vXEhObllIUyJnO1RDOnB0PzFrcDM2O2MkPUAjcVghdV4nP25oPUBpLUQnXVRYYmwyMXJAS0YhTzZOPkpUOS9lKz8qNHIqOC5KYlVNUDVqLF9AMExMMWQxVShePC81QTIlKUoldUtqMldmZ1NbXl1ncF8uLTdPPD1nVypTUFJgPU42JllMKE1oakNYNXFOIjtOOTtGJDYnSEVXTExDMUtpOVRgZzlQOV5UajgiKENxLl1WJDFhWDxiOlpZNm4iRzN0bE4nLzQpOSVZXURcM0J1ZCtGWjxWNWZtOzBYYmxjY2ZgPys+YWQ2T0JqSyFtIS0sUmc+RDBfN18hMGleUFE9V1hyIWJQSlViLnE5SyNSJCg/MWRTY004WkM0MGo9bDZlOFkyM0ZBPnErU1BcNCI0NVpIRyVQY3VcYyY3Ky9KVDBhWmk8OCs9MkU3LFxzPDxla1FsVC5WdCVTPWJqZ1FcTDtaTzA5N0ApXjJGOlFvSF5XZ3JTNSxqJ1w7cklmKG0uc1k7ajUnLjFJWVc+Ti9HK0VYZG8tTWAqIjxXMWNeLDFrViQ/QUM0MDZXImNUZUQ+VGE8RTpaWkBKbWNfXycpMlBuNkknTll0V0pLKHJlM3JrL14mPyFjOnQ9Tlk3ZENMRkk6aDNydWctTmsvR2owO2opW0g7Iz1bY0VsWUdGVzxtJCFzcHQ5VWBDYCU0IWJWZ1FkQikqIztPMzZjWmlvImkuLEUsWC5CKT9FQDdwcigibm1YQy1DKzNvaFRKOyZYRXFlTDI8ViosW2FbLUlMIUUqKyVMa0QzW0wzR0dMRDsybVRURUBYIS1fNlBnQHFqOkxoN2UvOFl1VDxxOUk4NFpjLVxfYzwxblFAQC1GXjY9My1uJVlGPk1yZnA7WC1sVCc7P2w2PDNjc2BUPCpRI2QlTE1SIUVsMFM4QXNkK0gsa28rUGxDZkJoZi1ZVi9xJSlIJChOLmdWXi1uL14tWVI/OGFTRmouYzIobS1YaERMUigrVWQ0WiJNRzVIIVBwQUdnMDZHTzExUFJaUj08QSo+JHBsN3Q8MFM7bExCTXM1SGU5TU5PdVZtN1czIVBaQTJbIVkkKmBCUnR0aCFZbm5cWFZhIWFmKkQ7VUxmYnMqImU6K1AwPjU+KkdTSWc4OWUmZVNaal07WG9hWzNZUVRybEYqaytKaSFMKVE2MCohPlZzPCk4VTk6VlQlVUFgNUBBdU9IRT8xYW1zL2dVZCIuOTFEXUklSVlMczppPicqKEhvPnBbW0k5LihsN1EwIjFuam1eTHVbJVxiIlhePiwxM2pNVkZJb0ZZaUw4Nmh1VGlIUXJcPWcsZGQ1W2dKYjVLZitCdWdjOGUsMk1jaDAwIz5hQmA7Pz1lREcqbi4jKSw5NkxXPUY/Wj1LIz1UYFFhcUFNRjtNPnEwX2tiQ3NfJyFWRE8nJGQ3N0EtUkVcRGJHKXBFcTNjMidoNnVxPjtLTSFAMHAqZU4vSjZlPGE5UiRGdSNKY2lXJUs4citeMihZdUFzJTZmalE8QDxKK1Q+NEg9SE4/bVxVR11YOW9YSzkyM0E1M1UvN3E/K2owaXNwPTRvTCNsc01aP0pxYm4nWyM0cEEyVFk1WDEramg6SjZrbEZLUnRcRF87Tz5oQFZUPzBVLDROPUUtYF4xLkI8TWRDcVsiciNBXDpJMiwqLyErUTcwRFRaIkk0NU1MSEViLGFkPlEmS2dEci5gR0IpOClWNEZmW2BlbENeWXRoUixRTzFnZShxLlxfUGFfJU1eZSttPj4kTmA+TVluISdFPUhfO0xUWWgiXDpTbWIvMEpidDIzakUwOUZPQ2lFaCZHaT9WZnFGcG9RWEROLjg9NmErLExEOyhLT1AxaWlfMTtzIjQyPzNEZmMmQlpWS0VqbzM3ZVFEVkxLWVZsIkNiPUxOJCohIiUyVDBdOCRKTTlubWM/MT9qYEZGNjZjUyQsLSksNkJmZFolOzk9UEVZX1o7R3RnKElAWzEhZkpnUFU4Xiw/TUZhaVBDVCFgaEYsSUNuTkJRQkpRWS9wQkJgKUNCRVwmZzVfSGJ0S1JUKSE0YStXKyw2a2MyWEIpN182SFc/RkVYXmJtR2lqW0c2KFc5cTZUOk1uL181LW0pJmBRRldHREAlQCJDTkdsQ3BFXyEvIjM2IStDJ15rZko3bkMxTEVQY0ViVTtFWT1WQCkxMD89bjsoPCE4Q090P0BtZ0JbJktvbFJHMkgqTigqX3BMTTcybmFOPD5DIV4iSnJKRiNkJU9NXXIlVDpSYGBJKGNfUz1nSS9JXSpXYTBkdEFrb2dMQ182a2JlYyo3SmdnU3FnLD9uOk0kLTFbIzFMVlIrbWBmMCpsQHJAQjpaLChbYWZTVztkMy5uI21vOmRMUShBJFNPN3RYKGtaRF8+MWxZRlFaYUotSl07S1E4N3Fmc3NmP2NDSlBBLVhubjstNSxVTCJPS0VZRUBGMGpLT2xjUUdhSEBRM2U3blkiZ0B0Wj0kRSVJOV1JOyprXkg6cSElQ2xyKm0xJkJfPypuVyZkS19KRGpxLVcsOmgrQ009bD5YZztPR05ESTQobm88P1RYZTpdTXJbWjE9OEQlVDBeaSZkXDBdWHQ2NUhLYU5GXEVEQzJvcDxgL2xac0hiY3BxYT9kcG5BY1oncCMwaSo/dUpRO1o9UFdWVCgtYUQpL2JjSSNxSytTOWBldEtqOWRjPTQsVC1rTzVIa2VgOmFVVnFHO1wyNCljKk5TNkspVVxfI3JNIV4tUTQ+U0hFMzRxVkxoQGtoKktRJF5CLG5vNCU6UVwpbV9QbWtZNDZBbi1abTEmS1FmYWw/XXFAWlVlWEhkdTMnVF9bcU4jT0ZcYClVW1s0bDhiamgyIVxuO2xBOCpNXF1fMV4oODdKbWBlTi9jXzFnYykzUmc5PV1Nb1FBIy44RWhZImVLLlJDcWZKPUJCc0RbPDJtXUZGITpybF1HKCpoS1k5Ij9wYi9gJGpPb1I7LEMucCZONSxkOkc1VzsiYkxPZmInNWpMKHMxZmssVlojYlQ2WFJgQzFoOi9oXU9ONkclJENaaEVUbyVZIUk8XiJXSjcydWhWalNDV1sqS0hZaXBvbloqXkZAYTdbajIxW1M3Vk5lSjRvJytmUXFKI2VBbHFCIlpHMTg8OScnIzZnO08paEomV1k0Jm5JRG1vcE9nYzYpPWs7VSlbcllxdD5VR2JaTyRxP2JLQltaVFxuZ05wZzI8dCpIX2piZy9ZRz10Jjg2W0QkczdzK19SIlI7MzhdLG5Na0klbWNIKyhtUHBJbHQ1KlxQPVZnSjUrb11bc1VVRnUmakVxLnRuTy8mMCxrb2gmbFE6JGEpQ2lyMUVeUVc2bCdiNk5NLSdaKWk0PjFoRkw6Pk1QOTM0TStLRm5YbmNZZXBqY2MhT21nRGBCZ0wiaFdfLl5ZMkhnaFIhNV9yZ150SVc1c29GKSwyOzosbiQ9T25ZOiJmbSFzZnFGV1g4QillZE5IcEw2bkYkXj4iU0I1QU5SZFhZT0I0UTEqaEJ1YTQ5LE5TdD9rN0hjOipwV3AyJksoWFlZPm8pZEpoSCFTa0lRIWRfcklKbEM0WFNDUW0pWUMlWSRBJCtuXTlyXDBsRFRiNEhuTi1vIkpQTGpdSV47O3J0MT9hbEA/IU49Ml0iSSxSQCFiQWdHcyEkUDlZOUAsXiNvMHFXXUU9XDFbJ2FEOkpkW3ErT0I9XmFMNVgzPlZzNlouRjx0ZGwnPnNCTWA1SixrTjZhPS9wNEdBUkFwcC4rVTFfcT8+LyQ7KmF1XlgyQTNMS0w/YidDQ188Il09bXNMPnBQMzcmYVkpLjkmXGpnQFU+IV9zP09bZSJmdTtLR2QmI1xoXV10XD1tRicibEghVFkxZkdyPnNPN2QibExgYiNRZSpFQ1VrLVRKdCp1byZbRipWcm1HKl9scl8jOT4vWTU/RXVvZWJqTkQlY0E3cSZUR0NXKShpLVFoNWxCR103ND5cWSs3byI2QiEuNydObWlsZy4qMlNiLE0ybidXOyxSSCU7IUFbNFg8Ui0mT01CQWs5ckldY2ZjSiNLRDMlQUgmKFBJLGc2JEFuRV02Qi5JIVtjMUYybSUnOFFJTCJYKHBSOk9zQm5qLiNrYipjY1Znb1ZdSy9YVT1YQnI9Y1lJKl8hRDBuL1dbTjBOJ2BZby43QkhAb103ZlJuXzEzaV9WQV8vTCFQOztOJ0RUWF8qb3UiZ1ZRLllAN1JUSmoxWU9hUmRMM1ZLUUNNM0JxQSdedWZtWFptL0xmIlldQzZEMC8hdD1DT2pjLTduTWQ3Vmw4NDA0I0txQD1XZDxWX3JkODM8J2oxKCsrXyVEQEBHV2dXTkM4NUhNRz43U2MlcCclVkFgQE8rPS9TRmEwJUQ/SU9RM25EXUlwbmxHW0MsLl80b21gazE8c0pwWWI6QVJlIyFtSW1ASUFdRyNqX1FlZ2RvYk4uYDZVRmxuKn4+ZW5kc3RyZWFtCmVuZG9iagoxNCAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCA0ODE5Cj4+CnN0cmVhbQpHYXVgV2dOKSU8JnEvQTViX29jUFEzQEEzImw8OkIwQ2BxbTxbO09eW2BVNjcjdF1xPUoscjJQPE9FcGBoL2hmXS44LUlJNm4pMj9saUFmIjUyRFNkI0Q6LSMkTkRtWXMob08oTzY+bFNxaSMqVlNSOFpyLUJhciJiaGVtNCxjU3EtL200QDY3QHJNcjQ7QSQ0clJGMkwwQGsqIV8xbWhRclhEVV1cSixvUyUqdC5qPUo/TzgoWD1wbTQuamdEZF1DZjdHJVMqPG48WjRMKWtFYjs4KUo4KFN0MmchMlZfbEAkcW1DWjc+Xz1cMzhNV1RpRVFaPixlOHNOZytzN3Q5TmYzVyhbVFtEZyItPVE+USVhLlJoXUg1QSpoK3QwZnMtbmsmdF87JyRscUgyZ0Uzc1k4MV4qLGRWQXMmJzsxPFBaZi8kV01PSEZsTG8hTlk/Ty1MOiMzT2dmRGFuY3JkZ1g/YG00VW1GWEtkbU0rZl1vcE4nPWg0dXRQTUEtVlAuVWVqLCghcmEpSiZRPjNpQV9ROlI4R0cuKDFidU8nQHBDQmVeVWlkI1xtbyksMnNkQC9JXUknMnBBKFRORHNIVktaITY+VCtPUSJPVlBIVilFc0hXTGhXSXNabGg+Z1U7bUU/biswTjFCcHFyRUNsK2dtT1w/NEw5Ry5ETFpfa3QvTEIiLCtEWjNjJkZZNTMxVCgxZGwoLz8zbTQvcGZrXldhKWlNKG9oI0tENiZcJkZDZFskbSZQL1ViR3RTQ1poNFwocCFqW0FMIUdtJTlfVDxpOCgoZDEzQlw8Y25SU1ZZa0tPcmhFcixTUm11R2BJZnRUYiIzXWQ1Y2ZMOUNGKkBlZU1pL0skLCc5RmtLYDdSWV1SMWVPOEljKGV1T0JEKic+OSNvbm1CPlk7KThKPWQjNkBQMW44RlZbNE86XGFnJEhOUksicjwlYkc+K0VdJSJPVUpqJixOKSo1U1VjJTVMLVRrLy9tVCs4V0AyYE5WJCVOPilaVCxrKU9xc2pEQjQxSUppZCExLEghUilGSS9sXHRtQEtJPj0kNVNEX3FiSWBWU24hNG9RS1lwZTtAcC1SImRgaF5IQC0nLGE0W3JtTmUtO1ttSWptL2NkKDU2Zm1DYCZQVD11OFdwXmwiV0VfJ1xLTzsicTptbDRSVy8kQGFpLEFwX0UsTFNQVUVDJWNcQzpsVlJxXDowXDMlJjlZWillWCFdMl44X2tBPi8hOSlSPCEsOF9dYGImYSEtbk0ydGxqQVc0XUdTaj4zXUMuZEgxIV5fJGZfXUpnPjxnb2AjbXA9RUJqQTxjckclRzUpdGEhKkAhQGlFK0NSVDEsZnVfTENwM1VVWyxcI1VTYmI/blZRLT5mdXNeJ0ZFLCpBUlJoWlEqUDxAQTgxRXViamRfKW4vdFVeR248LkFBTkwjPkpGcDZOXChDTW5QSl0wVCk0OTgrcWFJMS9ZWjojL1U/Qz1aQlJ1bkhWOkwuQ09OOGc/MUlYIm5ATEZyZy0uO1IzOkpmREtZaTVsVVchNUlIMjZjK0lfTGlDRmY6Q1MqOz9vZF91JEsraWEjXyk4UF81QkIhaSxiSjs2PiJZWWFfXi5lOmw9ZDg2ZzhNWSgwKmxnYjE5PUhFdFt1USNkcmo7ISkxcUw+QlxraW1FaCl1XG5mPjhmSi1dRSVucFgyKz1pIixoUmpYRGtJcGAvUSp0Iy1IZT9YcGJVdE5gaVohciUmXFBpMGlJQyFFZCkiJmtlYmk7MmoqaVlMT1wnSDM7YFgwVSFMdHRVZGtsR1pZMWppMjNOdGE1ZWIpPickQ21CUisnJCxcImUtQj84LT5wVTBOUWJrb2pqX1E+VU1rUyIhMFFKRFFOPDwncTpLU1RtRnM5ZWpKN1sqWjZaZ1lITSpeYzZvXG5VJktwUUZeQUc+b0VDSj9UN0dRXzNFLzk4WC9XKlYoTzE7ZmJqdD1WRlsvS0YwKUtaaGMuUG5jZU1aW2guODBAMDYrKlFTIXNTOClgOFJpJCMuRigpZ2lWWF1KL1pSVUtba3M4Rl4pJDNvcj5ZKU9qVEVcZUpiakhXbldvbCpiT0dpZlhUWEdqMyJdSjIua20rZlhOK2BZNCZUN21GZXVaQ2c6bl9FVUREZypqS10iZlhNOSk+XSRmZWprLiddWjEvKEtbSSVDZE46MnAlNDFNZC0+bDhTPkZyKHJyU3I5NGg1JWBhMkckMikyKzUmKiE1PCY7S0FGRkRUbSRoI0FrRmExRTYsbzA3ajIrJlkucU1FdEAlcDM/L0JiLE83UUJQcD1EWTZpUzRsR29VRF5RX0ZiYFlQPlFtYSYyQ1ErVlBbJzFyXEkrUisiXFByKy5DakpgPllSYzJRIk0/XV8hYiI7VjJnJy0rYl1LYjdYQjwpIydBRzNKOl0sbzZvYTknKCxdMlwoYkEvX2FVMV8lXGpEdSldSnFmRVwpP0pbPC9FJjNONDJCP0VdWmRyYD1kMkgqQCRWV1Z1Yy9uOTRUJTAxbjdmS003RzAiXXVYJ0ciUkk5Rk9zZXNgJkU1LEI2bTZxKStAblhKWTFSLDwmTTA3VFo5Zm46LydMRU5paS4ycUgsMUtfOFlMNGk7ak0+TDFvR2BJJWBpXD9TMUguVGQkOkhpMSFYTDMzPWdpLTtYYkkhamA1Omg8Q1NyJCVZU0VoMTVta1EjZ2VbNClkZThbRk5mRnJDLWdkUUJvc0wqKmphSz4rPCJOR20pKzYybHI9QzYvR0lkYU5HWU1yVEY+PkUkZCpvU1ozJ2FMJ2swQ2JGckteSS1wPD5LXjNscDdGZ2lGRUVPVCUuRlU/QzJycFRaK09BNUM5JEdaMm9pXjZ1IjQrLjg+MlgyS2E+aTtXZ2oyb3FjJV9VJTdvIV4kNjk0NCpQYnVdP25SMEg2WVIqUTloMTxePCFiJFZBOjprUGEnViw3UUVoOzNpc2xXb0RPRzRxMixHITQnXTBBKzVxcWBKKSooS0N1SUNeXEpVWDNFIzRwQCMlVmNfMWZTb1UvdUNqamVtImtmWGpYQ04iKmdRXl4pZjpyQj89LW45LXJuMiJfPTBPXU1yNC5gbEdLKjoxaCRbQz1hUDZZOiZXUzJYTjpCW0dHOExyRWZcOWo5OjQwN2g0JFAickJAYkg+JVdhSGZwS0VSR2BKYE5bMlAkUzQzWWxwNDhKTCFmMEZbbEteMDdkKWE1XGBYZi40OVxyOC02bVVKUmpqLUVhJlQ6LVw6PkwhcjV0SCZcJ19ENiU7LlFXP3InIltrdUoxVnNjIWJBLlYlOTtAdDFmI1dmYCdxdF0yQmZybztIQmckaVRUQWo+NTk2VHJpcjxmcTg2ZGNSS1FUW1lCOExLNDJWJjdqZTIxYlI4LlQlMXEiZSZTa2wnU0JiWixLPFkxN10sOkF0W2ksKk85WCkncjZySE9AJUFlK1pZXVAxLldRK1VsYUF0NklKRkszTUAuTVNxV10sUzo5MHIhUHNDWjMhLTBBYT9DYUxXXTtJbyFPQlw9JEFMZSs2KT1kREJzOFNRQS1HQiMubXU0PUU9Lk0+XydwTVAnOVZGMjN0azUyLmxGVE4uTmdMOyFmQ1UiOUJtIXMoZTZaSSFvZDBeJVhiM20+T28taFshKmkoOiFlTG1kS1NFbiVlXChUNV8/aGxlTWZFKSpWMWdAW1RFdSxWQHU4QyRsIy9BNlw4JTg+V1RgTVw4Mmw7SycxRyckRnVGJUM5WTVTUTpoQmErVlc/P0FtdUpBMWwzVkkyMy1RIVNEKU06cHA5bzJfMVNLJ2o6UWA4Nz9DdVxNTkExXTlrKEpNVz1WMWlAcFRuaCg5PD42RkstYVg1byE3QFcvQVpdO2FrZFE6KTpaJ11MXmtCXzJaMG08I3I8KihbRzA6Yy5KaGQkL086JylUPWd1MlRpIUddZURUMHFXPENjTmxjKUJuV1pnW25pTmJyI0ZWSXViOFFvLGZYXj9FPVksXkMobTxaWi9zOkFxSzw9Rj1HQUJUO21NQkhQNVZNZmQ6ImAyQy9YIkpxISphIS0iS29lcjdnTzROWU9EWGJhWTkjN25JJUxzcHJmXzVmcUpQJm8mVSxOKkUoV0g0LTcrMD9QRCNXJz9VMnNlbmVHRzNrUFRES180VCpYLy9KY1JjLl5dRGdXI2Y+dFFRYjIvI0VybChdX2lVaWhTW2syaVVqNF87L2Y1SE06dUk9UW90R15GSlJFMSI4OjQxP1wnNWpiYC9hbSdVUU8nSi0wV05GUSUhNVtcW0srU0JPNGtZLGJyaWc+UyxiMmZNRSJaSjpNNlYiNCxiK3VELVtBM0E4TT9URSY1STc1MyhZS2ZqQEQ3ZStJa2gyOjFARWUjcSk3XTgycT5KQixYIU1LLGdhJEI2IlZbQFM4XTpKLDRXMjhIZHV0LVBdQ24kYEUkZm1qbjsnSmZXT2ohOCdrQVtlTV9VclQ8U3E0MmxAMEBwSVc3YXNVSzNFST0kOyJYJikxLFtVUjxmIl9JOmJgbmMxVCFjTlE5Q3A4STQ/bzljJmxOcEUocyxkPjoxP1JPI3EpOl44MzJTTVNPQVE3QFR0bCItXzgyL2RSZiouXDQ3bmtaKztsOmY0ZFZlXEBZOnEhWnJMU2gkJFNQLy5YU2JuOnMrNFVCWEJIS0I3Pj49YjVPLz0lRT1EKFdZN28oKiUwbTc/UlpTNHElMVcsaXBiPVIrKzdcXC9DYzgiSklwU2g7OVg3QnQxZFApS1RXZk5cXWUtWTNFYi1tW2lCcD06bzpSXmtBPUg7LUZXbUU2SywhQ3BEY2Q5WlB0YSk3VmJOTFlTRyozVVJzVl9ia1VZW0A6cHExTT0vZkMrL0lvVjRqJmM3TVx1dGtmVklUTi02LGovamhldSJoZT5GXHVHJk5NS1skalxxOjlGLVBGWG9fdFxqUGFFcj09RiNRNU1LRSUwXzE/LEhmXC1uXCJgP29TK20nOk5sMycuWixccWNeLVokMTkhXUludFMsIyIrJ3I8OGk8JTE7J2swXD1WJDBUV1VRaigrJmU0TlJwTzBiKjJrZW9XJUYjWydEKl1GWDxMKGJSWXMvTSNUMSQtVyF1IlM0XnVlV1ctSz9hLl5vPUIzJERIZWhLa1YmJ09sZ2dKKj1ZJWdwIUlZS1s0RFswO3I6Zz4zbXBwbFJNW1dUYF1JPT5eRGMyKXQ6SWVhaz0iZ29XZEZKbS9MUEM4cycsXktTRVkvVUt1WCxgR10iMjU0bz5NWWZMWmQ2ZjxhTls2JUcjI0U4RHBpZ3NCZmRFY0cjI0U4JzVcUDBCWTNjQD5tL2s2MkpCXkFac0FXKDN0Sl1oI01SSjRCZmdPR1NXPyMyZGJLQDI5SDZvKVBoa1hvWElYOVpub2BqQ3FpUSVDOEB0PVRadV0kc2hwTDolZ2BRMHMqM1NcUysoNEQhZylXR1ZGcEYrVy5JOkEyNSheJVxjZSkraGppWCRQZ19FRm5lak1EM05lTTxlZTcoTnJGSmRyTzVwaGAxZCUwP1dyaWcmJUkiU1xGYTRVM0RaMUdjYEghb3VkUyRAJVRmX0wyWlNIamE1a2IhVSM8VnQ2Zyc0SCQxMSIqXT8uLHRlcFhBQkM8Z2c6WVJgU0RCRi0jQ1ZALUxKa0NrJUksOmxjc0ZpbjpyJDAyXEMvQD0ybWQ7XDpnTm1jJFtKRzlBW2Q0aj84cyxEKW5hXD46dVw8LWVhblFqbFhaSDxyLipsSjpxLCFbc1JeaT86PUUvKTdiPVEmWDNeJixjKGo/JGxFIV4wcVhFV0BacypUOTFDYSoxOG05LiMuXkhLKU8pMk1kQSJdTmlVXltMVXQqRHJdMWoyQyghWUMsWjNmQF9EJk8sW0FHXDMyTzdBLFJnXmEkVjxOWywhRXBtZlkzbDJDXzkmXFZHai0oWE44YDNRYjluP2QkKlYoRDMpUVxaI1FCUC1VIlUuPiNUbjNWWD5UVylFPlRPNjsjXGVaLSRGdV9UZk9GRztWVFY9YEJnNURXY0wxQkQ3Nj0zYiQ3XFRdcGVmPCQhUWk9NkhGWjBEND9VPUVpMiQ6TT9TXyM5O11oZzI0PURXMy9BcFcrVTkqKyM/K1dGLTpBRGVmOU4jYUIzT1EwV29dUUFyPG9uJ1pdT2lcQClZN1lDNzUiSDdMYSFRQ2Q0K2VkXSdOTS5dJGpyakoiRCUwaVJzUlpQSidIMiZ0cE1CRyo8JDJZdWwjIlFIUzZ1PjYzbypPZihyVVcpKkFkbCs3OmZoVFwhcF8+cipPSEhHPUs9bzhxVixAUms+PUtDO15YXTlVNkw/ZU5AJ3VaM2AjcVBdJStnbVUjQHVIZ2FpdVkjaFAzIkBMMEFTOVtRKVlOaSlJNk8vMXIrQGI/PCttZiR0VFxEI09NSkwqcn4+ZW5kc3RyZWFtCmVuZG9iagoxNSAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCA0MDk1Cj4+CnN0cmVhbQpHYXVgVz8kIl5oKFZdQEEzJmJQQiRXdTpPWSRSUy9mPCspQ0wyIVBBXjArKTpDYjZwNCVtK24wajU5JWQ4cTxJX1NWXmYmKS5USm0qcHA7c2ojUTsoRDZpWldlaiUlVWRFLiclaFYyUiYxbXNOb0ZabDFgZHFKOz5mQ0pmZWEub2VTJUpnaWlwKzpMSDpjQTFvZDE2SixVck84czluMSVMP0pmZ0BsTGw0UCVnTE1tSG90SmttTEBEOG9rPCpjIzZAPEtddGlzbWRrU11cOVs7T2YwZk9qV2tjUzlSYGBxL0dPMUxxTyU0bzZQZVxlR3Eick45O3A6QzM7WGdpN01ZXXBvbUJYNDteVjh1VjJuKVBSYk4hbEJbTGViLi5GSVwvM1EoLjU4KllITFUqcTZxdDZFJUM1VkAuZ3FaTl9GJyNXZU9uR2tzYi5QJDhnJ0tMWyNdakBETjRHUDFHRVJmI21EVCx0XCZuKFYtb1pNakluYlRzYCc2aGImR0FIWixBbWxLTTUyKSo9K1QpYTcoWiZkNF5nIkdgdF1PcV0qMycpRCtvTmdhbVNwQnEuTzIkXjAnPS1zTGJNUVhBUDYsUSUvI0QsNF45Q0llVEdyLlQ9cGMjVlZGY29IRVA9JGI4Uy4rak0jTFRGXCFMTFc+b1UtRSoqNWU7SFNjRFpTNV5idDY7PGAoW0tSKyYpXU8+c242MChFcClKbSE2JG1NImxhNjpGU00ubkUzKlE3IWZtI2okblUjO2YoKEpNZGwlPChqPEFMPGtrdTkyYW04UkV0NWV1LXAmRDE+VFJIN1koUTlScUFtOT1vKylGcnEqaG0sOVtHc29RVkVXJ1c0aD1ZYyFvSTYiWjUqLGBuR0ddLDAwLCdiMFJvamk2TUQkJmkkYUtaSTQscG9UQ1xOUXQqT11eUjQjbkMyVF5oKWYxQVddOVF1I0ZiTkA0I3JOKHBPQlsiMVVJMUFJVHA1dCdVZChyZzgtU1JhNCU/LVlsLFxJP1lUJ2U6YU4uKFVpODhsRCppQE5rM2htJDtOVzAmWyJGUWQyRmBBPHRRbCZoNywqJl1QUDJQNUpXdUY/YywyKjFzVmsnLnVuP2UjPGBgRlhKV19CVVBebDcyNkElVTVXJzZBcE8tbzUobTkla1NscTw9RzlCMCxYODlAT0hGdVg0YUVJWj1hM0kjZzJWSDIzWUkuPjcwdTImIjUtODVYZDQ0azI5a1VwM1NxK1liOmMlbG91ITc1JyNWW15XJEYlLSYpPEVDOk4wNmIhKmAqJWY2M2tmKW1BOWBnLmNHXnBVO1QlQjw1WiwpLXFEXHJwJnUjNW9ZUVJuYkRvYCMuSXVmZ1lnN0E+Y2UmdG4oZTYvPjFcY1ZCSGBGTEdjcCZuUTQhNWBVcGVxPFolIXNYLjlLZzZacVIsOEJgXFoqS21JOSRTJ0h0Yj4uKlRNOSswclopclhKP21LYmNgaT48Ly4xMS1uTWU+PWA2bm5jUG9CKzU/JVM8O01kYz8iakImVCVbWiZpbEw3UUVhWnAvX2lCMjcvZkxaRyQ1XWRiTydaTldnTjduYzYhbEhucjxmPy4sIU9wK0pwaCsuRGdAPyYwZjc9ITVfP0NsWUlVPlcvY1hsJD10WmokOlVCKzJFWFZCNUY6TzlOY1dzMF5PVUIxYXEuQCZKM0QpNy8pKE1EY1xOMztUZGBVT2RicyImS0wsJjwmL3FPTThIck5EJFdcWVlyYWtKYFZdIVM5U1g+XCpAWmVsLGsnSlMvQjNlJmpRXk4kQ1loaloiNjRyWWpjU24yXSFqSVM2YjM/TFYhSnU5RjRAT3VGcF9mN1U1Oic5TkZvQTB0OEEzcG1PO2IrI1A+WnQtMUJrQEFYW1lvcmJsUTJNL11VZ2tjdDAoUCpNLChCOVAvUj5kZWEvRVw0cVt1QW9cW29MQ0RlVTVaIV1VZEg5MCQ0NmEqY2BbUSgkJm5AcHNtNCVWZzpkcSQ+ITMvTSdDUkBccVY9Rzp1TkZqOHBhUUdLMmVFU1VvKTMuUSNHJydxT0IhaSs2TGArNzIiU0Y6ZkkhOzdSRCdTJzdvUU1jPyN1ITVKI2NuTUwnSSZVMDUqTCZVakkhODY0PiQiNUdUKlFgNTwwLU5UOWxNTDFEKEtULEIySmk7IlpJYUdISVhVM1o7K2s4M2daRDNrWjInRGRbKmRXSkQ9byInL0AvSFktbzBcRU8nUCk8aVRhNjlGcF0vX0I5a2FqdEMqXlpiWExgT2lJN2RrT2FfJiM3N3NmcnVYMlY8LD9QaGY5YGE5dDE4aidlcCkqYFssKE85QSU9Rl9SZipMaU1GQmJBWHFXKyEoL1YobV9GIj9lYFhbLj5FUS1zUzNMXjVON2NeM2RjaWdcQkEsQkRVMVNKbDhxc0ZZTGVPJ1lBQSomZDoxMkllJUs5QlpYOzw2TilASWR1b3FyTTVhRWNYal0yP1BKJlNjYVtlYidsVilXTlg3VC9WUWtFQjdsVi5YMjErIkFnOU5SMlthK0tNcztXZS9UXDNpNUtzTiw+c0E4TkJzTSxSRSI8Jj1KbFcvVjw+JEozPmwtOWRVW1RNQTBYLXVGSEZhZDZBb0IsO2IxU2RnPlYvI1c0aWpUM3QsTE9EXmErTW45UWI1QC5dPjhmW2NsSV9FIVYlTzZKIk9IaV5hSiphYShBYkomR3NRPFtwNF9gcFZcXmtcKGdNOyNidF0ncDddZkgvTkQsPTxnITdSRz9zKVQ5bU1FSzZkRkFBa3ByRXRRN1lTa1tkZDM9TTtCcyVIb0dgV1l0VyQvQG9fIWVzaCJNSjg8c0Qjc2Q7O2o5R1xHdCYmVmhHZjA2Ni4iQyctUiprIjxPKCZtcVI9bjE5Yio+UGFWbDlbN3N1PG9uaWFYNCtbUFBhRmhxZkI8LENSTEYiOUUhXmFIPlNFZ2F1NllJYWYzOTEqJUNEUikrOzc8MmA0cS5NbmlHVlEpZWRJR2Mra2hUPD9WIlttb110aitAYlBuTVZpdVtYQD9kRiI2MkpLImVAVGpObTJUWylsYVdARk9yb1VNV1RVW2ZNT1JrKTFMXW5GM1xeWWAqOXAocWkzUywnQDZKL0gobzlJJXVZJFUmSzRHP11MR24uaWhuI2MzJERNKz0lYGg/VTNLOiNZWzpAUVAvQT9ONlAuKzRZI0U9VHVEJzhjUWU7XEM0XzVlPFxyNlczdXVrRTdIQlxeNDRPMjtSQmRnJk1AWTRqUlkmOlpFaV5cUjpGPDBfc2ovKzxcQVs5dDZnOkA8SV1BLmotN2xwPGs0IlBvM2VESzpsNGNEWXRzNytfW2EyTSlybUtSImRQJVhQSk5TWHM7dDxpQ29EXmxfPD8hOD0rSEpHbVw6a1Y5WGhvRlFwTDhVaWY5VSheXz07IkImZmwvJyVOKz5dL0lgQzJpUyknMz0vLGtEWGpySGNyUFZJSSRUbW87S0BxZUdSWVdEVWgpL0llMkJ0Nis/PVRhZlBucz1SMTMmczVBZksvN29FZ0koLlttPkh0YS9hISJtMEMrOEU2JSljIjJWTEo6Yk5HPFpaWSwzc1pLc0NRVWpaaDtNRWlZOXVvc1deZ1hLQT9HW0M5ZkEpbjxlQm9RWSRuLVEwTyQkcFBcOypidUgxJFRWLDhxZUU0P2pdNyZ0NDE7VFFNWEc7aVtZaCdqQUcvUV1wLnBqOSotVDFtLzpcJS5JLGlzVlIpVWpeMkYnc2Y7Ky1obkBGQEQ5UCFNQDBAMU0rOSdAUlpURjsjKnQnJjRxJi5eSDJoXFsvUiZcdSUmYFglaENXMVMoSmpxSW8ra1JZNFpnLHMlUV1FQ0Y9QnBKYjwuKzBMblRIJytBY1knbmhOaUApY3UiM0o5SWt0azdRX2dHTi1tTzxKQjY6aSlrMm0xXi5yZ2JePkVBKFphWC8qMkRAOVJsaEUnXXVMPUN1YWErW3QhKVlgJEJKZE9NdUJCZ2peLWlXYidtZUJsKCdQcixDV0tKaEpqRUkqQmc0Qj5BR05vPSJNMGRzL2hIYjRPWVZWNytMVzEqO0UwJywtRiZZY0RbIlNvIlc7RElPQjNXKzohJkdSLUI8STVuRUcjcUBKTz1WUEA7REM2OCZCRzlFN1lGbk9EPG8oR00kNSpHLiUuSzI5NzooNS4+QnBVJlRdUjshWSMkb1gjQjEoayQ1Sz8palQzaTRoVmNCJlEqKWsqMl1sWyNZXjYtRmBZQkIza0NLXDs4dDNcWCgtXzNhWVpBQE0+Ni9LTVBHIS8zJnBVVEUlazBvbigtbU4lMEhQUF0hPjU5UnM4bClAbVMnbDV1KWw0bEFnPXJDTXBhYWI7TjhkNWU2P1tcN0hkIV5mcVY7UT0mO1RHUj90LCY+cF4lV0BeS2VhcF42SilDTlpPPyYvYHFFXERsL2xJcSFVYVRQJ1I1SDlRJ1BbUlhrTUREXzkxXFFuZnMzaltyZmolWiEuLClAJVM8MFxGRFJdQGUsZztBcTZdbElrXm1yR01ORDFebmsmLmNkVWpGLFMzVztPIyFbRlhRSyhnYlJDX0w2amFoQ19LS3RfYjxsMllYVlgqP0tCbykib2o8NDVQajlPR3FmZnROXiI1PWRyRCcmMSJBZT0/a0hGUFhPQElSQDVBNSlgT1hTbUU5c1AtYjNeZS1HQmBBWWQia1IiQCE+Nz0jMVQhYG0jbEpUYzVoXDBiLzU+VTZXWzk+T0JtaW1eRk5hLCJVKipuXjVMQ2IlWlU6bFhIS15STVBDJHRSZzE3ImFJNTMlKipdKHBQW2o8JjNkbEZnJyg5XXA3QDhSJmAzXHI5YkdmZD9zLEE/TzpMPyUjLDQjaU9xMyhkOSU2ai9PVlAibCF0XVNTR09wPFNvXTRdTyIpI2s7SiIvKGNvPmxfckowWTY9KDVBZCszOnJqWigvcTdCKUIsPnIhXDZGaFdtb19sVScuSzItOSVLLDFTVyhFMHVCMC0rPEw3cjZoKjE/N29gMiQ6U15YK0hRUmVmPnJJNkAqQmEoOHU4KTZUcnA/MDhKOVxgKGZfakchQFVhT01KVSZSRlY0WWFYV2Y9IWFdYVItU0xgSUQuWEdrL11uSkIhb2MqPzZlVDNvKlZXb0E+WSkmcSdXV20mcipnK1Q0W0glR1NBY2p1T1RCYjJqbiQ/OTdvOCxsNEFgYE0qKDw+XW5LRjUsS2g8Kihgcm8wV25Ta3FRdHBPcCFUTzliUSIvSiZ0QFFBR2RucGRFPzlONTpGI2NrITFfO0o8YXVsX1tYJDwzYj5rPXM9UUJrKC03TGF1cHFJI005XnVpWy8qNjosT3VgImZnYEpoVm5bMy10ZFVTSF1gbU8kVD4yRyMnPVFtREZMQmNtZlY4VDgsVGgrRCs0UmpKQnNlLi9ZN0w5Om1rSGlRXENkZjlzIW5HMXMoRidEL0FFa3JyX0s5WyVtfj5lbmRzdHJlYW0KZW5kb2JqCjE2IDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDQzMTAKPj4Kc3RyZWFtCkdhdWBXPyNwcHAmcS9ZRWQ0YS9zPkNibFVuQyZcTmpLYFJBWEopci08SVUnQyJEQnFTQGN0V2VcK1tsIkRGbFg3Zis9aTgwcFNiSDFRbScrZTJmWUgvX2FbbDU/biguLTMsLk1FOyVaYGdPXS8lQ3AzMEByIkAkQFQ9VT9HbWxNUzRELzdNLWtkLDM8IXNjLW46VDxWIUAkX3BfXy11akEyWGc8JWY3bjFoWjJKJjFoOCUnWzxVOEwsXCQnI2pROT5NWFtHOzUnKmUkMChmXFlRWXFeXVwrQiU0RVg9MDshRUQ4LTxdY2hAVlo0bixLNkIhKTBDYFFAaGJJNT10JmhEVlRfKCg9VEI1XG5MdE9pJUEmX1RLQGdwXW9hK2JtOSVRTWA4M0dJOCk6O3JdZ3FsWlY2YUJdOmhwSixMNzlNXUhIRV8/SnFlOUBaZk89OD5PYnA5VmM9JG1wRHNgSF5PZzpvM1wqJk09OTIpY2EqTkdJP2trY1NZZW4zYCtdPzZCQVtqSSRTI05tJjclNDs1YlU5VElURV0pXzBdMSdLcWldJzgpSyNsbGZnQENcYy1fNlJZMF5uPW9SZ2xeMXRILFB1SVA4aS5aaydvV1ZoQiI/a1tvVmlmM28+bWsiXktjVixxZjFzKEJJX1hjXypHal1FZyZUIlwoQ3BscGlIYnRdWWZLcWArKF1XMUNOJi5hXC9JPT81Tmk+KUllRmJnOV9PSy9XWztNXGFaOyhia3JAcltqc3VRXypWQFRjIiNoRj1MRlxbYkBqRi9naStJQTwwKyVoIWp1TGIvcVlIXT4jXFlYbiZHbFhMa3IhRiplOCVTbWtOP2ZIWiU+dCZZQExWUCo3IUw9TzVYbV5RXjpjLVFZVyZAKTlhRyJpOmlEdEtvZyNrNnE1RWI+dGYwRVFrYG5HcVk5QWkxYGJTckE5SkRXWUBsUCNtc1QwVClzRTxgLC5ZKl1cYCY9ZW5KMDoxX3RqKEJyLT8kPk1PTj4zIUM3RkxRRj1qXz5RdWlCLCtAXzInO0pacWQ+KENgXDVhVlIlUGtfXS9BbD4+VW5vTEcxakJfUiQ7dFROJ2YmdDJGWEJJXFh0SXJuIjQoJ1hlJmVEK0IzO0VwZzBbTy8zU1pZaiYoaidmJW1uOXBKQXBzLiw9U2tRUjInQ2xCRGM9VVRpVmEjbEJQOk5AIyMhJysqaU1BTG82ZSZgVnB1WD9zdDMiMzBaRyw/VHNdZ09cbSdjX1ctTGkvIlQlL2soUUx1TFBWSVBWTFFYI2sxRD49Im83M14mZkwzVk1OIUIrKypJPjE5W09dX2ZtcV1UOFxvUmlMTVkpU0c4LU5gQyZcIiJfVUpCcjJCUF5WKzkoV1ItX1E2UmBqPUBhNFYtNDM7ckhTRixIYydGWl1GTlxdQE8rRSNLay1aJlJPZF5MVFRQVzItKnAnOHFANTZmLXBqKk09SiMuQXBIIUUsI2YlXlFLLEQyVl5EKnRxLWVBN147aVMyOCtabVtPMWImZDdoZi1KL0U5NkhoMCUmdXBXXDgmJThIcXVbYkAxR0xnMilaSk5nXzBAZTtpXD44Si5nNGg3W0JeQ1A2ZW1GKmo4W1krKUYiKVRDcmpkTlltUDY0SCZaXVhqMidrUTU9T3NnaTlKPkJJKF0mN3RsTTI0XSlJNV4yRShUdUBQKkRZPEJAa2w9Ik1cKEZWclw7a0U0JyN1Rzc9JUtMaVY1USFyXCFwXzdZPlshX3UhUXM3PDk6TV1pLz07WFdpSzE0QFZodCtRdEE8UThQV2s1SE50Zkd0a0tiLWVqR0cvZz9tQVJsOVsmQTo0U1E/XmhXViNwJi1ELmktMDotclQqUDM/Q1pcJlNTVElkbEtyW2xxWUtuZkpFaTsoUnRQN0Q3MCU2QWRRYi1aZGpCPjBdPC8/JyltUmo7PXUnXi47KkZjQHArNFxUSD1CaWVLdHUtaSdPTmBTS0xhdTZPbG84Jy1PM1RbTzEzSSJdP0YvazNnV20vLjhSY042ITBfVWEmPyNSOV50VyhjYmZpVy5iX2FjSlBKPkJJJl1jKGZtbm4vIVxPLlJbLy4pMXB0akwkTDxFOl4nVDFNLWpgaDxMKWQnRyg/I0o6KE9lYDhocT0iM1gzLXJBYCFmWGpoRUhhbTJwYG84UipkbWYqPT9aOilIWiwnYEAlcTMsKm47Ny11ZGYnZjRzV1xuWG87am8oY2JjcTlvYmlRKWpIUUFobipsRF5kYmQwPVdEdVg7JzlINWdYLWAsLTBMSClgdEx1QjY8J3NOJEgsSjpQQiIxNjYoVkJPJ1otUUFdSkk5RllLTm1OdGQuJSxTMVo9RG0tUnVdU3RMazZKcmlkRShjT1M1MV5LdG9uY2A+LTdBRkAtJ3I0K20iM2kzTmg6MyJWVUFaQG5ISy5jVWJvL1VNO09sZFlXUktqO05pcVhDRmM6LWk9XF5rJFlDNXNRNVlIO2hsSmgzTz9baj5ELT07LmJrUCxYZj8xUTRuOytBXEtHUTNBSilYbT5tLnApRF9ZPGFqOTIzUFcvXyRFPUVWbWhQUylNbTNyW1g5YlYxYVhhOy1eNDgtRD1FTixjbydAS1dZQ0EsTidIPTc0XUcjWVR1Kl0uIiNxZFVYWlowTmQ8dUtoMkVjaDM1M2FJKm49KTBISnQ3YykqKC5CUllLS2JcTFNmaixeIkJiNWVhcTM7VVtHLS5iR2c1LTdjRXBPQztRRTBpNEtPaSpNLmxNNHJXVzo3ITBkPXNZVDBzMlFwQCJBR1NwUUY1OlcmQVlhaztKSmZuOFwmIzcma1VYTU9pI0RMUTlZNyVaOmA7W3JQXlFhR3E7UEslIi5SQC9uTSFKSVUyK3JUJTNFLkcqPyZcLktlJW4wPzpFUHAjZDJ0TmVdUWNgdSFXdEYkSCxXb0UpLVtwPSRBKlVOdWIwUXBZcEFoKF9Ob01CIiQlYVlYJDo7WzFzSDc9aFBeRmQlRXQwbDFBLEBLRkhKPzlxIiwuUkFwOzEodCRbWHNDQ2UpPEJuTSN0VTpjYkJPdTE7akdQXSplOyRBJFdJSz1qPj1UYVlNVUNcRjtyME9lXTM9KDFsL0lVRixoKmJHMV1HJDshTnI1IkNXWWQnOkJaSC40Q1AiJkcpRGUtXTEwRkhyQXN1LlxCNyJOSEFdMzc1JHA/anJsJWVXXE5oKWlfUC9cOiNSZj8zYnUxOU5xdDNKJW4jYE8xVUIrYVJLVkVzRkNEXWghY0gkVTtHZyU0M3RaIyM2OCI0VjZeZEdQRVYwSktFSlpmTl50YnJBU1hxbjJXK1pLb1NkJ0xHMSRYWTVLNmtoQDJjbGYtUVBpRj1RTFs0cD1QV05INy9RTVtVJEs4OGIoXiJOQkwhaHQjWzhAVGZObmdPPFIibFAyS1g6dXJOYC1rWERJWjMiMzhRPV4/c3A9I0lQO2VMIWFrbj5nXnBhSDRHc1FXW2VqOiZzY1ppUmpXdUBUXTo6Y0U1LThgbS89L19Ua2hVNThFKFMlYnFSWHIxbFpKbzpROyJFJG9cZ3REa286bC9vWl9lIjY9Ni82ZUFnST5yRmZ0P1VbRisxUy1hY09GS2BiRXM9aStaLmU3VSFaITooYV1ML1NGW146UzloW00/MEg4PGEzL2ohIWoyUGhmWTNaLE8+K29fcmgvOT82YV0iNGU6bjo6WTgvKWRHIy4iUylOYjkwPWM8WFFhQD5GVTAjISJTLSgwc25NYXA1YWooPztgPEdxUENDZDZUKDZdME4wYVpcMF9PMDYnLDdRNF0tdVlYSV4vXSgxaHNSbz1SMEVxYSxqJEVFSEhiJC1XQSo7LSdVKFQoMEkiO1hHWjpBUj5UcG0xXltLNipJQT5vNlZLYDBoYG5oL2c8VU9qWHA+aylRPTRwaS9BUCZfXk83JzE3dD1ocS06XzxmTSIuSTdvalFsMiszPzByTzQ3cGFXJFBcMG8/cylRVHRKTmM9I0ZwSCVVVF9tTWZkYD9QVTZkakMlTFxaNSYoa3IrLHFpWzwrYCJ0KUg3ZCJYMikoKztCQWlGSmVGXUBDTjhaLDtpIzczVCMiVFtTMi5bdGAxPTZabXJcLCFsWEVOJVwkLmlVNDZuZnRFZ1tEVnFMSCtSTmo9IlI3bXJnP2paWEYxJS1mIV1rT2EjLCcxWzxNKyozOEYmOC8uPWZvS0dLT0FSLExqK2A9aVY2IVEpYERDJVs6TWU1Z2ZGI1c4KGAvbmVGQmIzUk5NXjlkI2NiTTFlPnVgMTFhYidiWlw+NnI7LkVCViIvIko/YXRlIUowOnInSWtpNTE7Rkt0O0wpcnI2RkNzalJmLltBRlVBbD5aY15YTEY+UCIvMTgjQjo+ZjB1bydNU1MxZm8xXjxDUio4Nj8hTkMuIjQ/UC1pa2c1TkMsUnJxNlk6KDUzW0siXFBaaW85LFkzZkBuN2MyZGljTkZTNmpadHFxLi9EKkwrcHQ0bWA7YSFJYD9GVHEwZmRLVm1tZFVYT2NSVURwbyJCNyUmMypKU00ibzEqaG4sb2E3ITpHbFwkNWg8ayh0WV9UJkFKRkhNOEdrYDhgNGArYzJgaCpdMyw7dD1RSFx0R3RgYks6UkU/dW5FJSRGWz9dVGQyIy83NUJnQk5jWS9IKSM7RVp0bVxqQVhPPCgrPmhKaVszUHBtKHElb1E8MWtxQzFzSXVTaW4jWjdRI2NgSyd1TF1ALWQjMWJsM1g2MzY1RCtRMGRvcCdoO3NUcVVvbihqaj0xTDVDUjVpPyksZGdgRDF1I0NKRz0lOE0laClkbSdENVEuTVdmbjZYR1pwUERVdShbU1IzaDhrPGVJUyFXYF05MC0wU0tFP0tFbltVNkheWSJIZ0FBOGRBcFdcRFJSWl1TYFVAYzxTLj46bWs7Z2k2TDNFOHN0Oks8bWxTZD9DamBTZ0Q1cHEoJlNwLS9WTjstaCpaMD06XmIhOj51N247WixQb2gsUDk1JCNEaE5qJmxnR0wnJFtrITYtVS1gUCEmWmhrKWoiUTkpbjFlb3VWcyE/W2lVPkJpSVZgPVhacXEtPHFsclEzPC5MRTZCSiJ0LT1rUTclVUglU3JlOi9aZypBbTdrYzN1My03YCMiQzNPc0VIVFZRM1VuISxwYmU9NERzZUwqITslVy5Jb2FpazI1P0BjYFxBRSZCKDdPaypCPUsuLVJEV1EjbWAvSm4vTT5RQl0sNilqUSRgbSkwQ1xTdVxSX11aRSQ5KzokQWMzJyFKaDdLT1NPUm9nb0lFSS8/RG1GZGFqajBnZ3EvZF9ZRmQ1MkdwNnMyXmZyIVBNViI0OTFbLyYrVmpoUGBHbjJLIl5HIkNcdT40LmQzaGEwSGksW201RWUxODJMN0VmO0M2Lz9ZKUA/JyMyRmNeZVg2Qy1vTDteSkQoP0VcNkBsLmRNMFBeSzpvPSY7T2lKYSwuS1JKRW5GLUIhK1xhS2BrUGQmcz0tLmEiNEI0JTI3L1YxKUQpNEM0RGZMQzFEcz04cmg4Ki8mRTVvS1xdQUYyRFQ2UUROODxyLnRWb19jZ0QyVWRTTlovZiY8PmtWWkA8LzhjKFY7bUwpQiVWTE05RGUhZmcoK1lmUCRUZlhxYlQvXFxuJCRCQ2wlVThUU2opXjZTXGl0TjNiSkJmTzM1TlBpdVBeYVFBQFkpclpuclI0YE5PWlN0T008WFQjIy5hYFhPTWx1K0thbT1HTyxyPyZlKkgwNX4+ZW5kc3RyZWFtCmVuZG9iagoxNyAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCAyNTg0Cj4+CnN0cmVhbQpHYXVgVUQvVVVZJylrKTBVOyNdUWZkISY6IzlvXlxLVEs+U28vPDpiVVF0RGhGSVU6NlZUbWlOYVtFXV5Jb1dwI0AyLkBxKCpzbDU4RTh0YnFmMkcyYSRmdGxyWDZzTXEjXUoyS0IpUCdKZTU0KiJML2IxRm9lQilQTk89LD81UzsycSMtZFtUMDVGKExTMmRjWzxYZE89MVwjLUxZND1vaFgvOVohKyVTbVAtYmErUmMmTkNsWWJWNllIN21ra2JpKTdGT1JhWFQ6bF8maUxITHNpI0JxXmcuUEp0MzZOSC9KZW9lU2hrdSRNQWFcLTxVK0oiK2xoMCU6bmJeLDwnKVUlMkNdVDtNOUYyL0ByNGY+OClNJWhnSSg6OTdUT3VgPFthLlVQLi8zbF5yND8yZjswZl1XUiVgMSQrMnFyPydaWHAoXjhPR0pjTzNVNmBOY0EmYytEbGhiRl1zVCViV0wiYnA1al4wRDokLzRlSW0pbyJvSnJMOkUwVmY6NTVQYDlBMlsyIWkzZ18yLS9UL25Ua3RtLFBRVylcZzJcLW1mT0pVWSpsaHBBLiJLQDBWMSRsdSxTdGNobiQxYWlNQ24/ZU04Pi0+R0pHIzc1Ziwsam1xIj9Vamg+Ny1JTyVoRSdhVyFecD9SS2wuX0Zyc0FWTjE9Xj8/RUFKZ2ZHVjZAYlMnaChQSjMqZDw1PXAzOUtWKkVyKGlAPT9DOT4zUUNcVHJSQDskdUJxU0RkMyZKKlotaVlnNTpXRlcjWkomIUxdKm8xajs0TWUvSHBNZTxCO0RpcTFNajNwdGNqM3NvUnFDV1dBZXBmIVBzMGNITy45OWokb2RhPi8sN2g9b242LHUsZ1BRaVkvWlk2TDZIWmE0V2JhbmYwX1tyS0NTR0MhODFuPWhqYy5IMEgvcDg2MC5yOTUxNWxYWj1EWE9HRFBZPTNfRXQ1USRdREZVSiR0Yks1PldpXSNuPks4MV5CWS43JzAjLDxbOFxuRUBXVUlNZWVsNlkoNkpfc3VlKz1DJEk1TyNcX2BRQjVVKmFAWy9KaTw8b00zW0w0Qj1BJURWR2V0TClKK1JbbiZWXlklWmlFc3UmXmdgTDZVTV4uVU0vZk44M2JZTFM4MloxUjhpTS00J0prOGJYVzJYYyQ5YWwsSj0obSRhR0NbQlpiJjg5TmJlcUxtaSlnWDklSDFeIzZPOEZrSGQoS2tvKUNYLD9yKSQ6VENlb1QnY15ESzBRNzJGQjdbMzhYdEQpYzxtRi1mW0tON3FYZU0jInA3OGA+MUYxL11zTSdWXE5RYClwRGtBJF5uJmZpXV91MiJWST5eQi1wNTtfZChOUHJxRV1BW2NfOmROR2FiT0ltOVonXnNqM10tQmtwOiozdDhFXWAuNF8sKk5QWGtMIyU/aUVfaEgtSE9MU2hPOS9RVVoudGg7JU0iSiUvN1tlITNeR1JGMjhTaXE+QktxbUkvbGkuZUNsXVFQRGxvXT9fTGVdUV0sPWhDK05QL1lyXnRLZjdARFQ/My9OQiFyYXFvSDlKO1pFWE4vS0BURj8iS1hOSGlGc2dIcDtjW1dibnE/ckVURmZTOVBzYldlTkY8ajleYC5nKWBbJUBNUyEvZC9IImRaYW02J0otQEhoQTM0UkIqWCFtL082X2pzTFpgNCowM2xVU1daJURFUjgkJmc3Sj44JEszM0YzLC5SU2ptMSM+VHQ6MUA0V2NuOlNLO0Y/V0JjPnVaKDspXSs1ZEwvPydRMT8hYV9RWENkV04ibjNkSG9SSD4uLG4uTUxuPSpjJFkkKVY7NzF0Y1VOJVtRbEoqbUBeQXBPWD5eVFhpa2JMMSs/XnJ0LCcqRCdvXjklOypbV0RIVVIkIk9XWCFEXG4ta01lbGIlZFZJaS0yaTdwcCMqM1hpOU49ZF9oIlxQXVlhM0cwJy5LY2VRay9NMV9ISy5pbDpmIU4idUVTY15gQUEmZF0sbjRcY0ptOlhhUTV1bkA/NSI1Lk9aKUl1R2EqM0s1Nis0bnAkZUg2LWojTSdcQUcjQTNATj1GTU8tWS5EVVMpUWJTaEhpNG0uXnRPXEBlZGFMP2Q+ZkVjal8sOzozIVYuOWc6Q0poST9FYUlnOmMuMmZ0b10pIkpkUkpAXT9KdD9AK1pDMzEobWxTcz1AXG5OZFBlNCY/SltbTlw2RGhLUyEhNThsNF5qbShza1ssVTFYKyxQPjg2YkwodElyXWNZV0JxN1gyXXFKR2pkUzwnbCFgYEhMb0dXRTtTQVtnXllTczVPdG9EVlc8JEE1YjtIPCgjXlhUMjkhXl9XcW4kLCRIOS5fZy5nNkJuUUUsUUxvWjxyRHBtZXNRZT1AdTFAJW5IMV9BRVE9L0ZuNjM0aXI4KGRaUkZPO3BBWW1ncmQ3SldvNCctaGExVTZgNUdXcG1IaV07S1M3OSN1cDZScSdCIWRTPExyX28yTFo4LVZJUid0J19IZj5GTW1LN1FxPWQwUnQmUTIhJEMzPyZeJTtRTk45LC0/XWMnR3VaMyc4bXBJYTBZQTJNW0hLTDM9XiY8N0htPyVrTjJTQkNzMWJfMF5ZTEFfLHNiPC8uZjtNVENXUWxTXy0qTy43ajQxUSElXyomRkRyQWVjZ1JabyhsKz1qY25pYjQ1Jkk4SkI1MVh1IV4nPEtFayxqUHE7ZEhba2olUUsuVmQ/am4+WlAsZGQjOC03clc7TTlmVyU5IiJNQSdtUz1aMG9oaFVAT0pWXHJkQk0iPTNlZSE5USwmRFBtbDlEMiEkZEcpdGsjXkxmNjpGLyFCU2xNYFVJJWtebGJccUtnaE5xXC5oITZdRjkoWCVbcF1FOE5FY0xHOSInKjZoOmdYNGUyWigtM3FIZkRgUjZvKXIqKUpMcko+c2QhWWQmJkEvWUBJdD5LJztFXG82Wl5xLS5XWDFCTWJIRDdAS11IMTtCYU0xVzBuWjBYSjJHXG49KkQvJmguVGxGc1otKCVyO3NIUCYtOEhMIm9yRzUmSCk/RWhjNCgsYykqbmVcKENqU0VUbShTZWg2ZWBjQSdvXCJHczNUSlVdJnFBcGNwaWtlO0RzYGBsVmhMZj9DZydrPGhWYjhvZ25FVDQzQCQiUT1uKlYqNT5jP10+KkVsJGJQIm9vOzYraC5oLE4iW1pGdHMpKShrMT4kKiVXXjNOSV5XV28hYGpNZXQnOF9gYFY3SHRLNVY1YjIjOmE8QCpmLFwnIShlO0MkX15cR2JMZWMtVi1CMlRvUVsmVHVFRDs/aEtNSE49YWZKKlZiXyNeU1pcQFZlYFRPTnREXDAjUGJCVEo2N1Q3Xi84O3RIL0kwc2FtOWswOUVxSyFiOmM2KlVddG1la1I2LU9cQk5tRCcvKydEInBzRi9AbEI0XFU5JWU1Xy1qa0tFOi5XOFZRZl5DP2g3JWclLF1AZn4+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgMTgKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMTIgMDAwMDAgbiAKMDAwMDAwMDIxOSAwMDAwMCBuIAowMDAwMDAwMzMxIDAwMDAwIG4gCjAwMDAwMDA0MDggMDAwMDAgbiAKMDAwMDAwMDYwMyAwMDAwMCBuIAowMDAwMDAwNzk4IDAwMDAwIG4gCjAwMDAwMDA5OTMgMDAwMDAgbiAKMDAwMDAwMTE4OCAwMDAwMCBuIAowMDAwMDAxMzgzIDAwMDAwIG4gCjAwMDAwMDE0NTMgMDAwMDAgbiAKMDAwMDAwMTc0NCAwMDAwMCBuIAowMDAwMDAxODI4IDAwMDAwIG4gCjAwMDAwMDY1MTIgMDAwMDAgbiAKMDAwMDAxMTQyMyAwMDAwMCBuIAowMDAwMDE1NjEwIDAwMDAwIG4gCjAwMDAwMjAwMTIgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8ODBlN2E5ZGYzYjc5ZjgxYjU2MjBiMWI0MjQyOWMxZjQ+PDgwZTdhOWRmM2I3OWY4MWI1NjIwYjFiNDI0MjljMWY0Pl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyAxMSAwIFIKL1Jvb3QgMTAgMCBSCi9TaXplIDE4Cj4+CnN0YXJ0eHJlZgoyMjY4OAolJUVPRgo=" download="Paris_DeVault_GRC_Portfolio.pdf"
+        style="display:inline-flex;align-items:center;gap:10px;padding:14px 32px;
+        background:rgba(20,184,166,0.12);border:1px solid rgba(20,184,166,0.4);
+        border-radius:10px;color:#14b8a6;font-family:'DM Mono',monospace;
+        font-size:0.85rem;font-weight:500;text-decoration:none;
+        transition:all 0.2s;letter-spacing:0.05em;">
+        &#8595; Download One-Page Portfolio PDF
+      </a>
+    </div>
+    <div class="contact-row">
+      <div class="contact-item">📧 <a href="mailto:parisdevault@gmail.com" style="color:inherit;text-decoration:none;">parisdevault@gmail.com</a></div>
+      <div class="contact-item">📱 <a href="tel:4094664464">409-466-4464</a></div>
+      <div class="contact-item">🔗 <a href="https://linkedin.com/in/parisjdevault" target="_blank">linkedin.com/in/parisjdevault</a></div>
+      <div class="contact-item">📍 Houston, TX</div>
